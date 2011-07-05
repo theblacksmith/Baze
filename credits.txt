@@ -1,0 +1,7 @@
+Zend Framework - http://framework.zend.com
+
+Prado - http://www.pradosoft.com
+
+Akelos - http://akelos.org
+
+PHPBrowscap - http://code.google.com/p/phpbrowscap

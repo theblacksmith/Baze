@@ -1,0 +1,378 @@
+﻿<?php
+
+/**
+ * Lançada quando ocorre um erro na serialização ou deserialização de um objeto
+ * @author Saulo Vallory
+ * @version 1.0
+ * @copyright 2007 Neoconn Networks
+ * @since 1.0
+ */
+class SerializationException extends BazeException {}
+
+/**
+ * Lançada quando uma requisição http retorna um código de erro
+ * @author Saulo Vallory
+ * @version 1.0
+ * @copyright 2007 Neoconn Networks
+ * @since 1.0
+ */
+class HTTPException extends BazeException {}
+
+/**
+ * Lançada quando um método existe, mas não pode ser executado nesse objeto. Uma pilha pode conter um método getLast herdado de uma classe Collection pai. Esse método pode ser sobrescrito para lançar essa exceção, uma vez que em uma pilha só é permitido inserir e remover elementos no topo
+ * @author Saulo Vallory
+ * @version 1.0
+ * @copyright 2007 Neoconn Networks
+ * @since 1.0
+ */
+class InvalidOperationException extends BazeException {}
+
+/**
+ * Lançada quando um objeto do pseudo-tipo {@link http://br2.php.net/callback callback} não faz referência a uma função ou método válido. A função ou método pode não existir ou existir e não poder ser acessada por ser um método privado ou protegido
+ * @author Saulo Vallory
+ * @version 1.0
+ * @copyright 2007 Neoconn Networks
+ * @since 1.0
+ */
+class InvalidCallbackException extends BazeException {}
+
+/**
+ * Lançada quando se tenta acessar um método ou propriedade para o qual não se tem a permissão de acesso
+ * @author Saulo Vallory
+ * @version 1.0
+ * @copyright 2007 Neoconn Networks
+ * @since 1.0
+ */
+class IllegalAccessException extends BazeException {}
+
+/**
+ * Lançada ao tentar fabricar um componente e esse componente não é encontrado
+ * @author Saulo Vallory
+ * @version 1.0
+ * @copyright 2007 Neoconn Networks
+ * @since 1.0
+ */
+class ComponentNotFoundException extends BazeException {}
+
+/**
+ * Lançada ao tentar executar um método que não existe
+ * @author Saulo Vallory
+ * @version 1.0
+ * @copyright 2007 Neoconn Networks
+ * @since 1.0
+ */
+class UndefinedMethodException extends BazeException {}
+
+/**
+ * Lançada ao tentar acessar uma propriedade que não existe
+ * @author Saulo Vallory
+ * @version 1.0
+ * @copyright 2007 Neoconn Networks
+ * @since 1.0
+ */
+class UndefinedPropertyException extends BazeException {}
+
+/**
+ * Lançada quando há um erro na configuração do Baze
+ * @author Saulo Vallory
+ * @version 1.0
+ * @copyright 2007 Neoconn Networks
+ * @since 1.0
+ */
+class ConfigurationException extends SystemException {}
+
+/**
+ * Lançada quando o Baze não consegue encontrar uma configuração de projeto válida para a requisição atual
+ * @author Saulo Vallory
+ * @version 1.0
+ * @copyright 2007 Neoconn Networks
+ * @since 1.0
+ */
+class ProjectNotFoundException extends ConfigurationException {}
+
+/**
+ * Lançada quando um recurso não suportado é solicitado ao base
+ * @author Saulo Vallory
+ * @version 1.0
+ * @copyright 2007 Neoconn Networks
+ * @since 1.0
+ */
+class NotSupportedException extends SystemException {}
+
+
+/**
+ * Classe base para exceções ocorridas em tempo de execução
+ * @author Saulo Vallory
+ * @version 1.0
+ * @copyright 2007 Neoconn Networks
+ * @since 1.0
+ */
+class BazeRuntimeException extends BazeException {}
+
+/**
+ * Lançada quando se tenta acessar um índice não definido de uma coleção
+ * @author Saulo Vallory
+ * @version 1.0
+ * @copyright 2007 Neoconn Networks
+ * @since 1.0
+ */
+class IndexOutOfBoundsException extends BazeRuntimeException {}
+
+/**
+ * Lançada quando se tenta acessar um índice não definido de um array ou de uma coleção
+ * @author Saulo Vallory
+ * @version 1.0
+ * @copyright 2007 Neoconn Networks
+ * @since 1.0
+ */
+class ArrayIndexOutOfBoundsException extends IndexOutOfBoundsException {}
+
+/**
+ * Lançada quando se tenta acessar um índice não definido de uma string
+ * @author Saulo Vallory
+ * @version 1.0
+ * @copyright 2007 Neoconn Networks
+ * @since 1.0
+ */
+class StringIndexOutOfBoundsException extends IndexOutOfBoundsException {}
+
+
+/**
+ * Classe base para exceções de argumentos
+ * @author Saulo Vallory
+ * @version 1.0
+ * @copyright 2007 Neoconn Networks
+ * @since 1.0
+ */
+class ArgumentException extends BazeRuntimeException {}
+
+/**
+ * Lançada quando o tipo de um argumento passado para um função é diferente do tipo esperado
+ * @author Saulo Vallory
+ * @version 1.0
+ * @copyright 2007 Neoconn Networks
+ * @since 1.0
+ */
+class InvalidArgumentTypeException extends ArgumentException {}
+
+/**
+ * Lançada quando o valor de um argumento passado para um função está fora dos valores aceitos. (Ex: um valor negativo para uma função que retorna o elemento na posição x de uma coleção)
+ * @author Saulo Vallory
+ * @version 1.0
+ * @copyright 2007 Neoconn Networks
+ * @since 1.0
+ */
+class InvalidArgumentValueException extends ArgumentException {}
+
+
+/**
+ * Classe base para exceções em coleções
+ * @author Saulo Vallory
+ * @version 1.0
+ * @copyright 2007 Neoconn Networks
+ * @since 1.0
+ */
+class CollectionException extends BazeRuntimeException {}
+
+/**
+ * Lançada ao tentar realizar um operação com o objeto de uma coleção e a chave passada para localizar o objeto não é encontrada na coleção
+ * @author Saulo Vallory
+ * @version 1.0
+ * @copyright 2007 Neoconn Networks
+ * @since 1.0
+ */
+class KeyNotFoundException extends CollectionException {}
+
+/**
+ * Lançada quando se tenta adicionar à uma coleção um objeto de um tipo diferente do tipo restringido pela coleção
+ * @author Saulo Vallory
+ * @version 1.0
+ * @copyright 2007 Neoconn Networks
+ * @since 1.0
+ */
+class CollectionStoreException extends CollectionException {}
+
+/**
+ * Lançada quando tenta-se obter um item de uma pilha que está vazia
+ * @author Saulo Vallory
+ * @version 1.0
+ * @copyright 2007 Neoconn Networks
+ * @since 1.0
+ */
+class EmptyStackException extends CollectionException {}
+
+
+/**
+ *
+ * @author Saulo Vallory
+ * @version 1.0
+ * @copyright 2007 Neoconn Networks
+ * @since 1.0
+ */
+class XMLException extends BazeException {}
+
+/**
+ * Input is not proper ______, indicate encoding
+ * @author Saulo Vallory
+ * @version 1.0
+ * @copyright 2007 Neoconn Networks
+ * @since 1.0
+ */
+class WrongEncodingException extends XMLException {}
+
+/**
+ * Lançada quando a codificação informada na declaração do xml não é suportada
+ * @author Saulo Vallory
+ * @version 1.0
+ * @copyright 2007 Neoconn Networks
+ * @since 1.0
+ */
+class UnsuportedEncodingException extends XMLException {}
+
+/**
+ * Lançada quando ocorre um erro no parseamento de um xml
+ * @author Saulo Vallory
+ * @version 1.0
+ * @copyright 2007 Neoconn Networks
+ * @since 1.0
+ */
+class XMLParseException extends XMLException {}
+
+
+/**
+ * Classe base para exceções de entrada/saída de dados, sejam elas em aquivo ou via rede
+ * @author Saulo Vallory
+ * @version 1.0
+ * @copyright 2007 Neoconn Networks
+ * @since 1.0
+ */
+class IOException extends BazeException {}
+
+/**
+ * Lançada quando se tenta ler um arquivo cujo ponteiro já chegou ao fim
+ * @author Saulo Vallory
+ * @version 1.0
+ * @copyright 2007 Neoconn Networks
+ * @since 1.0
+ */
+class EOFException extends IOException {}
+
+/**
+ * Lançada quando não é possível encontrar o arquivo solicitado
+ * @author Saulo Vallory
+ * @version 1.0
+ * @copyright 2007 Neoconn Networks
+ * @since 1.0
+ */
+class FileNotFoundException extends IOException {}
+
+/**
+ * Lançada quando não é possível encontrar o diretório solicitado
+ * @author Saulo Vallory
+ * @version 1.0
+ * @copyright 2007 Neoconn Networks
+ * @since 1.0
+ */
+class DirectoryNotFoundException extends IOException {}
+
+/**
+ * Lançada quando a codificação do arquivo não é suportada pelo Baze
+ * @author Saulo Vallory
+ * @version 1.0
+ * @copyright 2007 Neoconn Networks
+ * @since 1.0
+ */
+class UnsupportedEncodingException extends IOException {}
+
+/**
+ * Lançada quando a URL passada não é uma URL válida
+ * @author Saulo Vallory
+ * @version 1.0
+ * @copyright 2007 Neoconn Networks
+ * @since 1.0
+ */
+class MalformedURLException extends IOException {}
+
+/**
+ * Lançada quando o protocolo de conexão não é suportado
+ * @author Saulo Vallory
+ * @version 1.0
+ * @copyright 2007 Neoconn Networks
+ * @since 1.0
+ */
+class UnsupportedProtocolException extends IOException {}
+
+/**
+ * Lançada quando não é possível conectar-se
+ * @author Saulo Vallory
+ * @version 1.0
+ * @copyright 2007 Neoconn Networks
+ * @since 1.0
+ */
+class ConnectionException extends IOException {}
+
+
+/**
+ * Classe base para exceções relacionadas à conexão e consulta à bancos de dados
+ * @author Saulo Vallory
+ * @version 1.0
+ * @copyright 2007 Neoconn Networks
+ * @since 1.0
+ */
+class DatabaseException extends BazeException {}
+
+/**
+ * Lançada quando o link de conexão passado para execução de uma consulta não é um link válido
+ * @author Saulo Vallory
+ * @version 1.0
+ * @copyright 2007 Neoconn Networks
+ * @since 1.0
+ */
+class InalidConnectionLinkException extends DatabaseException {}
+
+/**
+ * Lançada quando o banco solicitado não é encontrado no servidor
+ * @author Saulo Vallory
+ * @version 1.0
+ * @copyright 2007 Neoconn Networks
+ * @since 1.0
+ */
+class DatabaseNotFoundException extends DatabaseException {}
+
+/**
+ * Lançada quando o servidor do banco não é encontrado
+ * @author Saulo Vallory
+ * @version 1.0
+ * @copyright 2007 Neoconn Networks
+ * @since 1.0
+ */
+class DatabaseServerHostNotFoundException extends DatabaseException {}
+
+/**
+ * Classe base para exceções relacionadas à consulta à bancos de dados
+ * @author Saulo Vallory
+ * @version 1.0
+ * @copyright 2007 Neoconn Networks
+ * @since 1.0
+ */
+class SQLException extends DatabaseException {}
+
+/**
+ * Lançada quando a consulta tem um erro de sintaxe
+ * @author Saulo Vallory
+ * @version 1.0
+ * @copyright 2007 Neoconn Networks
+ * @since 1.0
+ */
+class InvalidSQLSyntaxException extends SQLException {}
+
+
+/**
+ * Classe Baze para as exceções do usuário do framework
+ * @author Saulo Vallory
+ * @version 1.0
+ * @copyright 2007 Neoconn Networks
+ * @since 1.0
+ */
+class ApplicationException extends BazeException {}
+

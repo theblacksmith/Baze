@@ -1,0 +1,31 @@
+<project name="Neobase">
+
+	<property file="build.properties" />
+
+	<target name="jsapi">
+		<echo>Building JS API...</echo>
+		<echo>[1/3] Building system package (${system.baseDir})</echo>
+		<exec dir="${system.baseDir}" executable="${php.command}">
+			<arg line="'${php.fileMerger}' ${output.fileName} ${system.files2merge}" />
+		</exec>
+		
+		<echo>[2/3] Building web package</echo>
+		<exec dir="${web.baseDir}" executable="${php.command}">
+			<arg line="'${php.fileMerger}' ${output.fileName} ${web.files2merge}" />
+		</exec>
+		
+		<echo>[3/3] Building all-in-one file</echo>
+		<exec dir="${input.baseDir}" executable="${php.command}">
+			<arg line="'${php.fileMerger}' ${api.fileName}.js ${api.files2merge}" />
+		</exec>
+		
+		<echo>Done!</echo>
+	</target>
+	
+	<target name="compress">
+		<echo>Compressing</echo>
+		<exec dir="." executable="${compressor.command}">
+			<arg line="${compressor.options} -v -o ${input.baseDir}/${api.fileName}.min.js ${input.baseDir}/${api.fileName}.js" />
+		</exec>
+	</target>
+</project>

@@ -1,0 +1,61 @@
+NeoBase PHP Framework 0.9.0
+Copright Neoconn Networks © 2007
+Licensa BSD
+
+======== ÍNDICE
+
+	1. Sobre o framework
+	2. Instalação
+	3. Por onde começar
+	4. Links úteis	
+
+	
+1. Sobre o framework
+
+	O NeoBase permite que você desenvolva projetos em PHP com um estilo muito semelhante
+ao .Net. Se você já trabalhou com o framework da Microsoft não terá dificuldades em se
+adaptar ao Base. Algumas diferenças entre o Base e o .Net são:
+
+	AJAX nativo
+		Toda a comunicação cliente-servidor é feita via AJAX.
+	
+	API javascript
+		Além da API prototype (http://www.prototypejs.org) o Base possui uma API javascript
+		própria que permite manipular os componentes no cliente de forma semelhante à feita
+		no servidor. A API javascript ainda não está documentada, mas você pode dar uma olhada
+		no scripts na pasta library/js.
+	
+	Extensibilidade
+		O NeoBase permite que você crie seus próprios componentes, extendendo o framework e
+		facilitando o aumento o reuso de código nos seus projetos.
+
+
+2. Instalação
+
+	I. Descompacte o NeoBase para uma pasta acessível pelo apache (geralmente htdocs)
+
+	II. Duplique o arquivo baseconf_browser.xml-dist que está na pasta conf removendo
+	   a parte "-dist" do nome.
+	   
+	III. Edite este arquivo seguindo as instruções dentro do proprio arquivo para configurar
+	   as pastas e urls utilizadas pelo seu projeto e pelo framework. Você deverá criar uma
+	   tag <project> para cada projeto que utilizará o base.
+
+	IV. Você pode testar o funcionamento do base acessando os exemplos na pasta examples
+	   que encontra-se na raiz do framework.
+	  
+	V. O Base salva arquivos temporários e logs durante sua execução, respectivamente
+	   temp e logs. Altere permissão dessas pastas permitindo que ao PHP a escrita/leitura.
+	   (esse passo, geralmente, só é necessário no linux)
+
+
+3. Por onde começar
+	
+	Uma boa forma de começar é dando uma olhada nos exemplos na pasta examples. Na pasta docs
+	você encontrará um documento explicando o funcionamento dos examplos e a documentação 
+	das classes do framework.
+
+4. Links úteis
+
+	Wiki - http://neobase.neoconn.com/wiki
+	BugTracker - http://neobase.neoconn.com/trac

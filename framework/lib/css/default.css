@@ -1,0 +1,29 @@
+@CHARSET "UTF-8";
+
+#baze-loading
+{
+	display: none;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -50px; 
+	margin-left: -120px;
+	width: 240px;
+	height: 100px;
+	border: 1px solid #AAAAAA;
+	background-color: #FFFFFF;
+	text-align: left;
+	border-radius: 10px;
+	border: 4px #ccc solid;
+}
+
+#baze-loading .text {
+	display: block;
+	font-family: Lucida Grande,verdana,sans-serif;
+	line-height: 98px;
+}
+
+#baze-loading img {
+	float: left;
+	margin: 42px 5px 0 70px;
+}

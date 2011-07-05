@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title><!-- Insert your title here --></title>
+    <script  src="prototype-1.6.0.3" type="text/javascript" ></script>
+</head>
+<body>
+    <script type="text/javascript">
+        /** new, preferred syntax **/
+        
+        // properties are directly passed to `create` method
+        var Person = Class.create({
+          initialize: function(name) {
+            this.name = name;
+          },
+          
+          say: function(message) {
+            return this.name + ': ' + message;
+          }
+        });
+        
+        // when subclassing, specify the class you want to inherit from
+        var Pirate = Class.create(Person, {
+          // redefine the speak method
+          say: function($super, message) {
+            return $super(message) + ', yarr!';
+          }
+        });
+        
+        var me = new Person('Saulo');
+        var hook = new Pirate('Capitain Hook');
+        
+<!-- FIREBUG CONSOLE RESULTS
+>>> me
+Object name=Saulo
+>>> hook
+Object name=Capitain Hook
+>>> Person prototypeof me
+SyntaxError: missing ; before statement
+>>> me instanceof Person
+true
+>>> me instanceof Pirate
+false
+>>> hook instanceof Pirate
+true
+>>> hook instanceof Person
+true
+>>> me.initialize
+function()
+>>> me.prototype
+>>> me.__proto__
+Object
+>>> he = new Person('idn')
+Object name=idn
+>>> me.say == he.say
+true
+>>> me.say === he.say
+true
+>>> Object.extend
+function()
+>>> Object.extend(Person, { objex : function(){} });
+klass()
+>>> she = new Person('Sarah');
+Object name=Sarah
+>>> Person
+klass()
+>>> Person.objex
+function()
+>>> Person.extend({ perex : function(){} });
+TypeError: Person.extend is not a function
+>>> Person.addMethods({ perex : function(){} });
+klass()
+>>> Person.perex
+>>> me.perex
+function()
+>>> hook.perex
+function()
+>>> Pirate.objex
+>>> Person.objex
+function()
+-->
+    </script>
+</body>
+</html>

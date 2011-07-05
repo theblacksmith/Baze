@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<conf>
+	<system>
+		<!-- 
+			suggestted confs: 
+			mode: debug, normal 
+		-->
+	</system>
+	<apps>
+		<app>
+			<name>Baze Examples</name>
+		
+			<!-- url que aponta para a raiz da aplicação -->
+			<url>http://baze/examples</url>
+			
+			<!-- raiz da aplicação no hd -->
+			<docRoot>c:/projects/baze/examples</docRoot>
+			
+			<!-- Where are the Baze library folder? -->
+			<bazeLibUrl>http://baze/framework/lib</bazeLibUrl>
+						
+			<!-- 
+				Mode pode receber os valores "development" e "production" 
+				Esta configuração ainda é pouco explorada. Por enquanto ela apenas define se os javascripts
+				serão enviados de forma compactada (production) ou não (development)
+			-->
+			<mode>development</mode> 
+			
+			<defaulEncoding>utf-8</defaulEncoding>
+			
+			<defaultContentType>text/html</defaultContentType>
+
+			<services>
+				<service>
+					<id>feed</id>
+					<class>system.web.services.FeedService</class>
+					<urlPattern>|/feeds/*+|</urlPattern>
+					<errorPages>
+						<_404>exmp.errors.Error404</_404>
+						<_503>exmp.errors.Error503</_503>
+					</errorPages>
+				</service>
+			</services>
+			
+			<namespaces> 
+				<namespace>
+					<name>zend</name>
+					<folder>/projects/baze/examples/ZendFramework-1.11.7/library/Zend/</folder>
+				</namespace>
+				<namespace>
+					<name>examples</name>
+					<folder>/projects/baze/examples/</folder>
+				</namespace>
+				<namespace>
+					<name>propel</name>
+					<folder>/projects/baze/examples/ZendFramework-1.11.7/library/Zend/</folder>
+				</namespace>
+			</namespaces>
+			
+			<autoload>
+				<class></class>
+			</autoload>
+		</app>
+		<app>
+			<!-- Identificador do projeto, não é utilizado pelo framework -->
+			<name>Baze Examples</name>
+			
+			<url>http://projects/baze/examples</url>
+			
+			<!-- Domínio onde está hospedado o projeto -->
+			<serverAlias>localhost</serverAlias>
+			
+			<!-- Caminho no site onde está hospedado o framework -->
+			<siteRoot>/baze/examples</siteRoot>
+			
+			<!-- só é necessário definir a porta se você não estiver usando a porta 80 -->
+			<serverPort></serverPort>
+			
+			<!-- Caminho físico onde está localizado o projeto -->
+			<documentRoot>c:/projects/baze/examples</documentRoot>
+			
+			<!-- Namespace das classes deste projeto [opcional]  -->
+			<namespace></namespace>
+			
+			<!--
+				Diretório raiz das classes deste projeto [opcional]  
+				Se definido, é obrigatório definir o namespace acima.
+			-->
+			<classesRoot></classesRoot>
+
+			<!-- Caminhos de diretórios de classes adicionais -->
+			<classPaths>
+				<!-- Exemplo de class path
+					Caso seu projeto utilize outros projetos. Você pode definir outros namespaces e seus respectivos 
+					caminhos físicos para que as classes desses projetos possam ser requeridas através da função
+					import. 
+						Ex: a chamada 
+							import('propel.BaseClass'); 
+						carregará a classe
+							C:/apache/htdocs/propel/BaseClass.php ou BaseClass.class.php
+				<path>
+					<namespace>propel</namespace>
+					<rootDir>C:/apache/htdocs/propel/</rootDir>
+				</path>
+				-->
+			</classPaths>
+			
+			<!-- Classes que serão automaticamente carregadas -->
+			<autoload>
+				<!-- 
+					Caminho da classe a ser importada. Use a notação de pacotes
+					Ex: base.web.Panel
+				-->
+				<class></class>
+			</autoload>
+		</app>
+	</apps>
+</conf>

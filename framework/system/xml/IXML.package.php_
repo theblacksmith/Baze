@@ -1,0 +1,510 @@
+<?php
+
+interface IXMLElement extends IXMLNode
+{
+	/**
+	 * @return string
+	 */
+	public function getAttribute(string $name);
+
+	/**
+	 * @return DOMAttr
+	 */
+	public function getAttributeNode(string $name);
+
+	/**
+	 * @return DOMAttr
+	 */
+	public function getAttributeNodeNS(string $namespaceURI , string $localName);
+
+	/**
+	 * @return string
+	 */
+	public function getAttributeNS(string $namespaceURI , string $localName);
+
+	/**
+	 * @return DOMNodeList
+	 */
+	public function getElementsByTagName(string $name);
+
+	/**
+	 * @return DOMNodeList
+	 */
+	public function getElementsByTagNameNS(string $namespaceURI , string $localName);
+
+	/**
+	 * @return bool
+	 */
+	public function hasAttribute(string $name);
+
+	/**
+	 * @return bool
+	 */
+	public function hasAttributeNS(string $namespaceURI , string $localName);
+
+	/**
+	 * @return bool
+	 */
+	public function removeAttribute(string $name);
+
+	/**
+	 * @return bool
+	 */
+	public function removeAttributeNode(DOMAttr $oldnode);
+
+	/**
+	 * @return bool
+	 */
+	public function removeAttributeNS(string $namespaceURI , string $localName);
+
+	/**
+	 * @return DOMAttr
+	 */
+	public function setAttribute(string $name , string $value);
+
+	/**
+	 * @return DOMAttr
+	 */
+	public function setAttributeNode(DOMAttr $attr);
+
+	/**
+	 * @return DOMAttr
+	 */
+	public function setAttributeNodeNS(DOMAttr $attr);
+
+	/**
+	 * @return void
+	 */
+	public function setAttributeNS(string $namespaceURI , string $qualifiedName , string $value);
+
+	/**
+	 * @return void
+	 */
+	public function setIdAttribute(string $name , bool $isId);
+
+	/**
+	 * @return void
+	 */
+	public function setIdAttributeNode(DOMAttr $attr , bool $isId);
+
+	/**
+	 * @return void
+	 */
+	public function setIdAttributeNS(string $namespaceURI , string $localName , bool $isId);
+
+
+	/**
+	 * Returns the element name
+	 * 
+	 * @return String
+	 */
+	public function getTagName();
+}
+
+interface IXMLCharacterData extends IXMLNode
+{
+	/* Properties */
+
+	/**
+	 * @return string
+	 */
+	public function getdata();
+
+	/**
+	 * @param string
+	 */
+	public function setdata(string $value);
+
+	
+	/**
+	 * @return int
+	 */
+	public function getlength();
+
+	
+	/**
+	 * @return void
+	 */
+	public function appendData(string $data);
+
+	/**
+	 * @return void
+	 */
+	public function deleteData(int $offset , int $count);
+
+	/**
+	 * @return void
+	 */
+	public function insertData(int $offset , string $data);
+
+	/**
+	 * @return void
+	 */
+	public function replaceData(int $offset , int $count , string $data);
+
+	/**
+	 * @return string
+	 */
+	public function substringData(int $offset , int $count);
+
+}
+
+interface IXMLText extends IXMLCharacterData
+{
+	/* Properties */
+
+	/**
+	 * @return string
+	 */
+	public function getwholeText();
+
+	
+	__construct ([ string $value ] )
+	/**
+	 * @return bool
+	 */
+	public function isWhitespaceInElementContent(void);
+
+	/**
+	 * @return DOMText
+	 */
+	public function splitText(int $offset);
+
+	/* Inherited methods */
+	void DOMCharacterData::appendData ( string $data )
+	void DOMCharacterData::deleteData ( int $offset , int $count )
+	void DOMCharacterData::insertData ( int $offset , string $data )
+	void DOMCharacterData::replaceData ( int $offset , int $count , string $data )
+	string DOMCharacterData::substringData ( int $offset , int $count )
+}
+
+interface IXMLAttr extends IXMLNode
+{
+	public readonly string $name ;
+	public readonly DOMElement $ownerElement ;
+	public readonly bool $schemaTypeInfo ;
+	public readonly bool $specified ;
+
+	/**
+	 * @return string
+	 */
+	public function getvalue();
+
+	/**
+	 * @param string
+	 */
+	public function setvalue(string $value);
+
+	
+	/**
+	 * @return bool
+	 */
+	public function isId(void);
+
+}
+
+interface IXMLDocumentFragment extends IXMLNode
+{
+	/**
+	 * @return bool
+	 */
+	public function appendXML(string $data);
+
+}
+
+interface IXMLDocument extends IXMLNode
+{
+	/* Properties */
+
+	/**
+	 * @return string
+	 */
+	public function getactualEncoding();
+
+
+	/**
+	 * @return DOMConfiguration
+	 */
+	public function getconfig();
+
+
+	/**
+	 * @return DOMDocumentType
+	 */
+	public function getdoctype();
+
+
+	/**
+	 * @return DOMElement
+	 */
+	public function getdocumentElement();
+
+
+	/**
+	 * @return string
+	 */
+	public function getdocumentURI();
+
+	/**
+	 * @param string
+	 */
+	public function setdocumentURI(string $value);
+
+
+	/**
+	 * @return string
+	 */
+	public function getencoding();
+
+	/**
+	 * @param string
+	 */
+	public function setencoding(string $value);
+
+
+	/**
+	 * @return bool
+	 */
+	public function getformatOutput();
+
+	/**
+	 * @param bool
+	 */
+	public function setformatOutput(bool $value);
+
+
+	/**
+	 * @return DOMImplementation
+	 */
+	public function getimplementation();
+
+	public bool $preserveWhiteSpace =true ;
+
+	/**
+	 * @return bool
+	 */
+	public function getrecover();
+
+	/**
+	 * @param bool
+	 */
+	public function setrecover(bool $value);
+
+
+	/**
+	 * @return bool
+	 */
+	public function getresolveExternals();
+
+	/**
+	 * @param bool
+	 */
+	public function setresolveExternals(bool $value);
+
+
+	/**
+	 * @return bool
+	 */
+	public function getstandalone();
+
+	/**
+	 * @param bool
+	 */
+	public function setstandalone(bool $value);
+
+	public bool $strictErrorChecking =true ;
+
+	/**
+	 * @return bool
+	 */
+	public function getsubstituteEntities();
+
+	/**
+	 * @param bool
+	 */
+	public function setsubstituteEntities(bool $value);
+
+	public bool $validateOnParse =false ;
+
+	/**
+	 * @return string
+	 */
+	public function getversion();
+
+	/**
+	 * @param string
+	 */
+	public function setversion(string $value);
+
+
+	/**
+	 * @return string
+	 */
+	public function getxmlEncoding();
+
+
+	/**
+	 * @return bool
+	 */
+	public function getxmlStandalone();
+
+	/**
+	 * @param bool
+	 */
+	public function setxmlStandalone(bool $value);
+
+
+	/**
+	 * @return string
+	 */
+	public function getxmlVersion();
+
+	/**
+	 * @param string
+	 */
+	public function setxmlVersion(string $value);
+
+
+	
+	__construct ([ string $version [, string $encoding ]] )
+	/**
+	 * @return DOMAttr
+	 */
+	public function createAttribute(string $name);
+
+	/**
+	 * @return DOMAttr
+	 */
+	public function createAttributeNS(string $namespaceURI , string $qualifiedName);
+
+	/**
+	 * @return DOMCDATASection
+	 */
+	public function createCDATASection(string $data);
+
+	/**
+	 * @return DOMComment
+	 */
+	public function createComment(string $data);
+
+	/**
+	 * @return DOMDocumentFragment
+	 */
+	public function createDocumentFragment(void);
+
+	/**
+	 * @return DOMElement
+	 */
+	public function createElement(string $name [, string $value ]);
+
+	/**
+	 * @return DOMElement
+	 */
+	public function createElementNS(string $namespaceURI , string $qualifiedName [, string $value ]);
+
+	/**
+	 * @return DOMEntityReference
+	 */
+	public function createEntityReference(string $name);
+
+	/**
+	 * @return DOMProcessingInstruction
+	 */
+	public function createProcessingInstruction(string $target [, string $data ]);
+
+	/**
+	 * @return DOMText
+	 */
+	public function createTextNode(string $content);
+
+	/**
+	 * @return DOMElement
+	 */
+	public function getElementById(string $elementId);
+
+	/**
+	 * @return DOMNodeList
+	 */
+	public function getElementsByTagName(string $name);
+
+	/**
+	 * @return DOMNodeList
+	 */
+	public function getElementsByTagNameNS(string $namespaceURI , string $localName);
+
+	/**
+	 * @return DOMNode
+	 */
+	public function importNode(DOMNode $importedNode [, bool $deep ]);
+
+	/**
+	 * @return mixed
+	 */
+	public function load(string $filename [, int $options ]);
+
+	/**
+	 * @return bool
+	 */
+	public function loadHTML(string $source);
+
+	/**
+	 * @return bool
+	 */
+	public function loadHTMLFile(string $filename);
+
+	/**
+	 * @return mixed
+	 */
+	public function loadXML(string $source [, int $options ]);
+
+	/**
+	 * @return void
+	 */
+	public function normalizeDocument(void);
+
+	/**
+	 * @return bool
+	 */
+	public function registerNodeClass(string $baseclass , string $extendedclass);
+
+	/**
+	 * @return bool
+	 */
+	public function relaxNGValidate(string $filename);
+
+	/**
+	 * @return bool
+	 */
+	public function relaxNGValidateSource(string $source);
+
+	/**
+	 * @return int
+	 */
+	public function save(string $filename [, int $options ]);
+
+	/**
+	 * @return string
+	 */
+	public function saveHTML(void);
+
+	/**
+	 * @return int
+	 */
+	public function saveHTMLFile(string $filename);
+
+	string saveXML ([ DOMNode $node [, int $options ]] )
+	/**
+	 * @return bool
+	 */
+	public function schemaValidate(string $filename);
+
+	/**
+	 * @return bool
+	 */
+	public function schemaValidateSource(string $source);
+
+	/**
+	 * @return bool
+	 */
+	public function validate();
+}

@@ -1,0 +1,319 @@
+<?php
+
+interface IXMLDocument extends IXMLNode
+{
+	/**
+	 * @return string
+	 */
+	public function getactualEncoding();
+
+
+	/**
+	 * @return DOMConfiguration
+	 */
+	public function getconfig();
+
+
+	/**
+	 * @return DOMDocumentType
+	 */
+	public function getdoctype();
+
+
+	/**
+	 * @return DOMElement
+	 */
+	public function getdocumentElement();
+
+
+	/**
+	 * @return string
+	 */
+	public function getdocumentURI();
+
+	/**
+	 * @param string
+	 */
+	public function setdocumentURI($value);
+
+
+	/**
+	 * @return string
+	 */
+	public function getencoding();
+
+	/**
+	 * @param string
+	 */
+	public function setencoding($value);
+
+
+	/**
+	 * @return bool
+	 */
+	public function getformatOutput();
+
+	/**
+	 * @param bool
+	 */
+	public function setformatOutput(bool $value);
+
+
+	/**
+	 * @return DOMImplementation
+	 */
+	public function getimplementation();
+
+	/**
+	 * @return bool
+	 */
+	public function getPreserveWhiteSpace();
+	
+	/**
+	 * @param bool
+	 */
+	public function setPreserveWhiteSpace($value);
+
+	/**
+	 * @return bool
+	 */
+	public function getrecover();
+
+	/**
+	 * @param bool
+	 */
+	public function setrecover(bool $value);
+
+
+	/**
+	 * @return bool
+	 */
+	public function getresolveExternals();
+
+	/**
+	 * @param bool
+	 */
+	public function setresolveExternals(bool $value);
+
+
+	/**
+	 * @return bool
+	 */
+	public function getstandalone();
+
+	/**
+	 * @param bool
+	 */
+	public function setstandalone($value);
+
+	/**
+	 * @return bool
+	 */
+	public function getStrictErrorChecking();
+
+	/**
+	 * @param bool
+	 */
+	public function setStrictErrorChecking($value);
+
+	/**
+	 * @return bool
+	 */
+	public function getsubstituteEntities();
+
+	/**
+	 * @param bool
+	 */
+	public function setsubstituteEntities(bool $value);
+
+	/**
+	 * @return bool
+	 */
+	public function getValidateOnParse();
+
+	/**
+	 * @param bool
+	 */
+	public function setValidateOnParse($value);
+
+	/**
+	 * @return string
+	 */
+	public function getversion();
+
+	/**
+	 * @param string
+	 */
+	public function setversion($value);
+
+
+	/**
+	 * @return string
+	 */
+	public function getxmlEncoding();
+
+
+	/**
+	 * @return bool
+	 */
+	public function getxmlStandalone();
+
+	/**
+	 * @param bool
+	 */
+	public function setxmlStandalone(bool $value);
+
+
+	/**
+	 * @return string
+	 */
+	public function getxmlVersion();
+
+	/**
+	 * @param string
+	 */
+	public function setxmlVersion($value);
+
+	/**
+	 * @return DOMAttr
+	 */
+	public function createAttribute($name);
+
+	/**
+	 * @return DOMAttr
+	 */
+	public function createAttributeNS($namespaceURI , string $qualifiedName);
+
+	/**
+	 * @return DOMCDATASection
+	 */
+	public function createCDATASection($data);
+
+	/**
+	 * @return DOMComment
+	 */
+	public function createComment($data);
+
+	/**
+	 * @return DOMDocumentFragment
+	 */
+	public function createDocumentFragment();
+
+	/**
+	 * @return DOMElement
+	 */
+	public function createElement($name [, string $value ]);
+
+	/**
+	 * @return DOMElement
+	 */
+	public function createElementNS($namespaceURI , string $qualifiedName [, string $value ]);
+
+	/**
+	 * @return DOMEntityReference
+	 */
+	public function createEntityReference($name);
+
+	/**
+	 * @return DOMProcessingInstruction
+	 */
+	public function createProcessingInstruction($target [, string $data ]);
+
+	/**
+	 * @return DOMText
+	 */
+	public function createTextNode($content);
+
+	/**
+	 * @return DOMElement
+	 */
+	public function getElementById($elementId);
+
+	/**
+	 * @return DOMNodeList
+	 */
+	public function getElementsByTagName($name);
+
+	/**
+	 * @return DOMNodeList
+	 */
+	public function getElementsByTagNameNS($namespaceURI , string $localName);
+
+	/**
+	 * @return DOMNode
+	 */
+	public function importNode(DOMNode $importedNode [, bool $deep ]);
+
+	/**
+	 * @return mixed
+	 */
+	public function load($filename [, int $options ]);
+
+	/**
+	 * @return bool
+	 */
+	public function loadHTML($source);
+
+	/**
+	 * @return bool
+	 */
+	public function loadHTMLFile($filename);
+
+	/**
+	 * @return mixed
+	 */
+	public function loadXML($source [, int $options ]);
+
+	/**
+	 * @return 
+	 */
+	public function normalizeDocument();
+
+	/**
+	 * @return bool
+	 */
+	public function registerNodeClass($baseclass , string $extendedclass);
+
+	/**
+	 * @return bool
+	 */
+	public function relaxNGValidate($filename);
+
+	/**
+	 * @return bool
+	 */
+	public function relaxNGValidateSource($source);
+
+	/**
+	 * @param string $fileName
+	 * @param int $options
+	 * @return int
+	 */
+	public function save($filename, $options=null);
+
+	/**
+	 * @return string
+	 */
+	public function saveHTML();
+
+	/**
+	 * @return int
+	 */
+	public function saveHTMLFile($filename);
+
+	string saveXML ([ DOMNode $node [, int $options ]] )
+	/**
+	 * @return bool
+	 */
+	public function schemaValidate($filename);
+
+	/**
+	 * @return bool
+	 */
+	public function schemaValidateSource($source);
+
+	/**
+	 * @return bool
+	 */
+	public function validate();
+}

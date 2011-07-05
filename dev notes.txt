@@ -1,0 +1,36 @@
+About the models
+
+	- Properties that start with an underscore will be avaible through the 
+		magic methods __set and __get by the name of the property without 
+		the "_" and with the first letter capitalized. This properties MUST have 
+		their own get and set methods. The presence of this methods will determine
+		wether the property is readable and changeable or not.
+	
+	- Methods that start with "_" are meant to be used ONLY by framework developers
+		even if they are public.
+		
+
+-- Configurações no baseConf.xml
+
+cache path - caminho onde os arquivos do cache serão salvos 
+
+Case sensitive import - Define se o case dos arquivos importados deve ou não ser checado. 
+
+Case Mismatch Error Level - define o nível do erro gerado caso o case de um arquivo importado esteja incorreto (notice, warning, error, exception, fatal)
+
+-- eventos
+
+onfocus, onblur, onselect, onchange,
+onclick, ondblclick,
+onmousedown, onmouseup,
+onmouseover, onmousemove, onmouseout,
+onkeypress, onkeydown, onkeyup
+
+-- Classes que não podem extender HTMLCompponent:
+
+html (é a página em si)
+head,
+  base (vira um atributo de head)
+  title (atributo de head e da página)
+  meta
+param (tá dentro de HTMLObject)

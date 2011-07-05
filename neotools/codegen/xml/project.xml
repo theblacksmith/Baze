@@ -1,0 +1,1221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project name="1a classe pronta - colection">
+	<Models>
+		<Model composite="false" considerDefaultProperties="false" displayModelType="Generalization" id="jVLxpiiGAqAAB.WN" modelType="Generalization" name="">
+			<ModelProperties>
+				<StringProperty displayName="Name" name="name" value=""/>
+				<StringProperty displayName="Model Type" name="modelType" value="Generalization"/>
+				<ModelRefProperty displayName="From" name="from">
+					<ModelRef id="gM5RpiiGAqAAB49u"/>
+				</ModelRefProperty>
+				<ModelRefProperty displayName="To" name="to">
+					<ModelRef id="SVLxpiiGAqAAB.Vn"/>
+				</ModelRefProperty>
+				<ModelRefsProperty displayName="Stereotypes" name="stereotypes"/>
+				<ModelProperty displayName="Tagged Values" name="taggedValues"/>
+				<ModelsProperty displayName="Comments" name="comments"/>
+				<HTMLProperty displayName="Documentation" name="documentation" plainTextValue="" value=""/>
+				<ModelsProperty displayName="References" name="references"/>
+				<ModelRefProperty displayName="Generalization Set" name="generalizationSet"/>
+				<BooleanProperty displayName="Substitutable" name="substitutable" value="false"/>
+				<ModelProperty displayName="Dotnet Code Detail" name="dotnetCodeDetail"/>
+				<ModelProperty displayName="Template Type Bind Info" name="templateTypeBindInfo"/>
+				<StringProperty displayName="Visibility" name="visibility" value="Unspecified"/>
+				<StringProperty displayName="Connect To Code Model" name="connectToCodeModel" value="None"/>
+			</ModelProperties>
+		</Model>
+		<Model composite="false" considerDefaultProperties="false" displayModelType="Association" id="EznxpiiGAqAABwMg" modelType="Association" name="">
+			<ModelProperties>
+				<StringProperty displayName="Name" name="name" value=""/>
+				<StringProperty displayName="Model Type" name="modelType" value="Association"/>
+				<ModelRefProperty displayName="End Relationship From Meta Model Element" name="endRelationshipFromMetaModelElement">
+					<ModelRef id="gM5RpiiGAqAAB49u"/>
+				</ModelRefProperty>
+				<ModelRefProperty displayName="End Relationship To Meta Model Element" name="endRelationshipToMetaModelElement">
+					<ModelRef id="nTnxpiiGAqAABwL6"/>
+				</ModelRefProperty>
+				<BooleanProperty displayName="Abstract" name="abstract" value="false"/>
+				<BooleanProperty displayName="Leaf" name="leaf" value="false"/>
+				<StringProperty displayName="Visibility" name="visibility" value="Unspecified"/>
+				<ModelRefsProperty displayName="Stereotypes" name="stereotypes"/>
+				<ModelProperty displayName="Tagged Values" name="taggedValues"/>
+				<ModelsProperty displayName="Comments" name="comments"/>
+				<HTMLProperty displayName="Documentation" name="documentation" plainTextValue="" value=""/>
+				<ModelsProperty displayName="References" name="references"/>
+				<StringProperty displayName="Direction" name="direction" value="From-To"/>
+				<BooleanProperty displayName="Derived" name="derived" value="false"/>
+				<ModelProperty displayName="Orm Detail" name="ormDetail"/>
+			</ModelProperties>
+			<FromEnd>
+				<Model composite="true" considerDefaultProperties="false" displayModelType="Association End" id="EznxpiiGAqAABwMh" modelType="AssociationEnd">
+					<ModelProperties>
+						<StringProperty displayName="Name" name="name"/>
+						<StringProperty displayName="Model Type" name="modelType" value="AssociationEnd"/>
+						<ModelRefProperty displayName="End Model Element" name="EndModelElement">
+							<ModelRef id="gM5RpiiGAqAAB49u"/>
+						</ModelRefProperty>
+						<ModelRefsProperty displayName="Stereotypes" name="stereotypes"/>
+						<ModelProperty displayName="Tagged Values" name="taggedValues"/>
+						<ModelsProperty displayName="Comments" name="comments"/>
+						<HTMLProperty displayName="Documentation" name="documentation" plainTextValue="" value=""/>
+						<ModelsProperty displayName="References" name="references"/>
+						<BooleanProperty displayName="Provide Property Getter Method" name="providePropertyGetterMethod" value="false"/>
+						<BooleanProperty displayName="Provide Property Setter Method" name="providePropertySetterMethod" value="false"/>
+						<ModelProperty displayName="Orm Detail" name="ormDetail"/>
+						<ModelProperty displayName="Ejb Code Detail" name="ejbCodeDetail"/>
+						<StringProperty displayName="Connect To Code Model" name="connectToCodeModel" value="None"/>
+						<ModelRefProperty displayName="Referenced Attribute" name="referencedAttribute"/>
+						<ModelProperty displayName="Multiplicity Detail" name="multiplicityDetail"/>
+						<StringProperty displayName="Multiplicity" name="multiplicity" value="Unspecified"/>
+						<StringProperty displayName="Type Modifier" name="typeModifier" value=""/>
+						<StringProperty displayName="Visibility" name="visibility" value="private"/>
+						<StringProperty displayName="Aggregation Kind" name="aggregationKind" value="None"/>
+						<StringProperty displayName="Navigable" name="navigable" value="true"/>
+						<ModelProperty displayName="Qualifier" name="qualifier">
+							<Model composite="true" considerDefaultProperties="false" displayModelType="Qualifier" id="EznxpiiGAqAABwMi" modelType="Qualifier" name="">
+								<ModelProperties>
+									<StringProperty displayName="Name" name="name" value=""/>
+									<StringProperty displayName="Model Type" name="modelType" value="Qualifier"/>
+									<ModelRefsProperty displayName="Stereotypes" name="stereotypes"/>
+									<ModelProperty displayName="Tagged Values" name="taggedValues"/>
+									<ModelsProperty displayName="Comments" name="comments"/>
+									<HTMLProperty displayName="Documentation" name="documentation" plainTextValue="" value=""/>
+									<ModelsProperty displayName="References" name="references"/>
+								</ModelProperties>
+							</Model>
+						</ModelProperty>
+						<StringProperty displayName="Java Code Attribute Name" name="javaCodeAttributeName" value=""/>
+					</ModelProperties>
+				</Model>
+			</FromEnd>
+			<ToEnd>
+				<Model composite="true" considerDefaultProperties="false" displayModelType="Association End" id="EznxpiiGAqAABwMj" modelType="AssociationEnd">
+					<ModelProperties>
+						<StringProperty displayName="Name" name="name"/>
+						<StringProperty displayName="Model Type" name="modelType" value="AssociationEnd"/>
+						<ModelRefProperty displayName="End Model Element" name="EndModelElement">
+							<ModelRef id="nTnxpiiGAqAABwL6"/>
+						</ModelRefProperty>
+						<ModelRefsProperty displayName="Stereotypes" name="stereotypes"/>
+						<ModelProperty displayName="Tagged Values" name="taggedValues"/>
+						<ModelsProperty displayName="Comments" name="comments"/>
+						<HTMLProperty displayName="Documentation" name="documentation" plainTextValue="" value=""/>
+						<ModelsProperty displayName="References" name="references"/>
+						<BooleanProperty displayName="Provide Property Getter Method" name="providePropertyGetterMethod" value="false"/>
+						<BooleanProperty displayName="Provide Property Setter Method" name="providePropertySetterMethod" value="false"/>
+						<ModelProperty displayName="Orm Detail" name="ormDetail"/>
+						<ModelProperty displayName="Ejb Code Detail" name="ejbCodeDetail"/>
+						<StringProperty displayName="Connect To Code Model" name="connectToCodeModel" value="None"/>
+						<ModelRefProperty displayName="Referenced Attribute" name="referencedAttribute"/>
+						<ModelProperty displayName="Multiplicity Detail" name="multiplicityDetail"/>
+						<StringProperty displayName="Multiplicity" name="multiplicity" value="Unspecified"/>
+						<StringProperty displayName="Type Modifier" name="typeModifier" value=""/>
+						<StringProperty displayName="Visibility" name="visibility" value="private"/>
+						<StringProperty displayName="Aggregation Kind" name="aggregationKind" value="None"/>
+						<StringProperty displayName="Navigable" name="navigable" value="true"/>
+						<ModelProperty displayName="Qualifier" name="qualifier">
+							<Model composite="true" considerDefaultProperties="false" displayModelType="Qualifier" id="EznxpiiGAqAABwMk" modelType="Qualifier" name="">
+								<ModelProperties>
+									<StringProperty displayName="Name" name="name" value=""/>
+									<StringProperty displayName="Model Type" name="modelType" value="Qualifier"/>
+									<ModelRefsProperty displayName="Stereotypes" name="stereotypes"/>
+									<ModelProperty displayName="Tagged Values" name="taggedValues"/>
+									<ModelsProperty displayName="Comments" name="comments"/>
+									<HTMLProperty displayName="Documentation" name="documentation" plainTextValue="" value=""/>
+									<ModelsProperty displayName="References" name="references"/>
+								</ModelProperties>
+							</Model>
+						</ModelProperty>
+						<StringProperty displayName="Java Code Attribute Name" name="javaCodeAttributeName" value=""/>
+					</ModelProperties>
+				</Model>
+			</ToEnd>
+		</Model>
+		<Model composite="false" considerDefaultProperties="false" displayModelType="Stereotype" id="1LqU4iiGAqAAB9p7" modelType="Stereotype" name="NeobaseAttribute">
+			<ModelProperties>
+				<StringProperty displayName="Name" name="name" value="NeobaseAttribute"/>
+				<StringProperty displayName="Model Type" name="modelType" value="Stereotype"/>
+				<BooleanProperty displayName="Abstract" name="abstract" value="false"/>
+				<BooleanProperty displayName="Leaf" name="leaf" value="false"/>
+				<BooleanProperty displayName="Root" name="root" value="false"/>
+				<ModelRefsProperty displayName="Stereotypes" name="stereotypes"/>
+				<ModelProperty displayName="Tagged Values" name="taggedValues"/>
+				<ModelsProperty displayName="Comments" name="comments"/>
+				<HTMLProperty displayName="Documentation" name="documentation" plainTextValue="Atributos que devem ser impressos no html utilizando o namespace php" value="&lt;html&gt;&#10;  &lt;head&gt;&#10;    &#10;  &lt;/head&gt;&#10;  &lt;body&gt;&#10;    Atributos que devem ser impressos no html utilizando o namespace php&#10;  &lt;/body&gt;&#10;&lt;/html&gt;&#10;"/>
+				<ModelsProperty displayName="References" name="references"/>
+				<ModelProperty displayName="Tagged Value Definitions" name="taggedValueDefinitions"/>
+				<StringProperty displayName="Base Type" name="baseType" value="Attribute"/>
+				<StringProperty displayName="Icon Path" name="iconPath"/>
+			</ModelProperties>
+		</Model>
+		<Model composite="false" considerDefaultProperties="false" displayModelType="Package" id="ljNxpiiGAqAAB8BR" modelType="Package" name="PackageOne">
+			<ModelProperties>
+				<StringProperty displayName="Name" name="name" value="PackageOne"/>
+				<StringProperty displayName="Model Type" name="modelType" value="Package"/>
+				<BooleanProperty displayName="Abstract" name="abstract" value="false"/>
+				<BooleanProperty displayName="Leaf" name="leaf" value="false"/>
+				<BooleanProperty displayName="Root" name="root" value="false"/>
+				<ModelRefsProperty displayName="Stereotypes" name="stereotypes"/>
+				<ModelProperty displayName="Tagged Values" name="taggedValues"/>
+				<ModelsProperty displayName="Comments" name="comments"/>
+				<HTMLProperty displayName="Documentation" name="documentation" plainTextValue="" value=""/>
+				<ModelsProperty displayName="References" name="references"/>
+				<ModelsProperty displayName="Template Parameters" name="templateParameters"/>
+				<StringProperty displayName="Visibility" name="visibility" value="public"/>
+				<StringProperty displayName="Default Diagram Id" name="defaultDiagramId"/>
+				<StringProperty displayName="Connect To Code Model" name="connectToCodeModel" value="None"/>
+			</ModelProperties>
+			<ChildModels>
+				<Model composite="false" considerDefaultProperties="false" displayModelType="Class" id="SVLxpiiGAqAAB.Vn" modelType="Class" name="ChildClass">
+					<ModelProperties>
+						<StringProperty displayName="Name" name="name" value="ChildClass"/>
+						<StringProperty displayName="Model Type" name="modelType" value="Class"/>
+						<ModelsProperty displayName="Orm Qualifiers" name="ormQualifiers"/>
+						<BooleanProperty displayName="Active" name="active" value="false"/>
+						<ModelProperty displayName="Java Detail" name="javaDetail"/>
+						<ModelProperty displayName="Orm Detail" name="ormDetail"/>
+						<ModelProperty displayName="Dotnet Code Detail" name="dotnetCodeDetail"/>
+						<ModelProperty displayName="Ejb Code Detail" name="ejbCodeDetail"/>
+						<ModelProperty displayName="Xs Detail" name="xsDetail"/>
+						<ModelsProperty displayName="Template Parameters" name="templateParameters"/>
+						<StringProperty displayName="Connect To Code Model" name="connectToCodeModel" value="None"/>
+						<BooleanProperty displayName="Business Model" name="businessModel" value="false"/>
+						<StringProperty displayName="Visibility" name="visibility" value="public"/>
+						<BooleanProperty displayName="Abstract" name="abstract" value="false"/>
+						<BooleanProperty displayName="Leaf" name="leaf" value="false"/>
+						<BooleanProperty displayName="Root" name="root" value="false"/>
+						<ModelRefsProperty displayName="Stereotypes" name="stereotypes"/>
+						<ModelProperty displayName="Tagged Values" name="taggedValues"/>
+						<ModelsProperty displayName="Comments" name="comments"/>
+						<HTMLProperty displayName="Documentation" name="documentation" plainTextValue="" value=""/>
+						<ModelsProperty displayName="References" name="references"/>
+					</ModelProperties>
+					<ToSimpleRelationships>
+						<RelationshipRef from="gM5RpiiGAqAAB49u" id="jVLxpiiGAqAAB.WN" to="SVLxpiiGAqAAB.Vn"/>
+					</ToSimpleRelationships>
+				</Model>
+				<Model composite="false" considerDefaultProperties="false" displayModelType="Class" id="gM5RpiiGAqAAB49u" modelType="Class" name="ClassOne">
+					<ModelProperties>
+						<StringProperty displayName="Name" name="name" value="ClassOne"/>
+						<StringProperty displayName="Model Type" name="modelType" value="Class"/>
+						<ModelsProperty displayName="Orm Qualifiers" name="ormQualifiers"/>
+						<BooleanProperty displayName="Active" name="active" value="false"/>
+						<ModelProperty displayName="Java Detail" name="javaDetail"/>
+						<ModelProperty displayName="Orm Detail" name="ormDetail"/>
+						<ModelProperty displayName="Dotnet Code Detail" name="dotnetCodeDetail"/>
+						<ModelProperty displayName="Ejb Code Detail" name="ejbCodeDetail"/>
+						<ModelProperty displayName="Xs Detail" name="xsDetail"/>
+						<ModelsProperty displayName="Template Parameters" name="templateParameters"/>
+						<StringProperty displayName="Connect To Code Model" name="connectToCodeModel" value="None"/>
+						<BooleanProperty displayName="Business Model" name="businessModel" value="false"/>
+						<StringProperty displayName="Visibility" name="visibility" value="public"/>
+						<BooleanProperty displayName="Abstract" name="abstract" value="false"/>
+						<BooleanProperty displayName="Leaf" name="leaf" value="false"/>
+						<BooleanProperty displayName="Root" name="root" value="false"/>
+						<ModelRefsProperty displayName="Stereotypes" name="stereotypes"/>
+						<ModelProperty displayName="Tagged Values" name="taggedValues"/>
+						<ModelsProperty displayName="Comments" name="comments"/>
+						<HTMLProperty displayName="Documentation" name="documentation" plainTextValue="" value=""/>
+						<ModelsProperty displayName="References" name="references"/>
+					</ModelProperties>
+					<ChildModels>
+						<Model composite="true" considerDefaultProperties="false" displayModelType="Attribute" id="f9XRpiiGAqAAB4.7" modelType="Attribute" name="pvt">
+							<ModelProperties>
+								<StringProperty displayName="Name" name="name" value="pvt"/>
+								<StringProperty displayName="Model Type" name="modelType" value="Attribute"/>
+								<ModelRefsProperty displayName="Stereotypes" name="stereotypes"/>
+								<ModelProperty displayName="Tagged Values" name="taggedValues"/>
+								<ModelsProperty displayName="Comments" name="comments"/>
+								<HTMLProperty displayName="Documentation" name="documentation" plainTextValue="" value=""/>
+								<ModelsProperty displayName="References" name="references"/>
+								<ModelProperty displayName="Template Type Bind Info" name="templateTypeBindInfo"/>
+								<StringProperty displayName="Connect To Code Model" name="connectToCodeModel" value="None"/>
+								<ModelRefProperty displayName="Classifier" name="classifier"/>
+								<StringProperty displayName="Initial Value" name="initialValue"/>
+								<StringProperty displayName="Type Modifier" name="typeModifier" value=""/>
+								<TextModelProperty displayName="Type" name="type"/>
+								<BooleanProperty displayName="Has Setter" name="hasSetter" value="false"/>
+								<BooleanProperty displayName="Has Getter" name="hasGetter" value="false"/>
+								<BooleanProperty displayName="Abstract" name="abstract" value="false"/>
+								<BooleanProperty displayName="Derived" name="derived" value="false"/>
+								<StringProperty displayName="Visibility" name="visibility" value="private"/>
+								<ModelProperty displayName="Multiplicity Detail" name="multiplicityDetail"/>
+								<StringProperty displayName="Multiplicity" name="multiplicity" value="Unspecified"/>
+								<StringProperty displayName="Scope" name="scope" value="instance"/>
+								<ModelProperty displayName="Orm Detail" name="ormDetail"/>
+								<ModelProperty displayName="Java Detail" name="javaDetail"/>
+								<ModelProperty displayName="Ejb Code Detail" name="ejbCodeDetail"/>
+								<ModelProperty displayName="Dotnet Code Detail" name="dotnetCodeDetail"/>
+								<ModelProperty displayName="Xs Detail" name="xsDetail"/>
+								<ModelProperty displayName="Cpp Detail" name="cppDetail"/>
+								<BooleanProperty displayName="Visible" name="visible" value="true"/>
+								<StringProperty displayName="Aggregation" name="aggregation" value="None"/>
+							</ModelProperties>
+						</Model>
+						<Model composite="true" considerDefaultProperties="false" displayModelType="Attribute" id="tbvRpiiGAqAAB5Bu" modelType="Attribute" name="pub">
+							<ModelProperties>
+								<StringProperty displayName="Name" name="name" value="pub"/>
+								<StringProperty displayName="Model Type" name="modelType" value="Attribute"/>
+								<ModelRefsProperty displayName="Stereotypes" name="stereotypes"/>
+								<ModelProperty displayName="Tagged Values" name="taggedValues"/>
+								<ModelsProperty displayName="Comments" name="comments"/>
+								<HTMLProperty displayName="Documentation" name="documentation" plainTextValue="" value=""/>
+								<ModelsProperty displayName="References" name="references"/>
+								<ModelProperty displayName="Template Type Bind Info" name="templateTypeBindInfo"/>
+								<StringProperty displayName="Connect To Code Model" name="connectToCodeModel" value="None"/>
+								<ModelRefProperty displayName="Classifier" name="classifier"/>
+								<StringProperty displayName="Initial Value" name="initialValue"/>
+								<StringProperty displayName="Type Modifier" name="typeModifier" value=""/>
+								<TextModelProperty displayName="Type" name="type"/>
+								<BooleanProperty displayName="Has Setter" name="hasSetter" value="false"/>
+								<BooleanProperty displayName="Has Getter" name="hasGetter" value="false"/>
+								<BooleanProperty displayName="Abstract" name="abstract" value="false"/>
+								<BooleanProperty displayName="Derived" name="derived" value="false"/>
+								<StringProperty displayName="Visibility" name="visibility" value="public"/>
+								<ModelProperty displayName="Multiplicity Detail" name="multiplicityDetail"/>
+								<StringProperty displayName="Multiplicity" name="multiplicity" value="Unspecified"/>
+								<StringProperty displayName="Scope" name="scope" value="instance"/>
+								<ModelProperty displayName="Orm Detail" name="ormDetail"/>
+								<ModelProperty displayName="Java Detail" name="javaDetail"/>
+								<ModelProperty displayName="Ejb Code Detail" name="ejbCodeDetail"/>
+								<ModelProperty displayName="Dotnet Code Detail" name="dotnetCodeDetail"/>
+								<ModelProperty displayName="Xs Detail" name="xsDetail"/>
+								<ModelProperty displayName="Cpp Detail" name="cppDetail"/>
+								<BooleanProperty displayName="Visible" name="visible" value="true"/>
+								<StringProperty displayName="Aggregation" name="aggregation" value="None"/>
+							</ModelProperties>
+						</Model>
+						<Model composite="true" considerDefaultProperties="false" displayModelType="Attribute" id="zC_RpiiGAqAAB5FW" modelType="Attribute" name="prt">
+							<ModelProperties>
+								<StringProperty displayName="Name" name="name" value="prt"/>
+								<StringProperty displayName="Model Type" name="modelType" value="Attribute"/>
+								<ModelRefsProperty displayName="Stereotypes" name="stereotypes"/>
+								<ModelProperty displayName="Tagged Values" name="taggedValues"/>
+								<ModelsProperty displayName="Comments" name="comments"/>
+								<HTMLProperty displayName="Documentation" name="documentation" plainTextValue="" value=""/>
+								<ModelsProperty displayName="References" name="references"/>
+								<ModelProperty displayName="Template Type Bind Info" name="templateTypeBindInfo"/>
+								<StringProperty displayName="Connect To Code Model" name="connectToCodeModel" value="None"/>
+								<ModelRefProperty displayName="Classifier" name="classifier"/>
+								<StringProperty displayName="Initial Value" name="initialValue"/>
+								<StringProperty displayName="Type Modifier" name="typeModifier" value=""/>
+								<TextModelProperty displayName="Type" name="type"/>
+								<BooleanProperty displayName="Has Setter" name="hasSetter" value="false"/>
+								<BooleanProperty displayName="Has Getter" name="hasGetter" value="false"/>
+								<BooleanProperty displayName="Abstract" name="abstract" value="false"/>
+								<BooleanProperty displayName="Derived" name="derived" value="false"/>
+								<StringProperty displayName="Visibility" name="visibility" value="protected"/>
+								<ModelProperty displayName="Multiplicity Detail" name="multiplicityDetail"/>
+								<StringProperty displayName="Multiplicity" name="multiplicity" value="Unspecified"/>
+								<StringProperty displayName="Scope" name="scope" value="instance"/>
+								<ModelProperty displayName="Orm Detail" name="ormDetail"/>
+								<ModelProperty displayName="Java Detail" name="javaDetail"/>
+								<ModelProperty displayName="Ejb Code Detail" name="ejbCodeDetail"/>
+								<ModelProperty displayName="Dotnet Code Detail" name="dotnetCodeDetail"/>
+								<ModelProperty displayName="Xs Detail" name="xsDetail"/>
+								<ModelProperty displayName="Cpp Detail" name="cppDetail"/>
+								<BooleanProperty displayName="Visible" name="visible" value="true"/>
+								<StringProperty displayName="Aggregation" name="aggregation" value="None"/>
+							</ModelProperties>
+						</Model>
+						<Model composite="true" considerDefaultProperties="false" displayModelType="Attribute" id="iIgxpiiGAqAAB5KH" modelType="Attribute" name="pubClassifier">
+							<ModelProperties>
+								<StringProperty displayName="Name" name="name" value="pubClassifier"/>
+								<StringProperty displayName="Model Type" name="modelType" value="Attribute"/>
+								<ModelRefsProperty displayName="Stereotypes" name="stereotypes"/>
+								<ModelProperty displayName="Tagged Values" name="taggedValues"/>
+								<ModelsProperty displayName="Comments" name="comments"/>
+								<HTMLProperty displayName="Documentation" name="documentation" plainTextValue="" value=""/>
+								<ModelsProperty displayName="References" name="references"/>
+								<ModelProperty displayName="Template Type Bind Info" name="templateTypeBindInfo"/>
+								<StringProperty displayName="Connect To Code Model" name="connectToCodeModel" value="None"/>
+								<ModelRefProperty displayName="Classifier" name="classifier"/>
+								<StringProperty displayName="Initial Value" name="initialValue"/>
+								<StringProperty displayName="Type Modifier" name="typeModifier" value=""/>
+								<TextModelProperty displayName="Type" name="type"/>
+								<BooleanProperty displayName="Has Setter" name="hasSetter" value="false"/>
+								<BooleanProperty displayName="Has Getter" name="hasGetter" value="false"/>
+								<BooleanProperty displayName="Abstract" name="abstract" value="false"/>
+								<BooleanProperty displayName="Derived" name="derived" value="false"/>
+								<StringProperty displayName="Visibility" name="visibility" value="public"/>
+								<ModelProperty displayName="Multiplicity Detail" name="multiplicityDetail"/>
+								<StringProperty displayName="Multiplicity" name="multiplicity" value="Unspecified"/>
+								<StringProperty displayName="Scope" name="scope" value="classifier"/>
+								<ModelProperty displayName="Orm Detail" name="ormDetail"/>
+								<ModelProperty displayName="Java Detail" name="javaDetail"/>
+								<ModelProperty displayName="Ejb Code Detail" name="ejbCodeDetail"/>
+								<ModelProperty displayName="Dotnet Code Detail" name="dotnetCodeDetail"/>
+								<ModelProperty displayName="Xs Detail" name="xsDetail"/>
+								<ModelProperty displayName="Cpp Detail" name="cppDetail"/>
+								<BooleanProperty displayName="Visible" name="visible" value="true"/>
+								<StringProperty displayName="Aggregation" name="aggregation" value="None"/>
+							</ModelProperties>
+						</Model>
+						<Model composite="true" considerDefaultProperties="false" displayModelType="Attribute" id="QcExpiiGAqAAB5j5" modelType="Attribute" name="neoBaseSteriotype">
+							<ModelProperties>
+								<StringProperty displayName="Name" name="name" value="neoBaseSteriotype"/>
+								<StringProperty displayName="Model Type" name="modelType" value="Attribute"/>
+								<ModelRefsProperty displayName="Stereotypes" name="stereotypes">
+									<ModelRef id="1LqU4iiGAqAAB9p7"/>
+								</ModelRefsProperty>
+								<ModelProperty displayName="Tagged Values" name="taggedValues"/>
+								<ModelsProperty displayName="Comments" name="comments"/>
+								<HTMLProperty displayName="Documentation" name="documentation" plainTextValue="" value=""/>
+								<ModelsProperty displayName="References" name="references"/>
+								<ModelProperty displayName="Template Type Bind Info" name="templateTypeBindInfo"/>
+								<StringProperty displayName="Connect To Code Model" name="connectToCodeModel" value="None"/>
+								<ModelRefProperty displayName="Classifier" name="classifier"/>
+								<StringProperty displayName="Initial Value" name="initialValue"/>
+								<StringProperty displayName="Type Modifier" name="typeModifier" value=""/>
+								<TextModelProperty displayName="Type" name="type"/>
+								<BooleanProperty displayName="Has Setter" name="hasSetter" value="false"/>
+								<BooleanProperty displayName="Has Getter" name="hasGetter" value="false"/>
+								<BooleanProperty displayName="Abstract" name="abstract" value="false"/>
+								<BooleanProperty displayName="Derived" name="derived" value="false"/>
+								<StringProperty displayName="Visibility" name="visibility" value="private"/>
+								<ModelProperty displayName="Multiplicity Detail" name="multiplicityDetail"/>
+								<StringProperty displayName="Multiplicity" name="multiplicity" value="Unspecified"/>
+								<StringProperty displayName="Scope" name="scope" value="instance"/>
+								<ModelProperty displayName="Orm Detail" name="ormDetail"/>
+								<ModelProperty displayName="Java Detail" name="javaDetail"/>
+								<ModelProperty displayName="Ejb Code Detail" name="ejbCodeDetail"/>
+								<ModelProperty displayName="Dotnet Code Detail" name="dotnetCodeDetail"/>
+								<ModelProperty displayName="Xs Detail" name="xsDetail"/>
+								<ModelProperty displayName="Cpp Detail" name="cppDetail"/>
+								<BooleanProperty displayName="Visible" name="visible" value="true"/>
+								<StringProperty displayName="Aggregation" name="aggregation" value="None"/>
+							</ModelProperties>
+						</Model>
+						<Model composite="true" considerDefaultProperties="false" displayModelType="Attribute" id="S6kxpiiGAqAAB5vp" modelType="Attribute" name="many">
+							<ModelProperties>
+								<StringProperty displayName="Name" name="name" value="many"/>
+								<StringProperty displayName="Model Type" name="modelType" value="Attribute"/>
+								<ModelRefsProperty displayName="Stereotypes" name="stereotypes"/>
+								<ModelProperty displayName="Tagged Values" name="taggedValues"/>
+								<ModelsProperty displayName="Comments" name="comments"/>
+								<HTMLProperty displayName="Documentation" name="documentation" plainTextValue="" value=""/>
+								<ModelsProperty displayName="References" name="references"/>
+								<ModelProperty displayName="Template Type Bind Info" name="templateTypeBindInfo"/>
+								<StringProperty displayName="Connect To Code Model" name="connectToCodeModel" value="None"/>
+								<ModelRefProperty displayName="Classifier" name="classifier"/>
+								<StringProperty displayName="Initial Value" name="initialValue"/>
+								<StringProperty displayName="Type Modifier" name="typeModifier" value="[]"/>
+								<TextModelProperty displayName="Type" name="type"/>
+								<BooleanProperty displayName="Has Setter" name="hasSetter" value="false"/>
+								<BooleanProperty displayName="Has Getter" name="hasGetter" value="false"/>
+								<BooleanProperty displayName="Abstract" name="abstract" value="false"/>
+								<BooleanProperty displayName="Derived" name="derived" value="false"/>
+								<StringProperty displayName="Visibility" name="visibility" value="private"/>
+								<ModelProperty displayName="Multiplicity Detail" name="multiplicityDetail"/>
+								<StringProperty displayName="Multiplicity" name="multiplicity" value="Unspecified"/>
+								<StringProperty displayName="Scope" name="scope" value="instance"/>
+								<ModelProperty displayName="Orm Detail" name="ormDetail"/>
+								<ModelProperty displayName="Java Detail" name="javaDetail"/>
+								<ModelProperty displayName="Ejb Code Detail" name="ejbCodeDetail"/>
+								<ModelProperty displayName="Dotnet Code Detail" name="dotnetCodeDetail"/>
+								<ModelProperty displayName="Xs Detail" name="xsDetail"/>
+								<ModelProperty displayName="Cpp Detail" name="cppDetail"/>
+								<BooleanProperty displayName="Visible" name="visible" value="true"/>
+								<StringProperty displayName="Aggregation" name="aggregation" value="None"/>
+							</ModelProperties>
+						</Model>
+						<Model composite="true" considerDefaultProperties="false" displayModelType="Attribute" id="ddkxpiiGAqAAB55Z" modelType="Attribute" name="ref">
+							<ModelProperties>
+								<StringProperty displayName="Name" name="name" value="ref"/>
+								<StringProperty displayName="Model Type" name="modelType" value="Attribute"/>
+								<ModelRefsProperty displayName="Stereotypes" name="stereotypes"/>
+								<ModelProperty displayName="Tagged Values" name="taggedValues"/>
+								<ModelsProperty displayName="Comments" name="comments"/>
+								<HTMLProperty displayName="Documentation" name="documentation" plainTextValue="" value=""/>
+								<ModelsProperty displayName="References" name="references"/>
+								<ModelProperty displayName="Template Type Bind Info" name="templateTypeBindInfo"/>
+								<StringProperty displayName="Connect To Code Model" name="connectToCodeModel" value="None"/>
+								<ModelRefProperty displayName="Classifier" name="classifier"/>
+								<StringProperty displayName="Initial Value" name="initialValue"/>
+								<StringProperty displayName="Type Modifier" name="typeModifier" value="*"/>
+								<TextModelProperty displayName="Type" name="type"/>
+								<BooleanProperty displayName="Has Setter" name="hasSetter" value="false"/>
+								<BooleanProperty displayName="Has Getter" name="hasGetter" value="false"/>
+								<BooleanProperty displayName="Abstract" name="abstract" value="false"/>
+								<BooleanProperty displayName="Derived" name="derived" value="false"/>
+								<StringProperty displayName="Visibility" name="visibility" value="private"/>
+								<ModelProperty displayName="Multiplicity Detail" name="multiplicityDetail"/>
+								<StringProperty displayName="Multiplicity" name="multiplicity" value="Unspecified"/>
+								<StringProperty displayName="Scope" name="scope" value="instance"/>
+								<ModelProperty displayName="Orm Detail" name="ormDetail"/>
+								<ModelProperty displayName="Java Detail" name="javaDetail"/>
+								<ModelProperty displayName="Ejb Code Detail" name="ejbCodeDetail"/>
+								<ModelProperty displayName="Dotnet Code Detail" name="dotnetCodeDetail"/>
+								<ModelProperty displayName="Xs Detail" name="xsDetail"/>
+								<ModelProperty displayName="Cpp Detail" name="cppDetail"/>
+								<BooleanProperty displayName="Visible" name="visible" value="true"/>
+								<StringProperty displayName="Aggregation" name="aggregation" value="None"/>
+							</ModelProperties>
+						</Model>
+						<Model composite="true" considerDefaultProperties="false" displayModelType="Attribute" id="1XkxpiiGAqAAB6Ei" modelType="Attribute" name="and">
+							<ModelProperties>
+								<StringProperty displayName="Name" name="name" value="and"/>
+								<StringProperty displayName="Model Type" name="modelType" value="Attribute"/>
+								<ModelRefsProperty displayName="Stereotypes" name="stereotypes"/>
+								<ModelProperty displayName="Tagged Values" name="taggedValues"/>
+								<ModelsProperty displayName="Comments" name="comments"/>
+								<HTMLProperty displayName="Documentation" name="documentation" plainTextValue="" value=""/>
+								<ModelsProperty displayName="References" name="references"/>
+								<ModelProperty displayName="Template Type Bind Info" name="templateTypeBindInfo"/>
+								<StringProperty displayName="Connect To Code Model" name="connectToCodeModel" value="None"/>
+								<ModelRefProperty displayName="Classifier" name="classifier"/>
+								<StringProperty displayName="Initial Value" name="initialValue"/>
+								<StringProperty displayName="Type Modifier" name="typeModifier" value=""/>
+								<TextModelProperty displayName="Type" name="type"/>
+								<BooleanProperty displayName="Has Setter" name="hasSetter" value="false"/>
+								<BooleanProperty displayName="Has Getter" name="hasGetter" value="false"/>
+								<BooleanProperty displayName="Abstract" name="abstract" value="false"/>
+								<BooleanProperty displayName="Derived" name="derived" value="false"/>
+								<StringProperty displayName="Visibility" name="visibility" value="private"/>
+								<ModelProperty displayName="Multiplicity Detail" name="multiplicityDetail"/>
+								<StringProperty displayName="Multiplicity" name="multiplicity" value="Unspecified"/>
+								<StringProperty displayName="Scope" name="scope" value="instance"/>
+								<ModelProperty displayName="Orm Detail" name="ormDetail"/>
+								<ModelProperty displayName="Java Detail" name="javaDetail"/>
+								<ModelProperty displayName="Ejb Code Detail" name="ejbCodeDetail"/>
+								<ModelProperty displayName="Dotnet Code Detail" name="dotnetCodeDetail"/>
+								<ModelProperty displayName="Xs Detail" name="xsDetail"/>
+								<ModelProperty displayName="Cpp Detail" name="cppDetail"/>
+								<BooleanProperty displayName="Visible" name="visible" value="true"/>
+								<StringProperty displayName="Aggregation" name="aggregation" value="None"/>
+							</ModelProperties>
+						</Model>
+						<Model composite="true" considerDefaultProperties="false" displayModelType="Operation" id="aJvxpiiGAqAABwm1" modelType="Operation" name="pubOp">
+							<ModelProperties>
+								<StringProperty displayName="Name" name="name" value="pubOp"/>
+								<StringProperty displayName="Model Type" name="modelType" value="Operation"/>
+								<ModelsProperty displayName="Raised Exceptions" name="raisedExceptions"/>
+								<BooleanProperty displayName="Static" name="static" value="false"/>
+								<BooleanProperty displayName="Leaf" name="leaf" value="false"/>
+								<StringProperty displayName="Visibility" name="visibility" value="public"/>
+								<ModelRefsProperty displayName="Stereotypes" name="stereotypes"/>
+								<ModelProperty displayName="Tagged Values" name="taggedValues"/>
+								<ModelsProperty displayName="Comments" name="comments"/>
+								<HTMLProperty displayName="Documentation" name="documentation" plainTextValue="" value=""/>
+								<ModelsProperty displayName="References" name="references"/>
+								<StringProperty displayName="Body Condition" name="bodyCondition"/>
+								<ModelsProperty displayName="Preconditions" name="preconditions"/>
+								<ModelsProperty displayName="Postconditions" name="postconditions"/>
+								<ModelProperty displayName="Template Type Bind Info" name="templateTypeBindInfo"/>
+								<ModelsProperty displayName="Template Parameters" name="templateParameters"/>
+								<StringProperty displayName="Type Modifier" name="typeModifier" value=""/>
+								<StringProperty displayName="Connect To Code Model" name="connectToCodeModel" value="None"/>
+								<BooleanProperty displayName="Visible" name="visible" value="true"/>
+								<ModelRefProperty displayName="Classifier" name="classifier"/>
+								<HTMLProperty displayName="Return Type Documentation" name="returnTypeDocumentation" plainTextValue="" value=""/>
+								<TextModelProperty displayName="Return Type" name="returnType"/>
+								<StringProperty displayName="Visibility" name="visibility" value="public"/>
+								<StringProperty displayName="Scope" name="scope" value="instance"/>
+								<ModelProperty displayName="Orm Detail" name="ormDetail"/>
+								<ModelProperty displayName="Java Detail" name="javaDetail"/>
+								<ModelProperty displayName="Ejb Code Detail" name="ejbCodeDetail"/>
+								<ModelProperty displayName="Dotnet Code Detail" name="dotnetCodeDetail"/>
+								<ModelProperty displayName="Cpp Detail" name="cppDetail"/>
+								<BooleanProperty displayName="Query" name="query" value="false"/>
+								<BooleanProperty displayName="Abstract" name="abstract" value="false"/>
+							</ModelProperties>
+							<ChildModels>
+								<Model composite="true" considerDefaultProperties="false" displayModelType="Parameter" id=".5MJpiiGAqAABzmx" modelType="Parameter" name="paramOne">
+									<ModelProperties>
+										<StringProperty displayName="Name" name="name" value="paramOne"/>
+										<StringProperty displayName="Model Type" name="modelType" value="Parameter"/>
+										<ModelProperty displayName="Multiplicity Detail" name="multiplicityDetail"/>
+										<StringProperty displayName="Multiplicity" name="multiplicity" value="Unspecified"/>
+										<ModelRefsProperty displayName="Stereotypes" name="stereotypes"/>
+										<ModelProperty displayName="Tagged Values" name="taggedValues"/>
+										<ModelsProperty displayName="Comments" name="comments"/>
+										<HTMLProperty displayName="Documentation" name="documentation" plainTextValue="" value=""/>
+										<ModelsProperty displayName="References" name="references"/>
+										<ModelProperty displayName="Template Type Bind Info" name="templateTypeBindInfo"/>
+										<ModelRefProperty displayName="Operation" name="operation"/>
+										<StringProperty displayName="Type Modifier" name="typeModifier" value=""/>
+										<TextModelProperty displayName="Type" name="type">
+											<ModelRef id="QSU.IkiD.AAAAQN2"/>
+										</TextModelProperty>
+										<StringProperty displayName="Direction" name="direction" value="inout"/>
+										<StringProperty displayName="Default Value" name="defaultValue"/>
+										<ModelProperty displayName="Java Detail" name="javaDetail"/>
+										<ModelProperty displayName="Dotnet Code Detail" name="dotnetCodeDetail"/>
+										<ModelProperty displayName="Cpp Detail" name="cppDetail"/>
+									</ModelProperties>
+								</Model>
+							</ChildModels>
+						</Model>
+						<Model composite="true" considerDefaultProperties="false" displayModelType="Operation" id="lafxpiiGAqAABw0f" modelType="Operation" name="prtOp">
+							<ModelProperties>
+								<StringProperty displayName="Name" name="name" value="prtOp"/>
+								<StringProperty displayName="Model Type" name="modelType" value="Operation"/>
+								<ModelsProperty displayName="Raised Exceptions" name="raisedExceptions"/>
+								<BooleanProperty displayName="Static" name="static" value="false"/>
+								<BooleanProperty displayName="Leaf" name="leaf" value="false"/>
+								<StringProperty displayName="Visibility" name="visibility" value="protected"/>
+								<ModelRefsProperty displayName="Stereotypes" name="stereotypes"/>
+								<ModelProperty displayName="Tagged Values" name="taggedValues"/>
+								<ModelsProperty displayName="Comments" name="comments"/>
+								<HTMLProperty displayName="Documentation" name="documentation" plainTextValue="" value=""/>
+								<ModelsProperty displayName="References" name="references"/>
+								<StringProperty displayName="Body Condition" name="bodyCondition"/>
+								<ModelsProperty displayName="Preconditions" name="preconditions"/>
+								<ModelsProperty displayName="Postconditions" name="postconditions"/>
+								<ModelProperty displayName="Template Type Bind Info" name="templateTypeBindInfo"/>
+								<ModelsProperty displayName="Template Parameters" name="templateParameters"/>
+								<StringProperty displayName="Type Modifier" name="typeModifier" value=""/>
+								<StringProperty displayName="Connect To Code Model" name="connectToCodeModel" value="None"/>
+								<BooleanProperty displayName="Visible" name="visible" value="true"/>
+								<ModelRefProperty displayName="Classifier" name="classifier"/>
+								<HTMLProperty displayName="Return Type Documentation" name="returnTypeDocumentation" plainTextValue="" value=""/>
+								<TextModelProperty displayName="Return Type" name="returnType"/>
+								<StringProperty displayName="Visibility" name="visibility" value="protected"/>
+								<StringProperty displayName="Scope" name="scope" value="instance"/>
+								<ModelProperty displayName="Orm Detail" name="ormDetail"/>
+								<ModelProperty displayName="Java Detail" name="javaDetail"/>
+								<ModelProperty displayName="Ejb Code Detail" name="ejbCodeDetail"/>
+								<ModelProperty displayName="Dotnet Code Detail" name="dotnetCodeDetail"/>
+								<ModelProperty displayName="Cpp Detail" name="cppDetail"/>
+								<BooleanProperty displayName="Query" name="query" value="false"/>
+								<BooleanProperty displayName="Abstract" name="abstract" value="false"/>
+							</ModelProperties>
+							<ChildModels>
+								<Model composite="true" considerDefaultProperties="false" displayModelType="Parameter" id="CuSJpiiGAqAAB0HF" modelType="Parameter" name="paramTwo">
+									<ModelProperties>
+										<StringProperty displayName="Name" name="name" value="paramTwo"/>
+										<StringProperty displayName="Model Type" name="modelType" value="Parameter"/>
+										<ModelProperty displayName="Multiplicity Detail" name="multiplicityDetail"/>
+										<StringProperty displayName="Multiplicity" name="multiplicity" value="Unspecified"/>
+										<ModelRefsProperty displayName="Stereotypes" name="stereotypes"/>
+										<ModelProperty displayName="Tagged Values" name="taggedValues"/>
+										<ModelsProperty displayName="Comments" name="comments"/>
+										<HTMLProperty displayName="Documentation" name="documentation" plainTextValue="" value=""/>
+										<ModelsProperty displayName="References" name="references"/>
+										<ModelProperty displayName="Template Type Bind Info" name="templateTypeBindInfo"/>
+										<ModelRefProperty displayName="Operation" name="operation"/>
+										<StringProperty displayName="Type Modifier" name="typeModifier" value=""/>
+										<TextModelProperty displayName="Type" name="type">
+											<ModelRef id="QSU.IkiD.AAAAQNy"/>
+										</TextModelProperty>
+										<StringProperty displayName="Direction" name="direction" value="inout"/>
+										<StringProperty displayName="Default Value" name="defaultValue"/>
+										<ModelProperty displayName="Java Detail" name="javaDetail"/>
+										<ModelProperty displayName="Dotnet Code Detail" name="dotnetCodeDetail"/>
+										<ModelProperty displayName="Cpp Detail" name="cppDetail"/>
+									</ModelProperties>
+								</Model>
+								<Model composite="true" considerDefaultProperties="false" displayModelType="Parameter" id="SI2JpiiGAqAAB0is" modelType="Parameter" name="paramThree">
+									<ModelProperties>
+										<StringProperty displayName="Name" name="name" value="paramThree"/>
+										<StringProperty displayName="Model Type" name="modelType" value="Parameter"/>
+										<ModelProperty displayName="Multiplicity Detail" name="multiplicityDetail"/>
+										<StringProperty displayName="Multiplicity" name="multiplicity" value="Unspecified"/>
+										<ModelRefsProperty displayName="Stereotypes" name="stereotypes"/>
+										<ModelProperty displayName="Tagged Values" name="taggedValues"/>
+										<ModelsProperty displayName="Comments" name="comments"/>
+										<HTMLProperty displayName="Documentation" name="documentation" plainTextValue="" value=""/>
+										<ModelsProperty displayName="References" name="references"/>
+										<ModelProperty displayName="Template Type Bind Info" name="templateTypeBindInfo"/>
+										<ModelRefProperty displayName="Operation" name="operation"/>
+										<StringProperty displayName="Type Modifier" name="typeModifier" value=""/>
+										<TextModelProperty displayName="Type" name="type">
+											<StringValue value="array"/>
+										</TextModelProperty>
+										<StringProperty displayName="Direction" name="direction" value="inout"/>
+										<StringProperty displayName="Default Value" name="defaultValue"/>
+										<ModelProperty displayName="Java Detail" name="javaDetail"/>
+										<ModelProperty displayName="Dotnet Code Detail" name="dotnetCodeDetail"/>
+										<ModelProperty displayName="Cpp Detail" name="cppDetail"/>
+									</ModelProperties>
+								</Model>
+							</ChildModels>
+						</Model>
+						<Model composite="true" considerDefaultProperties="false" displayModelType="Operation" id="SpfxpiiGAqAABxC0" modelType="Operation" name="pvtOp">
+							<ModelProperties>
+								<StringProperty displayName="Name" name="name" value="pvtOp"/>
+								<StringProperty displayName="Model Type" name="modelType" value="Operation"/>
+								<ModelsProperty displayName="Raised Exceptions" name="raisedExceptions"/>
+								<BooleanProperty displayName="Static" name="static" value="false"/>
+								<BooleanProperty displayName="Leaf" name="leaf" value="false"/>
+								<StringProperty displayName="Visibility" name="visibility" value="public"/>
+								<ModelRefsProperty displayName="Stereotypes" name="stereotypes"/>
+								<ModelProperty displayName="Tagged Values" name="taggedValues"/>
+								<ModelsProperty displayName="Comments" name="comments"/>
+								<HTMLProperty displayName="Documentation" name="documentation" plainTextValue="" value=""/>
+								<ModelsProperty displayName="References" name="references"/>
+								<StringProperty displayName="Body Condition" name="bodyCondition"/>
+								<ModelsProperty displayName="Preconditions" name="preconditions"/>
+								<ModelsProperty displayName="Postconditions" name="postconditions"/>
+								<ModelProperty displayName="Template Type Bind Info" name="templateTypeBindInfo"/>
+								<ModelsProperty displayName="Template Parameters" name="templateParameters"/>
+								<StringProperty displayName="Type Modifier" name="typeModifier" value=""/>
+								<StringProperty displayName="Connect To Code Model" name="connectToCodeModel" value="None"/>
+								<BooleanProperty displayName="Visible" name="visible" value="true"/>
+								<ModelRefProperty displayName="Classifier" name="classifier"/>
+								<HTMLProperty displayName="Return Type Documentation" name="returnTypeDocumentation" plainTextValue="" value=""/>
+								<TextModelProperty displayName="Return Type" name="returnType"/>
+								<StringProperty displayName="Visibility" name="visibility" value="public"/>
+								<StringProperty displayName="Scope" name="scope" value="instance"/>
+								<ModelProperty displayName="Orm Detail" name="ormDetail"/>
+								<ModelProperty displayName="Java Detail" name="javaDetail"/>
+								<ModelProperty displayName="Ejb Code Detail" name="ejbCodeDetail"/>
+								<ModelProperty displayName="Dotnet Code Detail" name="dotnetCodeDetail"/>
+								<ModelProperty displayName="Cpp Detail" name="cppDetail"/>
+								<BooleanProperty displayName="Query" name="query" value="false"/>
+								<BooleanProperty displayName="Abstract" name="abstract" value="false"/>
+							</ModelProperties>
+							<ChildModels>
+								<Model composite="true" considerDefaultProperties="false" displayModelType="Parameter" id="AyBJpiiGAqAAB1Jw" modelType="Parameter" name="paramObj">
+									<ModelProperties>
+										<StringProperty displayName="Name" name="name" value="paramObj"/>
+										<StringProperty displayName="Model Type" name="modelType" value="Parameter"/>
+										<ModelProperty displayName="Multiplicity Detail" name="multiplicityDetail"/>
+										<StringProperty displayName="Multiplicity" name="multiplicity" value="Unspecified"/>
+										<ModelRefsProperty displayName="Stereotypes" name="stereotypes"/>
+										<ModelProperty displayName="Tagged Values" name="taggedValues"/>
+										<ModelsProperty displayName="Comments" name="comments"/>
+										<HTMLProperty displayName="Documentation" name="documentation" plainTextValue="" value=""/>
+										<ModelsProperty displayName="References" name="references"/>
+										<ModelProperty displayName="Template Type Bind Info" name="templateTypeBindInfo"/>
+										<ModelRefProperty displayName="Operation" name="operation"/>
+										<StringProperty displayName="Type Modifier" name="typeModifier" value=""/>
+										<TextModelProperty displayName="Type" name="type">
+											<ModelRef id="nTnxpiiGAqAABwL6"/>
+										</TextModelProperty>
+										<StringProperty displayName="Direction" name="direction" value="inout"/>
+										<StringProperty displayName="Default Value" name="defaultValue"/>
+										<ModelProperty displayName="Java Detail" name="javaDetail"/>
+										<ModelProperty displayName="Dotnet Code Detail" name="dotnetCodeDetail"/>
+										<ModelProperty displayName="Cpp Detail" name="cppDetail"/>
+									</ModelProperties>
+								</Model>
+							</ChildModels>
+						</Model>
+						<Model composite="true" considerDefaultProperties="false" displayModelType="Operation" id="nrfxpiiGAqAABxRu" modelType="Operation" name="stOp">
+							<ModelProperties>
+								<StringProperty displayName="Name" name="name" value="stOp"/>
+								<StringProperty displayName="Model Type" name="modelType" value="Operation"/>
+								<ModelsProperty displayName="Raised Exceptions" name="raisedExceptions"/>
+								<BooleanProperty displayName="Static" name="static" value="false"/>
+								<BooleanProperty displayName="Leaf" name="leaf" value="false"/>
+								<StringProperty displayName="Visibility" name="visibility" value="public"/>
+								<ModelRefsProperty displayName="Stereotypes" name="stereotypes"/>
+								<ModelProperty displayName="Tagged Values" name="taggedValues"/>
+								<ModelsProperty displayName="Comments" name="comments"/>
+								<HTMLProperty displayName="Documentation" name="documentation" plainTextValue="" value=""/>
+								<ModelsProperty displayName="References" name="references"/>
+								<StringProperty displayName="Body Condition" name="bodyCondition"/>
+								<ModelsProperty displayName="Preconditions" name="preconditions"/>
+								<ModelsProperty displayName="Postconditions" name="postconditions"/>
+								<ModelProperty displayName="Template Type Bind Info" name="templateTypeBindInfo"/>
+								<ModelsProperty displayName="Template Parameters" name="templateParameters"/>
+								<StringProperty displayName="Type Modifier" name="typeModifier" value=""/>
+								<StringProperty displayName="Connect To Code Model" name="connectToCodeModel" value="None"/>
+								<BooleanProperty displayName="Visible" name="visible" value="true"/>
+								<ModelRefProperty displayName="Classifier" name="classifier"/>
+								<HTMLProperty displayName="Return Type Documentation" name="returnTypeDocumentation" plainTextValue="" value=""/>
+								<TextModelProperty displayName="Return Type" name="returnType">
+									<ModelRef id="gM5RpiiGAqAAB49u"/>
+								</TextModelProperty>
+								<StringProperty displayName="Visibility" name="visibility" value="public"/>
+								<StringProperty displayName="Scope" name="scope" value="classifier"/>
+								<ModelProperty displayName="Orm Detail" name="ormDetail"/>
+								<ModelProperty displayName="Java Detail" name="javaDetail"/>
+								<ModelProperty displayName="Ejb Code Detail" name="ejbCodeDetail"/>
+								<ModelProperty displayName="Dotnet Code Detail" name="dotnetCodeDetail"/>
+								<ModelProperty displayName="Cpp Detail" name="cppDetail"/>
+								<BooleanProperty displayName="Query" name="query" value="false"/>
+								<BooleanProperty displayName="Abstract" name="abstract" value="false"/>
+							</ModelProperties>
+						</Model>
+					</ChildModels>
+					<FromSimpleRelationships>
+						<RelationshipRef from="gM5RpiiGAqAAB49u" id="jVLxpiiGAqAAB.WN" to="SVLxpiiGAqAAB.Vn"/>
+					</FromSimpleRelationships>
+					<FromEndRelationships>
+						<RelationshipRef from="gM5RpiiGAqAAB49u" id="EznxpiiGAqAABwMg" to="nTnxpiiGAqAABwL6"/>
+					</FromEndRelationships>
+				</Model>
+				<Model composite="false" considerDefaultProperties="false" displayModelType="Class" id="nTnxpiiGAqAABwL6" modelType="Class" name="RelatedClass">
+					<ModelProperties>
+						<StringProperty displayName="Name" name="name" value="RelatedClass"/>
+						<StringProperty displayName="Model Type" name="modelType" value="Class"/>
+						<ModelsProperty displayName="Orm Qualifiers" name="ormQualifiers"/>
+						<BooleanProperty displayName="Active" name="active" value="false"/>
+						<ModelProperty displayName="Java Detail" name="javaDetail"/>
+						<ModelProperty displayName="Orm Detail" name="ormDetail"/>
+						<ModelProperty displayName="Dotnet Code Detail" name="dotnetCodeDetail"/>
+						<ModelProperty displayName="Ejb Code Detail" name="ejbCodeDetail"/>
+						<ModelProperty displayName="Xs Detail" name="xsDetail"/>
+						<ModelsProperty displayName="Template Parameters" name="templateParameters"/>
+						<StringProperty displayName="Connect To Code Model" name="connectToCodeModel" value="None"/>
+						<BooleanProperty displayName="Business Model" name="businessModel" value="false"/>
+						<StringProperty displayName="Visibility" name="visibility" value="public"/>
+						<BooleanProperty displayName="Abstract" name="abstract" value="false"/>
+						<BooleanProperty displayName="Leaf" name="leaf" value="false"/>
+						<BooleanProperty displayName="Root" name="root" value="false"/>
+						<ModelRefsProperty displayName="Stereotypes" name="stereotypes"/>
+						<ModelProperty displayName="Tagged Values" name="taggedValues"/>
+						<ModelsProperty displayName="Comments" name="comments"/>
+						<HTMLProperty displayName="Documentation" name="documentation" plainTextValue="" value=""/>
+						<ModelsProperty displayName="References" name="references"/>
+					</ModelProperties>
+					<ToEndRelationships>
+						<RelationshipRef from="gM5RpiiGAqAAB49u" id="EznxpiiGAqAABwMg" to="nTnxpiiGAqAABwL6"/>
+					</ToEndRelationships>
+				</Model>
+			</ChildModels>
+		</Model>
+		<Model composite="false" considerDefaultProperties="false" displayModelType="Data Type" id="gSU.IkiD.AAAAQNt" modelType="DataType" name="boolean">
+			<ModelProperties>
+				<StringProperty displayName="Name" name="name" value="boolean"/>
+				<StringProperty displayName="Model Type" name="modelType" value="DataType"/>
+				<ModelRefsProperty displayName="Stereotypes" name="stereotypes"/>
+				<ModelProperty displayName="Tagged Values" name="taggedValues"/>
+				<ModelsProperty displayName="Comments" name="comments"/>
+				<HTMLProperty displayName="Documentation" name="documentation" plainTextValue="" value=""/>
+				<ModelsProperty displayName="References" name="references"/>
+			</ModelProperties>
+		</Model>
+		<Model composite="false" considerDefaultProperties="false" displayModelType="Data Type" id="QSU.IkiD.AAAAQNu" modelType="DataType" name="byte">
+			<ModelProperties>
+				<StringProperty displayName="Name" name="name" value="byte"/>
+				<StringProperty displayName="Model Type" name="modelType" value="DataType"/>
+				<ModelRefsProperty displayName="Stereotypes" name="stereotypes"/>
+				<ModelProperty displayName="Tagged Values" name="taggedValues"/>
+				<ModelsProperty displayName="Comments" name="comments"/>
+				<HTMLProperty displayName="Documentation" name="documentation" plainTextValue="" value=""/>
+				<ModelsProperty displayName="References" name="references"/>
+			</ModelProperties>
+		</Model>
+		<Model composite="false" considerDefaultProperties="false" displayModelType="Data Type" id="QSU.IkiD.AAAAQNv" modelType="DataType" name="char">
+			<ModelProperties>
+				<StringProperty displayName="Name" name="name" value="char"/>
+				<StringProperty displayName="Model Type" name="modelType" value="DataType"/>
+				<ModelRefsProperty displayName="Stereotypes" name="stereotypes"/>
+				<ModelProperty displayName="Tagged Values" name="taggedValues"/>
+				<ModelsProperty displayName="Comments" name="comments"/>
+				<HTMLProperty displayName="Documentation" name="documentation" plainTextValue="" value=""/>
+				<ModelsProperty displayName="References" name="references"/>
+			</ModelProperties>
+		</Model>
+		<Model composite="false" considerDefaultProperties="false" displayModelType="Data Type" id="QSU.IkiD.AAAAQNw" modelType="DataType" name="double">
+			<ModelProperties>
+				<StringProperty displayName="Name" name="name" value="double"/>
+				<StringProperty displayName="Model Type" name="modelType" value="DataType"/>
+				<ModelRefsProperty displayName="Stereotypes" name="stereotypes"/>
+				<ModelProperty displayName="Tagged Values" name="taggedValues"/>
+				<ModelsProperty displayName="Comments" name="comments"/>
+				<HTMLProperty displayName="Documentation" name="documentation" plainTextValue="" value=""/>
+				<ModelsProperty displayName="References" name="references"/>
+			</ModelProperties>
+		</Model>
+		<Model composite="false" considerDefaultProperties="false" displayModelType="Data Type" id="QSU.IkiD.AAAAQNx" modelType="DataType" name="float">
+			<ModelProperties>
+				<StringProperty displayName="Name" name="name" value="float"/>
+				<StringProperty displayName="Model Type" name="modelType" value="DataType"/>
+				<ModelRefsProperty displayName="Stereotypes" name="stereotypes"/>
+				<ModelProperty displayName="Tagged Values" name="taggedValues"/>
+				<ModelsProperty displayName="Comments" name="comments"/>
+				<HTMLProperty displayName="Documentation" name="documentation" plainTextValue="" value=""/>
+				<ModelsProperty displayName="References" name="references"/>
+			</ModelProperties>
+		</Model>
+		<Model composite="false" considerDefaultProperties="false" displayModelType="Data Type" id="QSU.IkiD.AAAAQNy" modelType="DataType" name="int">
+			<ModelProperties>
+				<StringProperty displayName="Name" name="name" value="int"/>
+				<StringProperty displayName="Model Type" name="modelType" value="DataType"/>
+				<ModelRefsProperty displayName="Stereotypes" name="stereotypes"/>
+				<ModelProperty displayName="Tagged Values" name="taggedValues"/>
+				<ModelsProperty displayName="Comments" name="comments"/>
+				<HTMLProperty displayName="Documentation" name="documentation" plainTextValue="" value=""/>
+				<ModelsProperty displayName="References" name="references"/>
+			</ModelProperties>
+		</Model>
+		<Model composite="false" considerDefaultProperties="false" displayModelType="Data Type" id="QSU.IkiD.AAAAQNz" modelType="DataType" name="long">
+			<ModelProperties>
+				<StringProperty displayName="Name" name="name" value="long"/>
+				<StringProperty displayName="Model Type" name="modelType" value="DataType"/>
+				<ModelRefsProperty displayName="Stereotypes" name="stereotypes"/>
+				<ModelProperty displayName="Tagged Values" name="taggedValues"/>
+				<ModelsProperty displayName="Comments" name="comments"/>
+				<HTMLProperty displayName="Documentation" name="documentation" plainTextValue="" value=""/>
+				<ModelsProperty displayName="References" name="references"/>
+			</ModelProperties>
+		</Model>
+		<Model composite="false" considerDefaultProperties="false" displayModelType="Data Type" id="QSU.IkiD.AAAAQN0" modelType="DataType" name="short">
+			<ModelProperties>
+				<StringProperty displayName="Name" name="name" value="short"/>
+				<StringProperty displayName="Model Type" name="modelType" value="DataType"/>
+				<ModelRefsProperty displayName="Stereotypes" name="stereotypes"/>
+				<ModelProperty displayName="Tagged Values" name="taggedValues"/>
+				<ModelsProperty displayName="Comments" name="comments"/>
+				<HTMLProperty displayName="Documentation" name="documentation" plainTextValue="" value=""/>
+				<ModelsProperty displayName="References" name="references"/>
+			</ModelProperties>
+		</Model>
+		<Model composite="false" considerDefaultProperties="false" displayModelType="Data Type" id="QSU.IkiD.AAAAQN2" modelType="DataType" name="string">
+			<ModelProperties>
+				<StringProperty displayName="Name" name="name" value="string"/>
+				<StringProperty displayName="Model Type" name="modelType" value="DataType"/>
+				<ModelRefsProperty displayName="Stereotypes" name="stereotypes"/>
+				<ModelProperty displayName="Tagged Values" name="taggedValues"/>
+				<ModelsProperty displayName="Comments" name="comments"/>
+				<HTMLProperty displayName="Documentation" name="documentation" plainTextValue="" value=""/>
+				<ModelsProperty displayName="References" name="references"/>
+			</ModelProperties>
+		</Model>
+		<Model composite="false" considerDefaultProperties="false" displayModelType="Data Type" id="QSU.IkiD.AAAAQN1" modelType="DataType" name="void">
+			<ModelProperties>
+				<StringProperty displayName="Name" name="name" value="void"/>
+				<StringProperty displayName="Model Type" name="modelType" value="DataType"/>
+				<ModelRefsProperty displayName="Stereotypes" name="stereotypes"/>
+				<ModelProperty displayName="Tagged Values" name="taggedValues"/>
+				<ModelsProperty displayName="Comments" name="comments"/>
+				<HTMLProperty displayName="Documentation" name="documentation" plainTextValue="" value=""/>
+				<ModelsProperty displayName="References" name="references"/>
+			</ModelProperties>
+		</Model>
+	</Models>
+	<Diagrams>
+		<Diagram connectorStyle="Oblique" diagramType="ClassDiagram" displayDiagramType="Class Diagram" documentation="" id="36RRpiiGAqAAB1oA" imageHeight="0" imageScale="1.0" imageWidth="0" name="Class Diagram1" rtfDocumentation="" trimmedHeight="0" trimmedWidth="0">
+			<DiagramProperties>
+				<IntegerProperty displayName="Show Package Name Style" name="showPackageNameStyle" value="0"/>
+				<IntegerProperty displayName="Show Activity State Node Caption" name="showActivityStateNodeCaption" value="0"/>
+				<StringProperty displayName="Documentation" name="documentation"/>
+				<BooleanProperty displayName="Editable" name="editable" value="true"/>
+				<BooleanProperty displayName="Follow Diagram Parent Element" name="followDiagramParentElement" value="true"/>
+				<BooleanProperty displayName="Auto Fit Shapes Size" name="autoFitShapesSize" value="false"/>
+				<BooleanProperty displayName="Show Tagged Values" name="showTaggedValues" value="false"/>
+				<BooleanProperty displayName="Align To Grid" name="alignToGrid" value="true"/>
+				<BooleanProperty displayName="Grid Visible" name="gridVisible" value="true"/>
+				<IntegerProperty displayName="Grid Width" name="gridWidth" value="10"/>
+				<IntegerProperty displayName="Grid Height" name="gridHeight" value="10"/>
+				<ColorProperty displayName="Grid Color" name="gridColor" value="Cr:192,192,192,255"/>
+				<ColorProperty displayName="Diagram Background" name="diagramBackground" value="Cr:255,255,255,255"/>
+				<IntegerProperty displayName="Connector Style" name="connectorStyle" value="1"/>
+				<IntegerProperty displayName="Connection Point Style" name="connectionPointStyle" value="0"/>
+				<DoubleProperty displayName="Zoom Ratio" name="zoomRatio" value="1.0"/>
+				<BooleanProperty displayName="Maximized" name="maximized" value="true"/>
+				<IntegerProperty displayName="X" name="x" value="0"/>
+				<IntegerProperty displayName="Y" name="y" value="0"/>
+				<IntegerProperty displayName="Width" name="width" value="807"/>
+				<IntegerProperty displayName="Height" name="height" value="642"/>
+				<ModelRefProperty displayName="Parent Model" name="parentModel"/>
+				<BooleanProperty displayName="Global Palette Option" name="_globalPaletteOption" value="true"/>
+				<BooleanProperty displayName="Always Show Reference And Subdiagram Resource" name="_alwaysShowReferenceAndSubdiagramResource" value="false"/>
+				<BooleanProperty displayName="Locked" name="locked" value="false"/>
+				<BooleanProperty displayName="Show Default Package" name="showDefaultPackage" value="true"/>
+				<ModelRefProperty displayName="Default Package" name="defaultPackage"/>
+			</DiagramProperties>
+			<Shapes>
+				<Shape height="460" id="ljNxpiiGAqAAB8BQ" model="ljNxpiiGAqAAB8BR" name="PackageOne" shapeType="Package" width="600" x="120" y="90" zorder="6">
+					<DiagramElementProperties>
+						<ModelRefProperty displayName="Meta Model Element" name="metaModelElement">
+							<ModelRef id="ljNxpiiGAqAAB8BR"/>
+						</ModelRefProperty>
+						<IntegerProperty displayName="X" name="x" value="120"/>
+						<IntegerProperty displayName="Y" name="y" value="90"/>
+						<IntegerProperty displayName="Width" name="width" value="600"/>
+						<IntegerProperty displayName="Height" name="height" value="460"/>
+						<ColorProperty displayName="Background" name="background" value="Cr:122,207,245,255"/>
+						<ColorProperty displayName="Foreground" name="foreground" value="Cr:0,0,0,255"/>
+						<IntegerProperty displayName="ZOrder" name="zOrder" value="6"/>
+						<StringProperty displayName="Creator Diagram Type" name="creatorDiagramType" value="ClassDiagram"/>
+						<BooleanProperty displayName="Selectable" name="selectable" value="true"/>
+						<BooleanProperty displayName="Request Reset Caption" name="requestResetCaption" value="false"/>
+						<StringProperty displayName="Display Image Path" name="displayImagePath"/>
+						<BooleanProperty displayName="Display Stereotype Icon" name="displayStereotypeIcon" value="false"/>
+						<IntegerProperty displayName="Parent Connector Header Length" name="parentConnectorHeaderLength" value="40"/>
+						<IntegerProperty displayName="Parent Connector Line Length" name="parentConnectorLineLength" value="10"/>
+						<BooleanProperty displayName="Connect To Point" name="connectToPoint" value="true"/>
+						<DoubleProperty displayName="Parent Connector DTheta" name="parentConnectorDTheta" value="0.0"/>
+						<IntegerProperty displayName="Connection Point Type" name="connectionPointType" value="2"/>
+						<BooleanProperty displayName="Request Default Size" name="requestDefaultSize" value="false"/>
+						<BooleanProperty displayName="Request Fit Size" name="requestFitSize" value="false"/>
+						<BooleanProperty displayName="Show Owner" name="showOwner" value="false"/>
+					</DiagramElementProperties>
+					<ElementFont color="Cr:0,0,0,255" name="Dialog" size="11" style="0"/>
+					<Line cap="0" color="Cr:0,0,0,255" transparency="0" weight="1.0">
+						<Stroke/>
+					</Line>
+					<Caption height="0" side="FreeMove" visible="true" width="0" x="0" y="0"/>
+					<ChildShapes>
+						<Shape height="210" id="T05RpiiGAqAAB49t" model="gM5RpiiGAqAAB49u" name="ClassOne" shapeType="Class" width="230" x="250" y="180" zorder="4">
+							<DiagramElementProperties>
+								<ModelRefProperty displayName="Meta Model Element" name="metaModelElement">
+									<ModelRef id="gM5RpiiGAqAAB49u"/>
+								</ModelRefProperty>
+								<IntegerProperty displayName="X" name="x" value="250"/>
+								<IntegerProperty displayName="Y" name="y" value="180"/>
+								<IntegerProperty displayName="Width" name="width" value="230"/>
+								<IntegerProperty displayName="Height" name="height" value="210"/>
+								<ColorProperty displayName="Background" name="background" value="Cr:122,207,245,255"/>
+								<ColorProperty displayName="Foreground" name="foreground" value="Cr:0,0,0,255"/>
+								<IntegerProperty displayName="ZOrder" name="zOrder" value="4"/>
+								<StringProperty displayName="Creator Diagram Type" name="creatorDiagramType" value="ClassDiagram"/>
+								<BooleanProperty displayName="Selectable" name="selectable" value="true"/>
+								<BooleanProperty displayName="Request Reset Caption" name="requestResetCaption" value="false"/>
+								<StringProperty displayName="Display Image Path" name="displayImagePath"/>
+								<BooleanProperty displayName="Display Stereotype Icon" name="displayStereotypeIcon" value="false"/>
+								<IntegerProperty displayName="Parent Connector Header Length" name="parentConnectorHeaderLength" value="40"/>
+								<IntegerProperty displayName="Parent Connector Line Length" name="parentConnectorLineLength" value="10"/>
+								<BooleanProperty displayName="Connect To Point" name="connectToPoint" value="true"/>
+								<DoubleProperty displayName="Parent Connector DTheta" name="parentConnectorDTheta" value="0.0"/>
+								<IntegerProperty displayName="Connection Point Type" name="connectionPointType" value="2"/>
+								<BooleanProperty displayName="Request Default Size" name="requestDefaultSize" value="false"/>
+								<BooleanProperty displayName="Request Fit Size" name="requestFitSize" value="false"/>
+								<BooleanProperty displayName="Display As Robustness Analysis Icon" name="displayAsRobustnessAnalysisIcon" value="true"/>
+								<StringArrayProperty displayName="Hidden Attributes" name="hiddenAttributes"/>
+								<StringArrayProperty displayName="Hidden Operations" name="hiddenOperations"/>
+								<IntegerProperty displayName="Visibility Style" name="visibilityStyle" value="1"/>
+								<IntegerProperty displayName="Show Attribute Type" name="showAttributeType" value="1"/>
+								<IntegerProperty displayName="Show Operation Type" name="showOperationType" value="1"/>
+								<BooleanProperty displayName="MSw Tp Pts" name="mSwTpPts" value="true"/>
+								<BooleanProperty displayName="Show Owner" name="showOwner" value="false"/>
+								<BooleanProperty displayName="Lsh Rf Ats" name="lshRfAts" value="true"/>
+								<BooleanProperty displayName="MSh Dr At" name="mShDrAt" value="false"/>
+								<BooleanProperty displayName="KSh Dr Op" name="kShDrOp" value="false"/>
+								<BooleanProperty displayName="KSw Cs Mb St" name="kSwCsMbSt" value="false"/>
+								<BooleanProperty displayName="Show Class Member Constraints" name="showClassMemberConstraints" value="true"/>
+								<BooleanProperty displayName="LSh Cm Ml" name="lShCmMl" value="false"/>
+								<BooleanProperty displayName="Show Operation Parameter Direction" name="showOperationParameterDirection" value="false"/>
+								<BooleanProperty displayName="Show Parameter Name In Operation Signature" name="showParameterNameInOperationSignature" value="true"/>
+								<BooleanProperty displayName="Show Operation Template Parameters" name="showOperationTemplateParameters" value="false"/>
+								<BooleanProperty displayName="Wp Mbs" name="wpMbs" value="false"/>
+								<IntegerProperty displayName="Attribute Sort Type" name="attributeSortType" value="0"/>
+								<IntegerProperty displayName="Operation Sort Type" name="operationSortType" value="0"/>
+								<BooleanProperty displayName="Show Initial Attribute Value" name="showInitialAttributeValue" value="true"/>
+								<BooleanProperty displayName="Show Operation Signature" name="showOperationSignature" value="true"/>
+								<BooleanProperty displayName="Interface Ball" name="interfaceBall" value="false"/>
+								<IntegerProperty displayName="Show Type Option" name="showTypeOption" value="0"/>
+							</DiagramElementProperties>
+							<ElementFont color="Cr:0,0,0,255" name="Dialog" size="11" style="0"/>
+							<Line cap="0" color="Cr:0,0,0,255" transparency="0" weight="1.0">
+								<Stroke/>
+							</Line>
+							<Caption height="15" side="FreeMove" visible="true" width="230" x="0" y="0"/>
+							<FillColor color="Cr:122,207,245,255" style="1" transparency="0" type="1"/>
+							<FillColor color="Cr:122,207,245,255" style="1" transparency="0" type="1"/>
+						</Shape>
+						<Shape height="40" id="SVLxpiiGAqAAB.Vm" model="SVLxpiiGAqAAB.Vn" name="ChildClass" shapeType="Class" width="80" x="280" y="480" zorder="2">
+							<DiagramElementProperties>
+								<ModelRefProperty displayName="Meta Model Element" name="metaModelElement">
+									<ModelRef id="SVLxpiiGAqAAB.Vn"/>
+								</ModelRefProperty>
+								<IntegerProperty displayName="X" name="x" value="280"/>
+								<IntegerProperty displayName="Y" name="y" value="480"/>
+								<IntegerProperty displayName="Width" name="width" value="80"/>
+								<IntegerProperty displayName="Height" name="height" value="40"/>
+								<ColorProperty displayName="Background" name="background" value="Cr:122,207,245,255"/>
+								<ColorProperty displayName="Foreground" name="foreground" value="Cr:0,0,0,255"/>
+								<IntegerProperty displayName="ZOrder" name="zOrder" value="2"/>
+								<StringProperty displayName="Creator Diagram Type" name="creatorDiagramType" value="ClassDiagram"/>
+								<BooleanProperty displayName="Selectable" name="selectable" value="true"/>
+								<BooleanProperty displayName="Request Reset Caption" name="requestResetCaption" value="false"/>
+								<StringProperty displayName="Display Image Path" name="displayImagePath"/>
+								<BooleanProperty displayName="Display Stereotype Icon" name="displayStereotypeIcon" value="false"/>
+								<IntegerProperty displayName="Parent Connector Header Length" name="parentConnectorHeaderLength" value="40"/>
+								<IntegerProperty displayName="Parent Connector Line Length" name="parentConnectorLineLength" value="10"/>
+								<BooleanProperty displayName="Connect To Point" name="connectToPoint" value="true"/>
+								<DoubleProperty displayName="Parent Connector DTheta" name="parentConnectorDTheta" value="0.0"/>
+								<IntegerProperty displayName="Connection Point Type" name="connectionPointType" value="2"/>
+								<BooleanProperty displayName="Request Default Size" name="requestDefaultSize" value="false"/>
+								<BooleanProperty displayName="Request Fit Size" name="requestFitSize" value="false"/>
+								<BooleanProperty displayName="Display As Robustness Analysis Icon" name="displayAsRobustnessAnalysisIcon" value="true"/>
+								<StringArrayProperty displayName="Hidden Attributes" name="hiddenAttributes"/>
+								<StringArrayProperty displayName="Hidden Operations" name="hiddenOperations"/>
+								<IntegerProperty displayName="Visibility Style" name="visibilityStyle" value="1"/>
+								<IntegerProperty displayName="Show Attribute Type" name="showAttributeType" value="1"/>
+								<IntegerProperty displayName="Show Operation Type" name="showOperationType" value="1"/>
+								<BooleanProperty displayName="MSw Tp Pts" name="mSwTpPts" value="true"/>
+								<BooleanProperty displayName="Show Owner" name="showOwner" value="false"/>
+								<BooleanProperty displayName="Lsh Rf Ats" name="lshRfAts" value="true"/>
+								<BooleanProperty displayName="MSh Dr At" name="mShDrAt" value="false"/>
+								<BooleanProperty displayName="KSh Dr Op" name="kShDrOp" value="false"/>
+								<BooleanProperty displayName="KSw Cs Mb St" name="kSwCsMbSt" value="false"/>
+								<BooleanProperty displayName="Show Class Member Constraints" name="showClassMemberConstraints" value="true"/>
+								<BooleanProperty displayName="LSh Cm Ml" name="lShCmMl" value="false"/>
+								<BooleanProperty displayName="Show Operation Parameter Direction" name="showOperationParameterDirection" value="false"/>
+								<BooleanProperty displayName="Show Parameter Name In Operation Signature" name="showParameterNameInOperationSignature" value="true"/>
+								<BooleanProperty displayName="Show Operation Template Parameters" name="showOperationTemplateParameters" value="false"/>
+								<BooleanProperty displayName="Wp Mbs" name="wpMbs" value="false"/>
+								<IntegerProperty displayName="Attribute Sort Type" name="attributeSortType" value="0"/>
+								<IntegerProperty displayName="Operation Sort Type" name="operationSortType" value="0"/>
+								<BooleanProperty displayName="Show Initial Attribute Value" name="showInitialAttributeValue" value="true"/>
+								<BooleanProperty displayName="Show Operation Signature" name="showOperationSignature" value="true"/>
+								<BooleanProperty displayName="Interface Ball" name="interfaceBall" value="false"/>
+								<IntegerProperty displayName="Show Type Option" name="showTypeOption" value="0"/>
+							</DiagramElementProperties>
+							<ElementFont color="Cr:0,0,0,255" name="Dialog" size="11" style="0"/>
+							<Line cap="0" color="Cr:0,0,0,255" transparency="0" weight="1.0">
+								<Stroke/>
+							</Line>
+							<Caption height="15" side="FreeMove" visible="true" width="80" x="0" y="0"/>
+							<FillColor color="Cr:122,207,245,255" style="1" transparency="0" type="1"/>
+							<FillColor color="Cr:122,207,245,255" style="1" transparency="0" type="1"/>
+						</Shape>
+						<Shape height="40" id="nTnxpiiGAqAABwL5" model="nTnxpiiGAqAABwL6" name="RelatedClass" shapeType="Class" width="100" x="550" y="230" zorder="0">
+							<DiagramElementProperties>
+								<ModelRefProperty displayName="Meta Model Element" name="metaModelElement">
+									<ModelRef id="nTnxpiiGAqAABwL6"/>
+								</ModelRefProperty>
+								<IntegerProperty displayName="X" name="x" value="550"/>
+								<IntegerProperty displayName="Y" name="y" value="230"/>
+								<IntegerProperty displayName="Width" name="width" value="100"/>
+								<IntegerProperty displayName="Height" name="height" value="40"/>
+								<ColorProperty displayName="Background" name="background" value="Cr:122,207,245,255"/>
+								<ColorProperty displayName="Foreground" name="foreground" value="Cr:0,0,0,255"/>
+								<IntegerProperty displayName="ZOrder" name="zOrder" value="0"/>
+								<StringProperty displayName="Creator Diagram Type" name="creatorDiagramType" value="ClassDiagram"/>
+								<BooleanProperty displayName="Selectable" name="selectable" value="true"/>
+								<BooleanProperty displayName="Request Reset Caption" name="requestResetCaption" value="false"/>
+								<StringProperty displayName="Display Image Path" name="displayImagePath"/>
+								<BooleanProperty displayName="Display Stereotype Icon" name="displayStereotypeIcon" value="false"/>
+								<IntegerProperty displayName="Parent Connector Header Length" name="parentConnectorHeaderLength" value="40"/>
+								<IntegerProperty displayName="Parent Connector Line Length" name="parentConnectorLineLength" value="10"/>
+								<BooleanProperty displayName="Connect To Point" name="connectToPoint" value="true"/>
+								<DoubleProperty displayName="Parent Connector DTheta" name="parentConnectorDTheta" value="0.0"/>
+								<IntegerProperty displayName="Connection Point Type" name="connectionPointType" value="2"/>
+								<BooleanProperty displayName="Request Default Size" name="requestDefaultSize" value="false"/>
+								<BooleanProperty displayName="Request Fit Size" name="requestFitSize" value="false"/>
+								<BooleanProperty displayName="Display As Robustness Analysis Icon" name="displayAsRobustnessAnalysisIcon" value="true"/>
+								<StringArrayProperty displayName="Hidden Attributes" name="hiddenAttributes"/>
+								<StringArrayProperty displayName="Hidden Operations" name="hiddenOperations"/>
+								<IntegerProperty displayName="Visibility Style" name="visibilityStyle" value="1"/>
+								<IntegerProperty displayName="Show Attribute Type" name="showAttributeType" value="1"/>
+								<IntegerProperty displayName="Show Operation Type" name="showOperationType" value="1"/>
+								<BooleanProperty displayName="MSw Tp Pts" name="mSwTpPts" value="true"/>
+								<BooleanProperty displayName="Show Owner" name="showOwner" value="false"/>
+								<BooleanProperty displayName="Lsh Rf Ats" name="lshRfAts" value="true"/>
+								<BooleanProperty displayName="MSh Dr At" name="mShDrAt" value="false"/>
+								<BooleanProperty displayName="KSh Dr Op" name="kShDrOp" value="false"/>
+								<BooleanProperty displayName="KSw Cs Mb St" name="kSwCsMbSt" value="false"/>
+								<BooleanProperty displayName="Show Class Member Constraints" name="showClassMemberConstraints" value="true"/>
+								<BooleanProperty displayName="LSh Cm Ml" name="lShCmMl" value="false"/>
+								<BooleanProperty displayName="Show Operation Parameter Direction" name="showOperationParameterDirection" value="false"/>
+								<BooleanProperty displayName="Show Parameter Name In Operation Signature" name="showParameterNameInOperationSignature" value="true"/>
+								<BooleanProperty displayName="Show Operation Template Parameters" name="showOperationTemplateParameters" value="false"/>
+								<BooleanProperty displayName="Wp Mbs" name="wpMbs" value="false"/>
+								<IntegerProperty displayName="Attribute Sort Type" name="attributeSortType" value="0"/>
+								<IntegerProperty displayName="Operation Sort Type" name="operationSortType" value="0"/>
+								<BooleanProperty displayName="Show Initial Attribute Value" name="showInitialAttributeValue" value="true"/>
+								<BooleanProperty displayName="Show Operation Signature" name="showOperationSignature" value="true"/>
+								<BooleanProperty displayName="Interface Ball" name="interfaceBall" value="false"/>
+								<IntegerProperty displayName="Show Type Option" name="showTypeOption" value="0"/>
+							</DiagramElementProperties>
+							<ElementFont color="Cr:0,0,0,255" name="Dialog" size="11" style="0"/>
+							<Line cap="0" color="Cr:0,0,0,255" transparency="0" weight="1.0">
+								<Stroke/>
+							</Line>
+							<Caption height="15" side="FreeMove" visible="true" width="100" x="0" y="0"/>
+							<FillColor color="Cr:122,207,245,255" style="1" transparency="0" type="1"/>
+							<FillColor color="Cr:122,207,245,255" style="1" transparency="0" type="1"/>
+						</Shape>
+					</ChildShapes>
+					<FillColor color="Cr:122,207,245,255" style="1" transparency="0" type="1"/>
+					<FillColor color="Cr:122,207,245,255" style="1" transparency="0" type="1"/>
+				</Shape>
+			</Shapes>
+			<Connectors>
+				<Connector connectorStyle="Follow Diagram" from="T05RpiiGAqAAB49t" height="189" id="jVLxpiiGAqAAB.WO" model="jVLxpiiGAqAAB.WN" name="" shapeType="Generalization" to="SVLxpiiGAqAAB.Vm" width="100" x="270" y="340" zorder="-1">
+					<DiagramElementProperties>
+						<ModelRefProperty displayName="Meta Model Element" name="metaModelElement">
+							<ModelRef id="jVLxpiiGAqAAB.WN"/>
+						</ModelRefProperty>
+						<IntegerProperty displayName="X" name="x" value="270"/>
+						<IntegerProperty displayName="Y" name="y" value="340"/>
+						<IntegerProperty displayName="Width" name="width" value="100"/>
+						<IntegerProperty displayName="Height" name="height" value="189"/>
+						<ColorProperty displayName="Background" name="background" value="Cr:122,207,245,255"/>
+						<ColorProperty displayName="Foreground" name="foreground" value="Cr:0,0,0,255"/>
+						<IntegerProperty displayName="ZOrder" name="zOrder" value="-1"/>
+						<StringProperty displayName="Creator Diagram Type" name="creatorDiagramType" value="ClassDiagram"/>
+						<BooleanProperty displayName="Selectable" name="selectable" value="true"/>
+						<BooleanProperty displayName="Request Reset Caption" name="requestResetCaption" value="false"/>
+						<IntegerProperty displayName="Connector Style" name="connectorStyle" value="3"/>
+						<IntegerProperty displayName="From Shape XDiff" name="fromShapeXDiff" value="0"/>
+						<IntegerProperty displayName="From Shape YDiff" name="fromShapeYDiff" value="0"/>
+						<IntegerProperty displayName="To Shape XDiff" name="toShapeXDiff" value="0"/>
+						<IntegerProperty displayName="To Shape YDiff" name="toShapeYDiff" value="0"/>
+						<IntegerProperty displayName="From Connect Type" name="fromConnectType" value="0"/>
+						<IntegerProperty displayName="To Connect Type" name="toConnectType" value="0"/>
+						<BooleanProperty displayName="Use From Shape Center" name="useFromShapeCenter" value="true"/>
+						<BooleanProperty displayName="Use To Shape Center" name="useToShapeCenter" value="true"/>
+						<IntegerProperty displayName="From Pin Type" name="fromPinType" value="1"/>
+						<IntegerProperty displayName="To Pin Type" name="toPinType" value="1"/>
+						<PointProperty displayName="From Pin Ratio" name="fromPinRatio" value=""/>
+						<PointProperty displayName="To Pin Ratio" name="toPinRatio" value=""/>
+					</DiagramElementProperties>
+					<ElementFont color="Cr:0,0,0,255" name="Dialog" size="11" style="0"/>
+					<Line cap="0" color="Cr:0,0,0,255" transparency="0" weight="1.0">
+						<Stroke/>
+					</Line>
+					<Caption height="0" side="None" visible="true" width="20" x="330" y="453"/>
+					<Points>
+						<Point x="320" y="390"/>
+						<Point x="320" y="479"/>
+					</Points>
+				</Connector>
+				<Connector connectorStyle="Follow Diagram" from="T05RpiiGAqAAB49t" height="100" id="EznxpiiGAqAABwMl" model="EznxpiiGAqAABwMg" name="" shapeType="Association" to="nTnxpiiGAqAABwL5" width="169" x="430" y="200" zorder="-1">
+					<DiagramElementProperties>
+						<ModelRefProperty displayName="Meta Model Element" name="metaModelElement">
+							<ModelRef id="EznxpiiGAqAABwMg"/>
+						</ModelRefProperty>
+						<IntegerProperty displayName="X" name="x" value="430"/>
+						<IntegerProperty displayName="Y" name="y" value="200"/>
+						<IntegerProperty displayName="Width" name="width" value="169"/>
+						<IntegerProperty displayName="Height" name="height" value="100"/>
+						<ColorProperty displayName="Background" name="background" value="Cr:122,207,245,255"/>
+						<ColorProperty displayName="Foreground" name="foreground" value="Cr:0,0,0,255"/>
+						<IntegerProperty displayName="ZOrder" name="zOrder" value="-1"/>
+						<StringProperty displayName="Creator Diagram Type" name="creatorDiagramType" value="ClassDiagram"/>
+						<BooleanProperty displayName="Selectable" name="selectable" value="true"/>
+						<BooleanProperty displayName="Request Reset Caption" name="requestResetCaption" value="false"/>
+						<IntegerProperty displayName="Connector Style" name="connectorStyle" value="3"/>
+						<IntegerProperty displayName="From Shape XDiff" name="fromShapeXDiff" value="0"/>
+						<IntegerProperty displayName="From Shape YDiff" name="fromShapeYDiff" value="0"/>
+						<IntegerProperty displayName="To Shape XDiff" name="toShapeXDiff" value="0"/>
+						<IntegerProperty displayName="To Shape YDiff" name="toShapeYDiff" value="0"/>
+						<IntegerProperty displayName="From Connect Type" name="fromConnectType" value="0"/>
+						<IntegerProperty displayName="To Connect Type" name="toConnectType" value="0"/>
+						<BooleanProperty displayName="Use From Shape Center" name="useFromShapeCenter" value="true"/>
+						<BooleanProperty displayName="Use To Shape Center" name="useToShapeCenter" value="true"/>
+						<IntegerProperty displayName="From Pin Type" name="fromPinType" value="1"/>
+						<IntegerProperty displayName="To Pin Type" name="toPinType" value="1"/>
+						<PointProperty displayName="From Pin Ratio" name="fromPinRatio" value=""/>
+						<PointProperty displayName="To Pin Ratio" name="toPinRatio" value=""/>
+						<BooleanProperty displayName="Has Role AShape" name="hasRoleAShape" value="false"/>
+						<BooleanProperty displayName="Has Role BShape" name="hasRoleBShape" value="false"/>
+						<BooleanProperty displayName="Show Multiplicity Constraints" name="showMultiplicityConstraints" value="false"/>
+						<RectangleProperty displayName="Role ARectangle" name="roleARectangle" value=""/>
+						<RectangleProperty displayName="Role BRectangle" name="roleBRectangle" value=""/>
+						<RectangleProperty displayName="Multiplicity BRectangle" name="multiplicityBRectangle" value=""/>
+						<RectangleProperty displayName="Multiplicity ARectangle" name="multiplicityARectangle" value=""/>
+						<BooleanProperty displayName="Has Multiplicity AShape" name="hasMultiplicityAShape" value="false"/>
+						<BooleanProperty displayName="Has Multiplicity BShape" name="hasMultiplicityBShape" value="false"/>
+						<BooleanProperty displayName="0 Sw Dr" name="0SwDr" value="false"/>
+						<BooleanProperty displayName="Show Name" name="showName" value="true"/>
+						<BooleanProperty displayName="Show Stereotypes" name="showStereotypes" value="true"/>
+						<BooleanProperty displayName="Show From Role Name" name="showFromRoleName" value="true"/>
+						<BooleanProperty displayName="Show To Role Name" name="showToRoleName" value="true"/>
+						<BooleanProperty displayName="Show From Multiplicity" name="showFromMultiplicity" value="true"/>
+						<BooleanProperty displayName="Show To Multiplicity" name="showToMultiplicity" value="true"/>
+						<BooleanProperty displayName="Show From Role Visibility" name="showFromRoleVisibility" value="false"/>
+						<BooleanProperty displayName="Show To Role Visibility" name="showToRoleVisibility" value="false"/>
+					</DiagramElementProperties>
+					<ElementFont color="Cr:0,0,0,255" name="Dialog" size="11" style="0"/>
+					<Line cap="0" color="Cr:0,0,0,255" transparency="0" weight="1.0">
+						<Stroke/>
+					</Line>
+					<Caption height="0" side="None" visible="true" width="20" x="523" y="270"/>
+					<Points>
+						<Point x="480" y="250"/>
+						<Point x="549" y="250"/>
+					</Points>
+				</Connector>
+			</Connectors>
+		</Diagram>
+	</Diagrams>
+</Project>

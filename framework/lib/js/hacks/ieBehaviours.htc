@@ -1,0 +1,29 @@
+<PUBLIC:COMPONENT>
+    <PUBLIC:METHOD NAME="getAttribute" INTERNALNAME="_getAttribute" />
+    <PUBLIC:METHOD NAME="setAttribute" INTERNALNAME="_setAttribute" />
+    <PUBLIC:METHOD NAME="hasAttribute" INTERNALNAME="_hasAttribute" />
+    <PUBLIC:METHOD NAME="hasAttributes" INTERNALNAME="_hasAttributes" />
+    <PUBLIC:METHOD NAME="contains" INTERNALNAME="_contains" />
+    <PUBLIC:METHOD NAME="isDescendentOf" INTERNALNAME="_isDescendentOf" />
+    <PUBLIC:METHOD NAME="compareTo" INTERNALNAME="_compareTo" />
+
+    <script type="text/javascript">
+    
+    /*----------------------- DOM Functions -----------------------
+    	O objeto Element foi definido no arquivo prototype.js */
+
+        var el = new Element;
+        
+        _getAttribute = el.getAttribute;
+        _setAttribute = el.setAttribute;
+        _hasAttribute = el.hasAttribute;
+        _hasAttributes = el.hasAttributes;
+        _contains = el.contains;
+        _isDescendentOf = el.isDescendentOf;
+        _compareTo = el.compareTo;
+
+	/*-------------------- END OF DOM Functions --------------------*/
+
+	</script>
+	
+</PUBLIC:COMPONENT>

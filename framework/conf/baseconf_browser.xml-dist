@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<conf>
+	<system>
+		<!-- 
+			Para este exemplo, suponhamos que o framework foi descompactado na pasta
+				C:/Apache/htdocs/baze
+			e que a url http://localhost aponta para a pasta C:/Apache/htdocs/
+		-->
+		<!-- Dom�nio onde est� hospedado o framework -->
+		<serverAlias>localhost</serverAlias>
+
+		<!-- Caminho no site onde est� hospedado o framework -->
+		<siteRoot>/baze/framework</siteRoot>
+
+		<!-- s� � necess�rio definir a porta se voc� n�o estiver usando a porta 80 -->
+		<serverPort></serverPort>
+		<documentRoot>C:/Apache/htdocs/baze/framework</documentRoot>
+		<showErrors>1</showErrors>
+
+		<!-- 
+			Environment pode receber os valores "development" e "production" 
+			Esta configura��o ainda � pouco explorada. Por enquanto ela apenas define se os javascripts
+			ser�o enviados de forma compactada (production) ou n�o (development)
+		-->
+		<environment>development</environment> 
+	</system>
+	<projects>
+		<project>
+			<!-- Identificador do projeto, n�o � utilizado pelo framework -->
+			<name>Baze Examples</name>
+			
+			<!-- Dom�nio onde est� hospedado o projeto -->
+			<serverAlias>localhost</serverAlias>
+			
+			<!-- Caminho no site onde est� hospedado o framework -->
+			<siteRoot>/baze/examples</siteRoot>
+			
+			<!-- s� � necess�rio definir a porta se voc� n�o estiver usando a porta 80 -->
+			<serverPort></serverPort>
+			
+			<!-- Caminho f�sico onde est� localizado o projeto -->
+			<documentRoot>c:/projects/baze/examples</documentRoot>
+			
+			<!-- Namespace das classes deste projeto [opcional]  -->
+			<namespace></namespace>
+			
+			<!--
+				Diret�rio raiz das classes deste projeto [opcional]  
+				Se definido, � obrigat�rio definir o namespace acima.
+			-->
+			<classesRoot></classesRoot>
+
+			<!-- Caminhos de diret�rios de classes adicionais -->
+			<classPaths>
+				<!-- Exemplo de class path
+					Caso seu projeto utilize outros projetos. Voc� pode definir outros namespaces e seus respectivos 
+					caminhos f�sicos para que as classes desses projetos possam ser requeridas atrav�s da fun��o
+					import. 
+						Ex: a chamada 
+							import('propel.BaseClass'); 
+						carregar� a classe
+							C:/apache/htdocs/propel/BaseClass.php ou BaseClass.class.php
+				<path>
+					<namespace>propel</namespace>
+					<rootDir>C:/apache/htdocs/propel/</rootDir>
+				</path>
+				-->
+			</classPaths>
+			
+			<!-- Classes que ser�o automaticamente carregadas -->
+			<autoload>
+				<!-- 
+					Caminho da classe a ser importada. Use a nota��o de pacotes
+					Ex: base.web.Panel
+				-->
+				<class></class>
+			</autoload>
+		</project>
+	</projects>
+</conf>
