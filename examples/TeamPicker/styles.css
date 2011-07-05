@@ -1,0 +1,30 @@
+@CHARSET "UTF-8";
+
+.team {
+	float: left;
+	width: 500px;
+	border: 1px solid;
+	padding: 10px;
+	margin: 10px;
+}
+
+.player {
+	width: 100%;
+	background: #dde0ff;
+	margin: 0 0 10px 0;
+}
+
+.player .arrow {
+	width: 20px;
+	float: left;
+	text-align: center;
+	background-color: #CCD0EE;
+}
+
+.player .name {
+	text-align: center;
+}
+
+.player .goRight {
+	float: right;
+}
