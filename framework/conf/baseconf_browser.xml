@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <conf>
 	<system>
-		<!-- 
-			suggestted confs: 
-			mode: debug, normal 
-		-->
+		<!-- Extensão do arquivo de definição do arquivo da -->
 	</system>
 	<apps>
-		<app>
+		<app> 
+			<!-- Identificador do projeto, não é utilizado pelo framework -->
 			<name>Baze Examples</name>
 		
 			<!-- url que aponta para a raiz da aplicação -->
 			<url>http://baze/examples</url>
 			
 			<!-- raiz da aplicação no hd -->
-			<docRoot>c:/projects/baze/examples</docRoot>
+			<docRoot>/projects/baze/examples</docRoot>
 			
-			<!-- Where are the Baze library folder? -->
+			<!-- Where is the Baze library folder? -->
 			<bazeLibUrl>http://baze/framework/lib</bazeLibUrl>
 						
 			<!-- 
@@ -30,6 +28,10 @@
 			
 			<defaultContentType>text/html</defaultContentType>
 
+			<!--
+				Configuração de serviços suportados por essa aplicação.
+				Não é necessário configurar o PageService
+			-->
 			<services>
 				<service>
 					<id>feed</id>
@@ -42,7 +44,21 @@
 				</service>
 			</services>
 			
-			<namespaces> 
+			<!-- Namespace das classes deste projeto [opcional]  -->
+			<namespaces>
+				<!-- Exemplo de Namespace
+					Caso seu projeto utilize outros projetos ou bibliotecas. Você pode definir namespaces e seus respectivos 
+					caminhos físicos para que as classes desses projetos possam ser requeridas através da função import. 
+						Ex: a chamada 
+							import('propel.BaseClass'); 
+						carregará a classe
+							/apache/htdocs/propel/BaseClass.php ou BaseClass.class.php
+						se a configuração abaixo for inserida
+							<namespace>
+								<name>propel</name>
+								<folder>/apache/htdocs/propel/</folder>
+							</namespace>
+				-->
 				<namespace>
 					<name>zend</name>
 					<folder>/projects/baze/examples/ZendFramework-1.11.7/library/Zend/</folder>
@@ -58,60 +74,51 @@
 			</namespaces>
 			
 			<autoload>
-				<class></class>
+				<!-- 
+					Caminho da classe a ser importada. Use a notação de pacotes
+					Ex: <class>base.web.Panel</class>
+				-->
 			</autoload>
 		</app>
 		<app>
 			<!-- Identificador do projeto, não é utilizado pelo framework -->
 			<name>Baze Examples</name>
+		
+			<!-- url que aponta para a raiz da aplicação -->
+			<url>http://bazesite</url>
 			
-			<url>http://projects/baze/examples</url>
+			<!-- raiz da aplicação no hd -->
+			<docRoot>/projects/baze_site</docRoot>
 			
-			<!-- Domínio onde está hospedado o projeto -->
-			<serverAlias>localhost</serverAlias>
-			
-			<!-- Caminho no site onde está hospedado o framework -->
-			<siteRoot>/baze/examples</siteRoot>
-			
-			<!-- só é necessário definir a porta se você não estiver usando a porta 80 -->
-			<serverPort></serverPort>
-			
-			<!-- Caminho físico onde está localizado o projeto -->
-			<documentRoot>c:/projects/baze/examples</documentRoot>
-			
-			<!-- Namespace das classes deste projeto [opcional]  -->
-			<namespace></namespace>
-			
-			<!--
-				Diretório raiz das classes deste projeto [opcional]  
-				Se definido, é obrigatório definir o namespace acima.
+			<!-- Where are the Baze library folder? -->
+			<bazeLibUrl>http://bazesite/baze/framework/lib</bazeLibUrl>
+						
+			<!-- 
+				Mode pode receber os valores "development" e "production" 
+				Esta configuração ainda é pouco explorada. Por enquanto ela apenas define se os javascripts
+				serão enviados de forma compactada (production) ou não (development)
 			-->
-			<classesRoot></classesRoot>
-
-			<!-- Caminhos de diretórios de classes adicionais -->
-			<classPaths>
-				<!-- Exemplo de class path
-					Caso seu projeto utilize outros projetos. Você pode definir outros namespaces e seus respectivos 
-					caminhos físicos para que as classes desses projetos possam ser requeridas através da função
-					import. 
-						Ex: a chamada 
-							import('propel.BaseClass'); 
-						carregará a classe
-							C:/apache/htdocs/propel/BaseClass.php ou BaseClass.class.php
-				<path>
-					<namespace>propel</namespace>
-					<rootDir>C:/apache/htdocs/propel/</rootDir>
-				</path>
-				-->
-			</classPaths>
+			<mode>development</mode> 
 			
-			<!-- Classes que serão automaticamente carregadas -->
+			<defaulEncoding>utf-8</defaulEncoding>
+			
+			<defaultContentType>text/html</defaultContentType>
+
+			<services></services>
+			
+			<namespaces> 
+				<namespace>
+					<name>zend</name>
+					<folder>/projects/baze_site/external/Zend/</folder>
+				</namespace>
+				<namespace>
+					<name>site</name>
+					<folder>/projects/baze_site/classes/site</folder>
+				</namespace>
+			</namespaces>
+			
 			<autoload>
-				<!-- 
-					Caminho da classe a ser importada. Use a notação de pacotes
-					Ex: base.web.Panel
-				-->
-				<class></class>
+				<class>site.confs</class>
 			</autoload>
 		</app>
 	</apps>

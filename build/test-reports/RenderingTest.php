@@ -7,7 +7,7 @@ require_once($curdir.'/../system/io/HttpResponseWriter.php');
 
 define('_IS_POSTBACK', false);
 
-$r = new XhtmlRender();
+$r = new XhtmlRenderer();
 $w = new HttpResponseWriter();
 $t = new TextBox();
 

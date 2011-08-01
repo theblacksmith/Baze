@@ -50,7 +50,7 @@ class Head extends PageComponent
 		$this->page = $page;
 	}
 
-	function addChild(Component $child, $position = null)
+	function addChild(Component $child, $position = null, $replace = false)
 	{
 		if(is_scalar($child))
 		{
@@ -114,7 +114,7 @@ class Head extends PageComponent
  	 * @access public
 	 * @param IRender $render
 	 */
-	public function renderChildren(IRender $render, IWriter $writer) {
+	public function renderChildren(IRenderer $render, IWriter $writer) {
 		if($this->children instanceof Collection) {
 			foreach ($this->children as $child) {
 				$render->render($child, $writer);

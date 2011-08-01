@@ -9,11 +9,11 @@
  * @since 0.9
  * @package Baze.classes.web.page
  */
-import( 'system.web.ui.HtmlComponent' );
-import( 'system.web.ui.Literal' );
-import( 'system.web.ui.page.Head' );
-import( 'system.web.ui.page.Body' );
-import( 'system.ServerViewState' );
+require_once  'system/web/ui/HtmlComponent.class.php';
+require_once  'system/web/ui/Literal.class.php';
+require_once  'system/web/ui/page/Head.class.php';
+require_once  'system/web/ui/page/Body.class.php';
+require_once  'system/postback/ServerViewState.class.php';
 
 /**
  * Classe Page
@@ -105,9 +105,11 @@ class Page extends Component implements IRenderable, IContainer
 	 *
 	 * @param Component $c
 	 */
-	public function addComponent(Component $c)
+	public function addComponent(Component $c, $replace = false)
 	{
-		if(($pos = array_search($c->getId(), $this->_c['id'])) !== false)
+		$pos = array_search($c->getId(), $this->_c['id']);
+		
+		if(!$replace && $pos !== false)
 		{
 			if($this->_c['o'][$pos] === $c) // if the component is already on the page, just return
 				return;
@@ -115,9 +117,17 @@ class Page extends Component implements IRenderable, IContainer
 			throw new BazeRuntimeException(Msg::DuplicatedComponentId, array(get_class($this), $c->getId()));
 		}
 
-		$this->_c['id'][] = &$c->_getId();
-		$this->_c['o'][] = $c;
-
+		if($pos !== false)
+		{
+			$this->_c['id'][$pos] = &$c->_getId();
+			$this->_c['o'][$pos] = $c;
+		}
+		else
+		{
+			$this->_c['id'][] = &$c->_getId();
+			$this->_c['o'][] = $c;
+		}
+		
 		$id = $c->getId();
 		$this->$id = $c;
 		
@@ -125,40 +135,20 @@ class Page extends Component implements IRenderable, IContainer
 			$c->setPage($this);
 	}
 	
-	
-	/// @cond internal
-
-	/**
-	 * Handles the postback event
-	 *
-	 * @param Object $obj The target object
-	 * @param string $event The name of the event that happenedbreaks
-	 */
-	public function _handleEvent()
+	public function getComponent($id)
 	{
-		if($this->viewState->getEvent() != null)
-		{
-			global $sysLogger;
-			$obj = $this->viewState->getEventTarget();
-			$event = $this->viewState->getEvent();
-			$args = $this->viewState->getEventArguments();
+		if(($pos = array_search($id, $this->_c['id'])) !== false)
+			return $this->_c['o'][$pos];
 
-			if($sysLogger)
-				$sysLogger->debug("Handling Event - " . $obj ." " . $event,__FILE__,__LINE__);
-
-			$this->$obj->$event->raise($this->$obj, $args);
-		}
+		return null;
 	}
-
-	
-	/// @endcond
 	
 	/**
 	 * Returns the view state manager
 	 *
 	 * @return ServerViewState
 	 */
-	public function getViewStateManager()
+	public function getServerViewState()
 	{
 		return $this->viewState;
 	}
@@ -207,7 +197,7 @@ class Page extends Component implements IRenderable, IContainer
  	 * @access public
 	 * @return CustomRender
 	 */
-	public function getCustomRender()
+	public function getCustomRenderer()
 	{
 		return null;
 	}
@@ -216,7 +206,7 @@ class Page extends Component implements IRenderable, IContainer
  	 * @access public
 	 * @return boolean
 	 */
-	public function hasCustomRender()
+	public function hasCustomRenderer()
 	{
 		return false;
 	}
@@ -241,7 +231,7 @@ class Page extends Component implements IRenderable, IContainer
  	 * @access public
 	 * @param IRender $render
 	 */
-	public function renderChildren(IRender $render, IWriter $writer)
+	public function renderChildren(IRenderer $render, IWriter $writer)
 	{
 		foreach ($this->children as $child)
 			$render->render($child, $writer);

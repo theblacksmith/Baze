@@ -1,7 +1,7 @@
 <?php
 
 import('system.diagnostics.Debug');
-import('system.web.services.pageService.HtmlFragment');
+import('system.application.services.pageService.HtmlFragment');
 import('system.exceptions.xml.XMLParseException');
 
 abstract class DOMParser

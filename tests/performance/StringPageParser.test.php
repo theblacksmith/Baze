@@ -1,6 +1,9 @@
 <?php
 
-require_once '../../framework/system/web/services/pageService/StringPageParser.class.php';
+define('NB_ROOT', '/projects/baze/framework');
+set_include_path(get_include_path() . PATH_SEPARATOR . NB_ROOT);
+
+require_once 'system/web/services/pageService/StringPageParser.class.php';
 
 $i = 10000;
 $startMem = memory_get_usage()/1024;
@@ -10,7 +13,7 @@ echo "start memory: " . number_format($startMem,2) . "k<br/>";
 $sTime = microtime(true);
 while($i > 0) {
 	$p = new StringParser();
-	$p->parseFile('../../examples/LinksList/LinksManager.php');
+	$p->parseFile(NB_ROOT . '/../examples/HelloWorld/HelloWorld.php');
 	$i--;
 }
 $eTime = microtime(true);

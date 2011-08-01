@@ -1,6 +1,4 @@
 <?php
-require_once(realpath(dirname(__FILE__)) . '/../../Overview/Component.php');
-require_once(realpath(dirname(__FILE__)) . '/../../system/postback/Change.php');
 
 /**
  * @access public
@@ -8,38 +6,55 @@ require_once(realpath(dirname(__FILE__)) . '/../../system/postback/Change.php');
  * @package system.postback
  */
 class SyncMessage {
-	/**
-	 * @AttributeType array
-	 */
-	private $changes;
 
 	/**
-	 * @access public
-	 * @param Overview.Component obj
-	 * @param system.postback.Change chg
-	 * @ParamType obj Overview.Component
-	 * @ParamType chg system.postback.Change
+	 * @var array
 	 */
-	public function addChange(Component $obj, Change $chg) {
-		// Not yet implemented
+	protected $newObjs;
+	
+	/**
+	 * @var array
+	 */
+	protected $modObjs;
+	
+	/**
+	 * @var array
+	 */
+	protected $delObjs;
+	
+	/**
+	 * Constructor.
+	 * Parses the text and extract all the info in it
+	 * @param string $message [optional]
+	 */
+	public function __construct($message = array())
+	{
+		$this->newObjs = array();
+		$this->modObjs = array();
+		$this->delObjs = array();
+		
+		if(isset($message['n']))
+			$this->newObjs = $message['n'];
+		
+		if(isset($message['m']))
+			$this->modObjs = $message['m'];
+		
+		if(isset($message['r']))
+			$this->delObjs = $message['r'];
 	}
-
-	/**
-	 * @access public
-	 * @param Overview.Component c
-	 * @ParamType c Overview.Component
-	 */
-	public function addNewObject(Component $c) {
-		// Not yet implemented
+	
+	public function getNewObjects()
+	{
+		return $this->newObjs;
 	}
-
-	/**
-	 * @access public
-	 * @param Overview.Component c
-	 * @ParamType c Overview.Component
-	 */
-	public function addRemovedObject(Component $c) {
-		// Not yet implemented
+	
+	public function getModifiedObjects()
+	{
+		return $this->modObjs;
+	}
+	
+	public function getRemovedObjects()
+	{
+		return $this->delObjs;
 	}
 }
-?>

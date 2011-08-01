@@ -1,5 +1,4 @@
 <?php
-require_once(realpath(dirname(__FILE__)) . '/../../system/postback/PostbackRequest.php');
 
 /**
  * @access public
@@ -7,6 +6,7 @@ require_once(realpath(dirname(__FILE__)) . '/../../system/postback/PostbackReque
  * @package system.postback
  */
 class EventMessage {
+	
 	/**
 	 * @AttributeType string
 	 * 
@@ -31,48 +31,37 @@ class EventMessage {
 	 * @var array
 	 */
 	private $args;
-	/**
-	 * @AssociationType system.postback.PostbackRequest
-	 */
-	private $unnamed_PostbackRequest_;
 
+	
+	public function __construct(array $msg = null) {
+		
+			$this->eventName = "on" . ucfirst($msg["type"]);
+			$this->sender  = $msg["target"];
+
+			foreach($msg['args'] as $k => $v)
+			{
+				$this->args[$k] = $v;
+			}
+	}
+	
 	/**
-	 * 
-	 * Function getEvent
-	 * 
-	 * @return string $event The name of the last event happened
-	 * @access public
-	 * @return string
-	 * @ReturnType string
+	 * @return string $event The name of the event
 	 */
 	public function getEvent() {
-		// Not yet implemented
+		return $this->eventName;
 	}
 
 	/**
-	 * 
-	 * Function getEventTarget
-	 * 
-	 * @return string The id of the target of the last event happened
-	 * @access public
-	 * @return string
-	 * @ReturnType string
+	 * @return string The id of the event sender
 	 */
 	public function getSender() {
-		// Not yet implemented
+		return $this->sender;
 	}
 
 	/**
-	 * 
-	 * Function getEventArgument
-	 * 
-	 * @return string $event The arguments passed by the target the
-	 * @access public
-	 * @return array_1
-	 * @ReturnType array
+	 * @return array The arguments passed by the target the
 	 */
 	public function getArguments() {
-		// Not yet implemented
+		return $this->args;
 	}
 }
-?>

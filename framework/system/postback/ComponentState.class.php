@@ -1,6 +1,8 @@
 <?php
 
-class ComponentState
+require_once 'system/lang/BazeObject.class.php';
+
+class ComponentState extends BazeObject
 {
 	/**
 	 * @var array
@@ -22,41 +24,100 @@ class ComponentState
 	 */
 	private $manager;
 	
-	public function __construct(ViewStateManager $vsm)
+	/**
+	 * @var Component
+	 */
+	private $component;
+	
+	/**
+	 * Keep tracking of current number of changes so we don't need to count all the arrays
+	 * @var int
+	 */
+	private $changesCount;
+	
+	public function __construct(ServerViewState $vsm, Component $comp)
 	{
 		$this->manager = $vsm;
+		$this->component = $comp;
+		$this->changesCount = 0;
+	}
+	
+	public function hasProperty($name)
+	{
+		return isset($this->properties[$name]);	
+	}
+	
+	public function getProperty($name)
+	{
+		return (isset($this->properties[$name]) ? $this->properties[$name] : null);
 	}
 	
 	public function addProperty($name, $value, $defaultValue = null)
 	{
 		if($value === $defaultValue) {
 			unset($this->properties[$name]);
-			if(count($this->properties) == 0) {
-				$this->manager->removeModifiedObject($this);
-			}
+			$this->updateCount(-1);
 		}
 		else {
-			if(count($this->viewState) == 0) {
-				$this->manager->addModifiedObject($this);
-			}
-			
-			$this->viewState[$name] = $value;
+			$this->properties[$name] = $value;
+			$this->updateCount(+1);
 		}
 	}
 	
 	public function addNewChild($component)
 	{
-		if($this->removedChildren->contains($component))
+		if(!($this->removedChildren instanceof Set))
+			$this->removedChildren = new Set(gettype(new Component()));
+			
+		if(!($this->newChildren instanceof Set))
+			$this->newChildren = new Set(gettype(new Component()));
+			
+		if($this->removedChildren->contains($component)) {
 			$this->removedChildren->remove($component);
-		else
+			$this->updateCount(-1);
+		}
+		else {
 			$this->newChildren->add($component);
+			$this->updateCount(+1);
+		}
 	}
 	
 	public function addRemovedChild($component)
 	{
-		if($this->newChildren->contains($component))
+		if(!($this->removedChildren instanceof Set))
+			$this->removedChildren = new Set(gettype(new Component()));
+			
+		if(!($this->newChildren instanceof Set))
+			$this->newChildren = new Set(gettype(new Component()));
+			
+		if($this->newChildren->contains($component)) {
 			$this->newChildren->remove($component);
-		else
+			$this->updateCount(-1);
+		}
+		else {
 			$this->removedChildren->add($component);
+			$this->updateCount(+1);
+		}
+	}
+	
+	/**
+	 * Updates $changesCount adding it to $operation and adds or removes the component to ServerViewState
+	 * modified objects list accordingly.
+	 * 
+	 * @param int $operation +1 or -1
+	 */
+	private function updateCount($operation)
+	{
+		$this->changesCount += $operation;
+		
+		if($this->changesCount > 0)
+			$this->manager->addModifiedObject($this->component);
+		else
+			$this->manager->removeModifiedObject($this->component);
+	}
+	
+	public function getProperties()
+	{
+		return $this->properties;
 	}
 }

@@ -1,75 +1,66 @@
 <?php
-require_once(realpath(dirname(__FILE__)) . '/../../system/postback/SyncMessage.php');
-require_once(realpath(dirname(__FILE__)) . '/../../system/postback/EventMessage.php');
-require_once(realpath(dirname(__FILE__)) . '/../../system/postback/CommandMessage.php');
+
+import('system.postback.SyncMessage');
+import('system.postback.EventMessage');
+import('system.postback.CommandMessage');
+import('system.postback.ClientViewState');
+import('system.net.HttpRequest');
 
 /**
  * @access public
  * @author svallory
  * @package system.postback
  */
-class PostbackRequest {
+class PostbackRequest extends HttpRequest {
+	
 	/**
-	 * @AttributeType system.postback.SyncMessage
+	 * @var ClientViewState
 	 */
-	private $syncMsg;
+	private $clientViewState;
+	
 	/**
-	 * @AttributeType system.postback.EventMessage
-	 */
-	private $eventMsg;
-	/**
-	 * @AttributeType array
-	 */
-	private $cmdMsg;
-	/**
-	 * @AttributeType string
+	 * @var string
 	 */
 	private $pageId;
+	
 	/**
-	 * @AssociationType system.postback.EventMessage
+	 * @var HttpRequest
 	 */
-	private $unnamed_EventMessage_;
-	/**
-	 * @AssociationType system.postback.CommandMessage
-	 * @AssociationMultiplicity 0..*
-	 * @AssociationKind Aggregation
-	 */
-	private $unnamed_CommandMessage_ = array();
-	/**
-	 * @AssociationType system.postback.SyncMessage
-	 * @AssociationMultiplicity 1
-	 * @AssociationKind Composition
-	 */
-	private $unnamed_SyncMessage_;
-
+	private $req;
+	
+	public function __construct(HttpRequest $req)
+	{
+		$this->req = $req;
+		
+		if(($msg = $req->getParam('__clientMessage', false)) !== false)
+			$this->clientViewState = new ClientViewState($msg);
+	}
+	
 	/**
 	 * 
 	 * Function GetViewState
 	 * 
 	 * @access public
-	 * @return system.postback.SyncMessage
-	 * @ReturnType system.postback.SyncMessage
+	 * @return SyncMessage
 	 */
 	public function getSyncMessage() {
-		// Not yet implemented
+		return $this->clientViewState->SyncMessage;
 	}
 
 	/**
 	 * @access public
-	 * @return array_1
-	 * @ReturnType array
+	 * @return CommandMessage
 	 */
 	public function getCommandMessages() {
-		// Not yet implemented
+		return $this->clientViewState->CommandMessage;
 	}
 
 	/**
 	 * @access public
-	 * @return system.postback.EventMessage
-	 * @ReturnType system.postback.EventMessage
+	 * @return EventMessage
 	 */
 	public function getEventMessage() {
-		// Not yet implemented
+		return $this->clientViewState->EventMessage;
 	}
 
 	/**
@@ -78,7 +69,6 @@ class PostbackRequest {
 	 * @ReturnType string
 	 */
 	public function getPageId() {
-		// Not yet implemented
+		return $this->pageId;
 	}
 }
-?>

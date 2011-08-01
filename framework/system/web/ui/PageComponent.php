@@ -12,10 +12,11 @@
  * @package Baze.web
  */
 
-import('system.rendering.IRenderable');
-import('system.xml.IXMLElement');
-import('system.IContainer');
-
+require_once 'system/rendering/IRenderable.php';
+require_once 'system/xml/IXMLElement.interface.php';
+require_once 'system/IContainer.interface.php';
+require_once 'system/postback/ComponentState.class.php';
+require_once 'system/Component.class.php';
 
 /**
  * Classe PageComponent
@@ -113,7 +114,7 @@ class PageComponent extends Component implements IRenderable, IContainer
 	 * @var CustomRender
 	 * @access protected
 	 */
-	protected $customRender;
+	protected $customRenderer;
 
 	/**
 	 * Whether the state should be tracked or not
@@ -141,9 +142,6 @@ class PageComponent extends Component implements IRenderable, IContainer
 			$this->attributes = array();
 			
 		$this->attributes = array_merge($this->attributes, array('id' => &$this->id));
-		
-		if($this->trackViewState)
-			$this->viewState = new ComponentState();
 	}
 	/**
 	 * Sets the component id
@@ -172,8 +170,8 @@ class PageComponent extends Component implements IRenderable, IContainer
 		if(method_exists($this, $getter)) {
 			return $this->$getter();
 		} // try to get from VS
-		if(isset($this->viewState[$name])) {
-			return $this->viewState[$name];
+		if(_IS_POSTBACK && $this->viewState->hasProperty($name)) {
+			return $this->viewState->getProperty($name);
 		} // check if it exists and return it
 		else if(isset($this->attributes[$name]))
 			return $this->attributes[$name];
@@ -241,9 +239,9 @@ class PageComponent extends Component implements IRenderable, IContainer
 		if($name == '')
 			throw new InvalidArgumentValueException(ErrorMessages::InvalidArgument_VoidString, 'name');
 
-			// not a postback, forget VS
-			$this->setInViewState($name, $value, null);
+		$this->setInViewState($name, $value, null);
 
+		// @todo: check why we do this
 		if(isset($this->attributes[$name]))
 			$this->customAttributes[$name] = &$this->attributes[$name];
 		else
@@ -281,10 +279,10 @@ class PageComponent extends Component implements IRenderable, IContainer
 	 * @param string $defaultValue
 	 * @return mixed
 	 */
-	protected function getFromViewState($name, $defaultValue)
+	protected function getFromViewState($name, $defaultValue = null)
 	{
-		if(isset($this->viewState[$name])) {
-			return $this->viewState[$name];
+		if($this->viewState && $this->viewState->hasProperty($name)) {
+			return $this->viewState->getProperty($name);
 		}
 		else if(isset($this->attributes[$name])) {
 			return $this->attributes[$name];
@@ -304,7 +302,7 @@ class PageComponent extends Component implements IRenderable, IContainer
 	 */
 	protected function setInViewState($name, $value, $defaultValue = null)
 	{
-		if(_IS_POSTBACK && $this->trackViewState)
+		if(_IS_POSTBACK)
 		{
 			if(isset($this->attributes[$name]))
 				$defaultValue = $this->attributes[$name];
@@ -343,7 +341,7 @@ class PageComponent extends Component implements IRenderable, IContainer
 	 */
 	public function hasAttribute($name)
 	{
-		if(method_exists('get'.$name) || method_exists('set'.$name) || isset($this->attributes[$name]))
+		if(method_exists($this, 'get'.$name) || method_exists($this, 'set'.$name) || isset($this->attributes[$name]))
 			return true;
 
 		return false;
@@ -394,16 +392,20 @@ class PageComponent extends Component implements IRenderable, IContainer
 	 * @param Page $p
 	 * @return boolean
 	 */
-	public function setPage(Page $p = null) {
+	public function setPage(Page $p = null, $replace = false) {
 
 		if($this->page === $p || $p === null)
 			return;
 
 		$this->page = $p;
-		$this->page->addComponent($this);
-		
-		if ($this->children) foreach ($this->children as $c)
-			$c->setPage($this->page);
+		if($this->page->addComponent($this, $replace))
+		{		
+			if ($this->children) foreach ($this->children as $c)
+				$c->setPage($this->page);
+			
+			if($this->trackViewState)
+				$this->viewState = new ComponentState($this->page->getServerViewState(), $this);
+		}
 	}
 
 	/**
@@ -422,7 +424,7 @@ class PageComponent extends Component implements IRenderable, IContainer
 	 */
 	public function getAttributesToRender() {
 		if(_IS_POSTBACK)
-			return $this->viewState;
+			return $this->viewState->Properties;
 		else
 			return $this->attributes;
 	}
@@ -446,8 +448,8 @@ class PageComponent extends Component implements IRenderable, IContainer
  	 * @access public
 	 * @return CustomRender
 	 */
-	public function getCustomRender() {
-		return $this->customRender;
+	public function getCustomRenderer() {
+		return $this->customRenderer;
 	}
 
 	/**
@@ -455,15 +457,15 @@ class PageComponent extends Component implements IRenderable, IContainer
 	 * @param CustomRender
 	 */
 	public function setCustomRender($cRender) {
-		$this->customRender = $cRender;
+		$this->customRenderer = $cRender;
 	}
 
 	/**
  	 * @access public
 	 * @return boolean
 	 */
-	public function hasCustomRender() {
-		return isset($this->customRender);
+	public function hasCustomRenderer() {
+		return isset($this->customRenderer);
 	}
 
 	/**
@@ -486,7 +488,7 @@ class PageComponent extends Component implements IRenderable, IContainer
  	 * @access public
 	 * @param IRender $render
 	 */
-	public function renderChildren(IRender $render, IWriter $writer) {
+	public function renderChildren(IRenderer $render, IWriter $writer) {
 		if($this->children instanceof Collection)
 			foreach ($this->children as $child) {
 				$render->render($child, $writer);
@@ -561,20 +563,44 @@ class PageComponent extends Component implements IRenderable, IContainer
 	 * @param Component $component
 	 * @return boolean
 	 */
-	public function addChild(Component $component, $toFirst = false)
+	public function addChild(Component $component, $toFirst = false, $replace = false)
 	{
 		if(!($this->children instanceof Collection))
 			$this->children = new Collection();
 
-		$index = $this->children->add($component);
+		$found = false;
+		for($i = 0, $count = $this->children->count(); $i < $count; $i++) { 
+			if($this->children[$i]->getId() == $component->getId()) {
+				$found = true;
+				break;
+			}
+		}
+		
+		$index = -1;
+		
+		if(!$found) {
+			$index = $this->children->add($component);
+		}
+		else if($replace) {
+			$this->children->replace($i, $component);
+			$index = $i; 
+		}
+		else {
+			throw new BazeRuntimeException(Msg::DuplicatedComponentId, array(get_class($this), $component->getId()));
+		}
 
 		if($index >= 0)
 		{
 			if(isset($this->page))
-				$this->page->addComponent($component);
-
+				$this->page->addComponent($component, $replace);
+				
+			if($component->container instanceof PageComponent)
+				$component->container->removeChild($component);
+				
 			$component->setContainer($this);
-			$this->newChildren[] = &$component->_getId();
+			
+			if($this->trackViewState && _IS_POSTBACK)
+				$this->viewState->addNewChild($component);
 			
 			return true;
 		}

@@ -1,17 +1,15 @@
 <?php
-require_once(realpath(dirname(__FILE__)) . '/../../system/web/ui/page/Page.php');
-require_once(realpath(dirname(__FILE__)) . '/../../system/collections/Map.php');
-require_once(realpath(dirname(__FILE__)) . '/../../system/postback/Change.php');
-require_once(realpath(dirname(__FILE__)) . '/../../Overview/Page.php');
-require_once(realpath(dirname(__FILE__)) . '/../../system/postback/SyncMessage.php');
-require_once(realpath(dirname(__FILE__)) . '/../../Overview/Component.php');
+
+import('system.postback.SyncMessage');
+import('system.postback.EventMessage');
 
 /**
  * @access public
  * @author svallory
  * @package system.postback
  */
-class ViewStateManager {
+class ViewStateManager
+{
 	/**
 	 * @AttributeType system.web.ui.page.Page
 	 * 
@@ -20,127 +18,144 @@ class ViewStateManager {
 	 * @var Page $page
 	 */
 	private $page;
+	
 	/**
-	 * @AttributeType system.collections.Map
-	 * 
-	 * Array with the result of a call of serialize function
-	 * for each object in the page in the last call of SaveState().
-	 * The elements are indexed by the id of the variables.
-	 * 
-	 * @var array
-	 */
-	private $cachedObjs;
-	/**
-	 * @AttributeType system.collections.Map
-	 * 
-	 * @var Map
-	 */
-	private $oldObjects;
-	/**
-	 * @AttributeType system.collections.Map
-	 * 
-	 * @var Map
-	 */
-	private $newObjects;
-	/**
-	 * @AttributeType system.collections.Map
-	 * 
-	 * @var Map
-	 */
-	private $modObjects;
-	/**
-	 * @AttributeType system.collections.Map
-	 * 
-	 * @var Map
-	 */
-	private $delObjects;
-	/**
-	 * @AttributeType boolean
+	 * @var boolean
 	 */
 	private $sincronized;
+	
 	/**
-	 * @AssociationType system.postback.Change
-	 * @AssociationKind Aggregation
+	 * @var ServerViewState
 	 */
-	private $unnamed_Change_;
+	private $serverViewState;
+	
 
 	/**
-	 * 
 	 * Constructor
 	 * 
+	 * @access public
 	 * @param Page $page
-	 * @access public
-	 * @param Overview.Page page
-	 * @ParamType page Overview.Page
 	 */
-	public function __construct(Page $page) {
-		// Not yet implemented
+	function __construct(Page $page)
+	{
+		$this->page = $page;
+		$this->serverViewState = $page->getServerViewState();
 	}
 
 	/**
-	 * 
 	 * Function LoadViewState
-	 * 
+	 *
 	 * @param $clientState string xml string
-	 * @access public
-	 * @param system.postback.SyncMessage syncMsg
-	 * @ParamType syncMsg system.postback.SyncMessage
 	 */
-	public function loadViewState(SyncMessage $syncMsg) {
-		// Not yet implemented
+	public function loadViewState(SyncMessage $syncMsg)
+	{		
+		// Loads the uploaded files
+		// @todo move it to request or somewhere more appropriate
+		foreach($_FILES as $k => $f)
+		{
+			if ($_FILES[$k]["error"] == UPLOAD_ERR_OK && is_uploaded_file($_FILES[$k]["tmp_name"])) {
+				$fileUpComp = $this->page->get($k);
+
+				if($fileUpComp instanceof FileUpload)
+				{
+					foreach($_FILES[$k] as $prop => $val) {
+						if($prop != "tmp_name")
+							$fileUpComp->set("file". ucfirst(strtolower($prop)), $val);
+					}
+
+					$fileUpComp->set("fileTmpPath", System::addUploadedFile($_FILES[$k]));
+				}
+			}
+			else
+			{
+				trigger_error("Upload error: " . $_FILES[$k]["error"], E_USER_NOTICE);
+			}
+		}
+
+		$this->createObjects($syncMsg->getNewObjects());
+		$this->updateObjects($syncMsg->getModifiedObjects());
+		$this->removeObjects($syncMsg->getRemovedObjects());
 	}
 
-	/**
-	 * @access public
-	 * @param Overview.Component obj
-	 * @param system.postback.Change chg
-	 * @ParamType obj Overview.Component
-	 * @ParamType chg system.postback.Change
-	 */
-	public function addChange(Component $obj, Change $chg) {
-		// Not yet implemented
+	protected function removeObjects($objects = array())
+	{
+		foreach($objects as $objId)
+		{
+			//pegando o objeto
+			$c = $this->page->$objId;
+
+			if($c instanceof Container)
+			{
+				$this->removeObjects($c->Children);
+			}
+				
+			$parent = $c->getContainer();
+			if($parent)
+				$parent->removeChild($c);
+				
+			unset($this->page->$objId);
+			
+			if(!_IS_POSTBACK)
+				$this->addRemovedObject($c);
+		}
 	}
 
-	/**
-	 * @access public
-	 * @param Overview.Component c
-	 * @ParamType c Overview.Component
-	 */
-	public function addNewObject(Component $c) {
-		// Not yet implemented
+	protected function updateObjects($objects = array())
+	{
+		global $sysLogger;
+
+		foreach($objects as $obj)
+		{
+			$objId = $obj['id'];
+			$props = $obj['properties'];
+
+			//pegando o objeto
+			$auxiliarObj = $this->page->$objId;
+
+			if(!$auxiliarObj)
+			{
+				trigger_error("Erro atualizando componentes. Não foi possível encontrar o objeto " . $objId . " na página", E_USER_ERROR);
+				exit;
+			}
+
+			//aplicando as modificações
+			foreach($props as $n => $v)
+			{
+					$auxiliarObj->setAttribute($n, $v);
+			}
+		}
 	}
 
-	/**
-	 * @access public
-	 * @param Overview.Component c
-	 * @ParamType c Overview.Component
-	 */
-	public function addRemovedObject(Component $c) {
-		// Not yet implemented
+	protected function createObjects($objects = array())
+	{
+		foreach($objects as $obj)
+		{
+			$id = $obj['id'];
+			$klass = $obj['class'];
+
+			try {
+				//instanciando o objeto
+				$auxiliarObj = new $klass();
+				$auxiliarObj->set("id", $id);
+			}
+			catch (Exception $e) {
+				throw $e;
+			}
+
+			//atribuindo as propriedades
+			foreach($obj['properties'] as $n => $v)
+			{
+				$auxiliarObj->set($n, $v);
+			}
+
+			//inserindo objeto na página
+			$this->page->$id = $auxiliarObj;
+		}
 	}
 
-	/**
-	 * @access protected
-	 * @param objects
-	 */
-	protected function createObjects($objects) {
-		// Not yet implemented
-	}
-
-	/**
-	 * @access protected
-	 * @param objects
-	 */
-	protected function updateObjects($objects) {
-		// Not yet implemented
-	}
-
-	/**
-	 * @access protected
-	 * @param objects
-	 */
-	protected function removeObjects($objects) {
-		// Not yet implemented
+	public function setSynchronized()
+	{
+		$this->serverViewState->setSynchronized();
 	}
 
 	/**
@@ -151,32 +166,4 @@ class ViewStateManager {
 	protected function removePageReferences($object) {
 		// Not yet implemented
 	}
-
-	/**
-	 * Itera, por reflexão as propriedades públicas definidas na página q está sendo carregada
-	 * e adiciona no array cachedObjs
-	 * @access public
-	 */
-	public function saveState() {
-		// Not yet implemented
-	}
-
-	/**
-	 * Returns the current sync message based on the changes that have happened until the time the function is called
-	 * @access public
-	 * @return system.postback.SyncMessage
-	 * @ReturnType system.postback.SyncMessage
-	 */
-	public function getSyncMessage() {
-		// Not yet implemented
-	}
-
-	/**
-	 * Removes all changes and sets page state to sincronized
-	 * @access public
-	 */
-	public function setSynchronized() {
-		// Not yet implemented
-	}
 }
-?>

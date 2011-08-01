@@ -10,7 +10,8 @@
  * @package Baze.system.collections
  */
 
-require_once NB_ROOT . '/system/Component.class.php';
+require_once 'system/Component.class.php';
+require_once 'system/lang/PhpType.class.php';
 
 /**
  * Classe Collection

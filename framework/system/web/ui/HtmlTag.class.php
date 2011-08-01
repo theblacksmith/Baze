@@ -13,7 +13,7 @@
 /**
  * Import
  */
-import('system.web.ui.HtmlComponent');
+require_once 'system/web/ui/HtmlComponent.class.php';
 
 /**
  * Classe HTMLTag

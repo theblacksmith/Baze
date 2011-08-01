@@ -66,42 +66,42 @@ class HttpResponse implements IOutputWriter
 	/**
 	 * @var boolean whether to buffer output
 	 */
-	private $bufferOutput=true;
+	protected $bufferOutput=true;
 
 	/**
 	 * @var integer response status code.
 	 */
-	private $status = 200;
+	protected $status = 200;
 
 	/**
 	 * @var string reason correspond to status code. One of HttpStatusCode constants.
 	 */
-	private $reason = 'OK';
+	protected $reason = 'OK';
 
 	/**
 	 * @var string character set, e.g. UTF-8
 	 */
-	private $charset = '';
+	protected $charset = '';
 
 	/**
 	 * @var string content type
 	 */
-	private $contentType = null;
+	protected $contentType = null;
 
 	/**
 	 * @var HttpCookieCollection list of cookies to return
 	 */
-	private $_cookies = null;
+	protected $_cookies = null;
 
 	/**
 	 * @var string The response content
 	 */
-	private $content = '';
+	protected $content = '';
 
 	/**
 	 * @var boolean Whether the output has started or not
 	 */
-	private $outputStarted = false;
+	protected $outputStarted = false;
 
 	/**
 	 * @return integer time-to-live for cached session pages in minutes, this has no effect for nocache limiter. Defaults to 180.

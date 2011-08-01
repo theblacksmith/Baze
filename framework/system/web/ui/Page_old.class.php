@@ -393,7 +393,7 @@ class Page extends Component implements IRenderable
  	 * @access public
 	 * @return CustomRender
 	 */
-	public function getCustomRender()
+	public function getCustomRenderer()
 	{
 		return null;
 	}
@@ -402,7 +402,7 @@ class Page extends Component implements IRenderable
  	 * @access public
 	 * @return boolean
 	 */
-	public function hasCustomRender()
+	public function hasCustomRenderer()
 	{
 		return false;
 	}
@@ -427,7 +427,7 @@ class Page extends Component implements IRenderable
  	 * @access public
 	 * @param IRender $render
 	 */
-	public function renderChildren(IRender $render, IOutputWriter $writer)
+	public function renderChildren(IRenderer $render, IOutputWriter $writer)
 	{
 		$render->render($this->head, $writer);
 		$render->render($this->body, $writer);

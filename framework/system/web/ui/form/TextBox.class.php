@@ -9,7 +9,7 @@
  * @since 0.9
  * @package Baze.classes.web.form
  */
-import( 'system.web.ui.form.FormField' );
+require_once 'system/web/ui/form/FormField.class.php';
 
 /**
  * Classe TextBox

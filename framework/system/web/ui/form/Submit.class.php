@@ -10,7 +10,8 @@
  * @package Baze.classes.web.form
  */
 
-import( 'system.web.ui.Button' );
+
+require_once 'system/web/ui/Button.class.php';
 
 /**
  * Classe Submit

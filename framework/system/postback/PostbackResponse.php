@@ -1,15 +1,17 @@
 <?php
-require_once(realpath(dirname(__FILE__)) . '/../../system/postback/SyncMessage.php');
-require_once(realpath(dirname(__FILE__)) . '/../../system/postback/EventMessage.php');
-require_once(realpath(dirname(__FILE__)) . '/../../system/postback/CommandMessage.php');
-require_once(realpath(dirname(__FILE__)) . '/../../system/collections/OrderedList.php');
+
+import('system.postback.SyncMessage');
+import('system.postback.EventMessage');
+import('system.postback.CommandMessage');
+import('system.postback.ClientViewState');
+import('system.net.HttpRequest');
 
 /**
  * @access public
  * @author svallory
  * @package system.postback
  */
-class PostbackResponse {
+class PostbackResponse extends HttpResponse {
 	/**
 	 * @AttributeType string
 	 * 
@@ -18,150 +20,77 @@ class PostbackResponse {
 	 * @var string
 	 */
 	private $redirectURL;
+	
 	/**
-	 * @AttributeType system.postback.SyncMessage
+	 * @var SyncMessage
 	 */
 	private $syncMsg;
+	
 	/**
-	 * @AttributeType system.postback.EventMessage
+	 * @var EventMessage
 	 */
 	private $evtMsg;
+	
 	/**
-	 * @AttributeType system.postback.CommandMessage
+	 * @var CommandMessage
 	 */
 	private $cmdMsg;
 
 	/**
-	 * 
-	 * Enter description here...
+	 * @var HttpResponse
+	 */
+	private $resp;
+	
+	public function __construct(HttpResponse $resp)
+	{
+		$this->resp = $resp;
+		$this->bufferOutput = $resp->bufferOutput;
+		$this->status = $resp->status;
+		$this->reason = $resp->reason;
+		$this->charset = $resp->charset;
+		$this->contentType = $resp->contentType;
+		$this->_cookies = $resp->_cookies;
+		$this->content = $resp->content;
+		$this->outputStarted = $resp->outputStarted; // = false;
+	}
+	
+	public function setRedirectURL($url)
+	{
+		$this->redirectURL = $url;
+
+		$comm = new CommandCall(array(
+				"name" => JSAPICommand::Redirect,
+				"arguments" => array("url" => $url),
+				"executeOn" => MessageParsePhase::BeforeCreateObjects));
+
+		$this->cmdMsg->addCommand($comm, true);
+	}
+	
+	/**
 	 * 
 	 * @param CommandCall $comm
 	 * @param boolean $unique - if true, only one instance of this action will be allowed. Other additions of this action will always overwrite the same command
 	 * @return int - index of the created command
-	 * @access public
-	 * @param CommandCall comm
-	 * @param unique
-	 * @ParamType comm CommandCall
 	 */
 	public function addCommand(CommandCall $comm, $unique = false) {
-		// Not yet implemented
+		$this->cmdMsg->addCommand($comm, $unique);
 	}
 
 	/**
+	 * Adds a javascript function call to be executed on the client
 	 * 
-	 * Enter description here...
+	 * The parameters specified on $params must be EXACTLY as you would write them on javascript.
+	 * For instance, if you want to pass a string you have to put the quotes as part of the value 
+	 * of the parameter you are passing here.
 	 * 
-	 * @return Collection
-	 * @access public
-	 * @return system.collections.OrderedList
-	 * @ReturnType system.collections.OrderedList
-	 */
-	public function getCommands() {
-		// Not yet implemented
-	}
-
-	/**
+	 * Examples:
+	 * ->addJSFunction('alert', array('"a message!"'));  							# alert("a message!");
+	 * ->addJSFunction('myFunc', array('1', 'aVar', '"a string"'));		# myFunc(1, aVar, "a string");
 	 * 
-	 * Enter description here...
-	 * 
-	 * @param mixed $id
-	 * @return boolean
-	 * @access public
-	 * @param id
-	 */
-	public function removeCommand($id) {
-		// Not yet implemented
-	}
-
-	/**
-	 * @access public
-	 * @param string url
-	 * @ParamType url string
-	 */
-	public function setRedirectURL($url) {
-		// Not yet implemented
-	}
-
-	/**
-	 * @access public
-	 * @return string
-	 * @ReturnType string
-	 */
-	public function getRedirectURL() {
-		// Not yet implemented
-	}
-
-	/**
-	 * 
-	 * Function addJSFunction
-	 * adiciona uma chamada JavaScript que deve ser feita pelo cliente.
-	 * 
-	 * @param string $func (o nome da função)
-	 * @param array $parms (os parâmetros, EXATAMENTE como vão ser
-	 * chamados no JavaScript - você deve explicitamente colocar aspas
-	 * caso queira passar uma string para o JavaScript (ex: '\'teste\''),
-	 * e arrays devem ser sempre strings da forma
-	 * [elem1, elem2, elem3, ...])
-	 * @access public
-	 * @param func
-	 * @param parms
+	 * @param string $func The function name
+	 * @param array $params The parameters, exactly as they should be writen on the javascript
 	 */
 	public function addJSFunction($func, $parms) {
-		// Not yet implemented
-	}
-
-	/**
-	 * @access public
-	 * @param system.postback.SyncMessage msg
-	 * @ParamType msg system.postback.SyncMessage
-	 */
-	public function setSyncMessage(SyncMessage $msg) {
-		// Not yet implemented
-	}
-
-	/**
-	 * @access public
-	 * @param system.postback.EventMessage msg
-	 * @ParamType msg system.postback.EventMessage
-	 */
-	public function setEventMessage(EventMessage $msg) {
-		// Not yet implemented
-	}
-
-	/**
-	 * @access public
-	 * @param system.postback.CommandMessage msg
-	 * @ParamType msg system.postback.CommandMessage
-	 */
-	public function setCommandMessage(CommandMessage $msg) {
-		// Not yet implemented
-	}
-
-	/**
-	 * @access public
-	 * @return system.postback.SyncMessage
-	 * @ReturnType system.postback.SyncMessage
-	 */
-	public function getSyncMessage() {
-		// Not yet implemented
-	}
-
-	/**
-	 * @access public
-	 * @return system.postback.EventMessage
-	 * @ReturnType system.postback.EventMessage
-	 */
-	public function getEventMessage() {
-		// Not yet implemented
-	}
-
-	/**
-	 * @access public
-	 * @return system.postback.CommandMessage
-	 * @ReturnType system.postback.CommandMessage
-	 */
-	public function getCommandMessage() {
-		// Not yet implemented
+		$this->addJSFunction($func, $parms);
 	}
 }
-?>

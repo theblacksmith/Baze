@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<buildpath>
+	<buildpathentry kind="src" path="docs/classes API/baze-classes-web-form/9b403dd7242f414c1050f3c77f13a0a9"/>
+	<buildpathentry kind="src" path="docs/classes API/system/9b403dd7242f414c1050f3c77f13a0a9"/>
+	<buildpathentry kind="src" path="docs/classes API/Zend_Session/SaveHandler/9b403dd7242f414c1050f3c77f13a0a9"/>
+	<buildpathentry kind="src" path="docs/classes API/Zend_Session/9b403dd7242f414c1050f3c77f13a0a9"/>
+	<buildpathentry kind="src" path="docs/classes API/__filesource/9b403dd7242f414c1050f3c77f13a0a9"/>
+	<buildpathentry kind="src" path="tests"/>
+	<buildpathentry kind="src" path="docs/classes API/system-exception/9b403dd7242f414c1050f3c77f13a0a9"/>
+	<buildpathentry kind="src" path="docs/classes API/Zend/9b403dd7242f414c1050f3c77f13a0a9"/>
+	<buildpathentry kind="src" path="docs/classes API/Zend_Controller/Request/9b403dd7242f414c1050f3c77f13a0a9"/>
+	<buildpathentry kind="src" path="examples/fileManager"/>
+	<buildpathentry kind="src" path="docs/classes API/Zend_Cache/9b403dd7242f414c1050f3c77f13a0a9"/>
+	<buildpathentry kind="src" path="examples/TeamPicker"/>
+	<buildpathentry kind="src" path="docs/classes API/system-exception-database/9b403dd7242f414c1050f3c77f13a0a9"/>
+	<buildpathentry kind="src" path="docs/classes API/Zend_Cache/Zend_Cache_Backend/9b403dd7242f414c1050f3c77f13a0a9"/>
+	<buildpathentry kind="src" path="docs/classes API/baze-system-rendering/9b403dd7242f414c1050f3c77f13a0a9"/>
+	<buildpathentry kind="src" path="docs/classes API/baze-classes-web-page/9b403dd7242f414c1050f3c77f13a0a9"/>
+	<buildpathentry kind="src" path="neotools"/>
+	<buildpathentry kind="src" path="docs/classes API/baze-classes-system/9b403dd7242f414c1050f3c77f13a0a9"/>
+	<buildpathentry kind="src" path="docs/classes API/baze-application/9b403dd7242f414c1050f3c77f13a0a9"/>
+	<buildpathentry kind="src" path="docs/classes API/Zend_Config/9b403dd7242f414c1050f3c77f13a0a9"/>
+	<buildpathentry kind="src" path="docs/classes API/baze-classes-web/9b403dd7242f414c1050f3c77f13a0a9"/>
+	<buildpathentry kind="src" path="docs/classes API/baze-web/9b403dd7242f414c1050f3c77f13a0a9"/>
+	<buildpathentry kind="src" path="docs/classes API/baze-system-io/9b403dd7242f414c1050f3c77f13a0a9"/>
+	<buildpathentry kind="src" path="research"/>
+	<buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
+	<buildpathentry kind="src" path="docs/classes API/system-exception-runtime/9b403dd7242f414c1050f3c77f13a0a9"/>
+	<buildpathentry kind="src" path="examples/AllComponents"/>
+	<buildpathentry kind="src" path="docs/classes API/baze-classes-web-data/9b403dd7242f414c1050f3c77f13a0a9"/>
+	<buildpathentry kind="src" path="docs/model/exceptions"/>
+	<buildpathentry kind="src" path="docs/doxygen/user/html"/>
+	<buildpathentry kind="src" path="docs/classes API/Zend_Session/Validator/9b403dd7242f414c1050f3c77f13a0a9"/>
+	<buildpathentry kind="src" path="docs/classes API/media/9b403dd7242f414c1050f3c77f13a0a9"/>
+	<buildpathentry kind="src" path="docs/classes API/Zend_Controller/9b403dd7242f414c1050f3c77f13a0a9"/>
+	<buildpathentry kind="src" path="docs/classes API/Zend_Cache/Zend_Cache_Frontend/9b403dd7242f414c1050f3c77f13a0a9"/>
+	<buildpathentry kind="src" path="docs/classes API/Zend_Uri/9b403dd7242f414c1050f3c77f13a0a9"/>
+	<buildpathentry kind="src" path="build/test-reports"/>
+	<buildpathentry kind="src" path="docs/classes API/baze-classes-web-form-validator/9b403dd7242f414c1050f3c77f13a0a9"/>
+	<buildpathentry kind="src" path="docs/classes API/system-exception-io/9b403dd7242f414c1050f3c77f13a0a9"/>
+	<buildpathentry kind="src" path="docs/classes API/baze-classes-data/9b403dd7242f414c1050f3c77f13a0a9"/>
+	<buildpathentry kind="src" path="docs/classes API/baze-classes-web-table/9b403dd7242f414c1050f3c77f13a0a9"/>
+	<buildpathentry kind="src" path="build/scripts"/>
+	<buildpathentry kind="src" path="docs/classes API/baze-classes-web-image/9b403dd7242f414c1050f3c77f13a0a9"/>
+	<buildpathentry kind="src" path="examples/HelloWorld"/>
+	<buildpathentry kind="con" path="com.zend.php.phpunit.CONTAINER"/>
+	<buildpathentry kind="src" path="docs/doxygen/internal/html"/>
+	<buildpathentry kind="src" path="docs/classes API/9b403dd7242f414c1050f3c77f13a0a9"/>
+	<buildpathentry kind="src" path="examples/Calculator"/>
+	<buildpathentry kind="src" path="docs/classes API/Browscap/9b403dd7242f414c1050f3c77f13a0a9"/>
+	<buildpathentry kind="src" path="examples/PhotoGallery"/>
+	<buildpathentry kind="src" path="framework"/>
+	<buildpathentry kind="src" path="examples/LinksList"/>
+	<buildpathentry kind="src" path="docs/classes API/baze-system-collections/9b403dd7242f414c1050f3c77f13a0a9"/>
+</buildpath>

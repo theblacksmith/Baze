@@ -12,8 +12,8 @@
  * @package Baze.web
  */
 
-import('system.web.ui.PageComponent');
-
+require_once 'system/web/ui/PageComponent.php';
+require_once 'system/collections/Set.class.php';
 
 /**
  * Classe HtmlComponent

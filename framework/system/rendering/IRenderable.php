@@ -42,13 +42,13 @@ interface IRenderable {
  	 * @access public
 	 * @return CustomRender
 	 */
-	public function getCustomRender();
+	public function getCustomRenderer();
 
 	/**
  	 * @access public
 	 * @return boolean
 	 */
-	public function hasCustomRender();
+	public function hasCustomRenderer();
 
 	/**
  	 * @access public
@@ -64,5 +64,5 @@ interface IRenderable {
  	 * @access public
 	 * @param IRender $render
 	 */
-	public function renderChildren(IRender $render, IWriter $writer);
+	public function renderChildren(IRenderer $render, IWriter $writer);
 }

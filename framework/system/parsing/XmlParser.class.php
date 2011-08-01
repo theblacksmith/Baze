@@ -223,7 +223,7 @@ abstract class XmlParser
 	 * @param string $public_id Public identifier for the external entity.
 	 * @param string $notation_name Name of the notation of this entity (@see XmlParser::notationDeclHandler()).
 	 */
-	protected function unparsedEntityDeclHandler(resource $parser  , string $entity_name  , string $base  , string $system_id  , string $public_id  , string $notation_name )
+	protected function unparsedEntityDeclHandler(resource $parser, $entity_name, $base, $system_id, $public_id, $notation_name )
 	{
 		call_user_func_array(array($this, 'defaultHandler'), func_get_args());
 	}

@@ -3,3 +3,4 @@ generated_classes/*
 research
 research/*
 examples/.*
+framework/temp/cache/*

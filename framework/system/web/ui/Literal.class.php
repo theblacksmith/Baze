@@ -9,7 +9,7 @@
  * @since 0.9
  * @package Baze.classes.web
  */
-import( 'system.web.ui.Component' );
+require_once 'system/Component.class.php';
 
 /**
  * Classe Literal

@@ -12,10 +12,10 @@
  * @package Baze.web
  */
 
-require_once NB_ROOT . '/system/exceptions/UndefinedPropertyException.class.php';
-require_once NB_ROOT . '/system/Event.class.php';
-require_once NB_ROOT . '/system/EventHandler.class.php';
-require_once NB_ROOT . '/system/lang/BazeObject.class.php';
+require_once 'system/exceptions/UndefinedPropertyException.class.php';
+require_once 'system/Event.class.php';
+require_once 'system/EventHandler.class.php';
+require_once 'system/lang/BazeObject.class.php';
 
 /**
  * Classe Component
@@ -133,7 +133,7 @@ class Component extends BazeObject {
 		else
 		{
 			// @think what of below should be done?
-			$this->$name = $value; // this is the default php behaviour for undefined properties setting
+			$this->$name = $value; // this is the default php behaviour for setting undefined properties
 			//throw new UndefinedPropertyException(Msg::UndefinedProperty, array(get_class($this).'::'.$name), 1);
 		}
 	}

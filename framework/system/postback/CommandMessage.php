@@ -1,5 +1,4 @@
 <?php
-require_once(realpath(dirname(__FILE__)) . '/../../system/collections/OrderedList.php');
 
 /**
  * @access public

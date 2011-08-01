@@ -10,7 +10,7 @@
  * @package Baze.classes.system.collections
  */
 
-import("system.collections.Collection");
+require_once 'system/collections/Collection.class.php';
 
 /**
  * Classe Map

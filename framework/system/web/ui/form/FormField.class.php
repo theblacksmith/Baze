@@ -1,7 +1,8 @@
 <?php
 
-import ( 'system.web.ui.HtmlComponent' );
-import ( 'system.web.ui.form.IFormField' );
+require_once 'system/web/ui/HtmlComponent.class.php';
+require_once 'system/web/ui/form/IFormField.interface.php';
+require_once 'system/lang/Enumeration.class.php';
 
 class TextDirection extends Enumeration
 {

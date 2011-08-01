@@ -14,8 +14,8 @@
 /**
  * Import
  */
-import( 'system.web.ui.IButton' );
-import( 'system.web.ui.form.FormField' );
+require_once 'system/web/ui/IButton.interface.php';
+require_once 'system/web/ui/form/FormField.class.php';
 
 /**
  * Classe Button

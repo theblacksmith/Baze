@@ -138,7 +138,8 @@ class System
 	private function __construct ()
 	{
 		define('NB_ROOT', dirname(dirname(__FILE__)));
-				
+		set_include_path(get_include_path() . PATH_SEPARATOR . NB_ROOT);
+		
 		define("XML_PART_OPEN_TAG", 1);
 		define("XML_PART_ATTRIBUTES", 2);
 		define("XML_PART_TAG_CONTENT", 3);
@@ -251,8 +252,15 @@ class System
 		if (! $this->appsConfig) {
 			$confs = new Zend_Config_Xml($configFile, 'apps');
 			$this->appsConfig = array();
+			
 			foreach ($confs->app as $appConf) {
-				$this->appsConfig[$appConf->url] = $appConf;
+				if($appConf instanceof Zend_Config)
+					$this->appsConfig[$appConf->url] = $appConf;
+				else
+				{
+					$this->appsConfig[$confs->app->url] = $confs->app;
+					break;
+				}
 			}
 			$cache->save($this->appsConfig, 'apps_conf');
 		}
@@ -314,10 +322,12 @@ class System
 
 		self::$config = $appConfig;
 		define('NB_LIB_URL', $_SERVER['SERVER_NAME'] . ($_SERVER['SERVER_PORT'] ? $_SERVER['SERVER_PORT'] : '') . self::$config->siteRoot);
-		$this->app = new WebApp();
+		
+		$this->app = WebApp::getInstance();
 
 		// converting the Zend_Config_Xml to AppConfig
 		$cfg = new AppConfig($appConfig);
+		
 		$this->app->init($cfg);
 	}
 

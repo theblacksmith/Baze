@@ -1,8 +1,8 @@
 <?php
 
-import('system.web.ui.Page');
-import('system.web.ui.form.TextBox');
-import('system.web.ui.form.Submit');
+require_once 'system/web/ui/Page.class.php';
+require_once 'system/web/ui/form/TextBox.class.php';
+require_once 'system/web/ui/form/Submit.class.php';
 
 class HelloWorld extends Page {
 
