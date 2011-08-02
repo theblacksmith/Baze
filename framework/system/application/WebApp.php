@@ -117,8 +117,8 @@ class WebApp extends App {
 			{
 				$cfgEx = new ConfigException(Msg::InvalidNamespacePath, array(
 					'app' => $cfg->Name,
-					'ns' => $ns->name,
-					'path' => $ns->folder));
+					'ns' => $ns['name'],
+					'path' => $ns['folder']));
 
 				$cfgEx->setGuiltyFile(NB_ROOT.'/conf/baseconf_browser.xml');
 

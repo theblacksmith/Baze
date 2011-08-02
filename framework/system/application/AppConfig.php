@@ -94,6 +94,13 @@ class AppConfig extends BazeObject {
 	}
 
 	/**
+	 * @return array
+	 */
+	public function getDocRoot() {
+		return isset($this->zConf->docRoot) ? $this->zConf->docRoot : null;
+	}
+
+	/**
 	 * @return string
 	 */
 	public function getDefaultCharset() {
