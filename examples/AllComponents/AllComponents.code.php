@@ -16,7 +16,7 @@ import("system.web.ui.form.Reset");
 import("system.web.ui.page.Page");
 
 
-class BaseTeste extends Page
+class AllComponents extends Page
 {
 	/**
 	 * @var Form

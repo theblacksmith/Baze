@@ -82,7 +82,7 @@
 		</app>
 		<app>
 			<!-- Identificador do projeto, não é utilizado pelo framework -->
-			<name>Baze Examples</name>
+			<name>Baze Site</name>
 		
 			<!-- url que aponta para a raiz da aplicação -->
 			<url>http://bazesite</url>
@@ -114,6 +114,10 @@
 				<namespace>
 					<name>site</name>
 					<folder>/projects/baze_site/classes/site</folder>
+				</namespace>
+				<namespace>
+					<name>layouts</name>
+					<folder>/projects/baze_site/layouts/</folder>
 				</namespace>
 			</namespaces>
 			

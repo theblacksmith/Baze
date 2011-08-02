@@ -78,7 +78,7 @@ class PageService extends HttpService
 		
 		list($klass, $designFile) = $this->findPage();
 		
-		$layoutFile = $this->findLayout();
+		$layoutFile = $this->findLayout($klass);
 		
 		/// @todo: test caching vs object creation
 		$this->cache = new Zend_Cache_Frontend_File(array(
@@ -150,10 +150,19 @@ class PageService extends HttpService
 		return array($klass, $designFile);
 	}
 	
-	private function findLayout()
+	private function findLayout($klass)
 	{
-		require_once '/projects/baze_site/layouts/InternalLayout.code.php';
-		return '/projects/baze_site/layouts/InternalLayout.php';
+		$c = new ReflectionClass($klass);
+		$parent = $c->getParentClass();
+		
+		if($parent->getName() == 'Page')
+			return false;
+			
+		$codeFile = $parent->getFileName();
+		// @think maybe we should use import here
+		require_once($codeFile);
+		
+		return str_replace(System::$Config->CodeFileExt, System::$Config->DesignFileExt, $codeFile);
 	}
 	
 	/**
@@ -177,9 +186,13 @@ class PageService extends HttpService
 		
 		if(!$p) {
 			$p = new $klass();
-			$this->pageParser->parsePageFile($layoutFile, $p);
 			
-			$this->pageParser->parseComponents(file_get_contents($designFile), $p, true);
+			if($layoutFile) {
+				$this->pageParser->parsePageFile($layoutFile, $p);
+				$this->pageParser->parseComponents(file_get_contents($designFile), $p, true);
+			}
+			else
+				$this->pageParser->parsePageFile($designFile, $p);
 			
 			// the head component must have been added
 			$this->addScripts($p);

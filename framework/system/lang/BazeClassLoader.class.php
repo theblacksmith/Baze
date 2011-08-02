@@ -55,7 +55,7 @@ class BazeClassLoader
 		// @todo add these classes to the list of required classes
 
 		self::$extensions = new Set('string');
-		self::$extensions->addThese(array(".class.php",".interface.php",".php"));
+		self::$extensions->addThese(array(".class.php",".interface.php",".code.php",".php"));
 
 		self::$initialized = true;
 	}
