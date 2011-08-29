@@ -3,6 +3,7 @@
 <html xmlns:php="http://www.neoconn.com/namespaces/php" version="1.0">
 <head>
 	<title>Hello World Example</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<style type="text/css">
 		.FIELD_BOX{
 			float:left;
@@ -102,7 +103,7 @@
 				//limpa o painel de mensagem
 				$C('statusMsg').removeChildren();
 				//adiciona nova mensagem de sucesso no painel de mensagens
-				$C('statusMsg').addChild('Link adicionado com sucesso');
+				$C('statusMsg').addChild(new Literal('Link adicionado com sucesso'));
 			}
 		}
 	</script>

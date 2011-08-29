@@ -25,7 +25,7 @@
  * @since 0.9
  * @package Baze.classes.web
  */
-class ListItem extends InteractiveContainer
+class ListItem extends HtmlComponent
 {
 	/**
 	* ListItem Properties
@@ -71,62 +71,7 @@ class ListItem extends InteractiveContainer
 	{
 		$this->type = $type;
 		parent::__construct();
-	}
-	
-	/**
-	 * @param DOMElement $elem
-	 */
-	public function initialize(DOMElement $elem)
-	{
-		$this->disabled = false;
-				
-		parent::initialize($elem);	
-	}
-	
-
-	/**
-	 * @access public
-	 * @return string
-	 */
-	protected function getOpenTag()
-	{
-		return _NL.'<'.$this->type.$this->getPropertiesList().' >';
-	}
-
-	protected function getAttributes()
-	{
-		return $this->getPropertiesList();
-	}
-
-	protected function getTagContent()
-	{
-		return $this->getChildrenXHTML();
-	}
-
-	protected function getCloseTag()
-	{
-		return _NL.'</'.$this->type.'>';
-	}
-
-	protected function getEntireElement()
-	{
-		$strOpen = $this->getOpenTag();
-		$strTags = $this->getTagContent();
-		$strClose = $this->getCloseTag();
-
-		return $strOpen.$strTags.$strClose;
-	}
-	
-	/**
-	 * Function getType()<br><br>
-	 * 
-	 * @author Luciano (03/01/2007)
-	 */
-	public function getType()
-	{
-		return $this->type;
-	}
-	
+	}	
 	
 	/**
 	 * Function setType()<br><br>

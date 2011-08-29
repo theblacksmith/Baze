@@ -56,8 +56,8 @@ class TeamPicker extends Page {
 			$p->setId(strtolower($pName));
 			$p->hideGoLeft();
 			
-			$p->onGoLeft = $glEh;
-			$p->onGoRight = $grEh;
+			$p->OnGoLeft = $glEh;
+			$p->OnGoRight = $grEh;
 			
 			$this->players->addChild($p);
 		}
@@ -65,20 +65,24 @@ class TeamPicker extends Page {
 		$children = $this->team->getChildNodes();
 		foreach ($children as $p) if ($p instanceof Player) {
 			$p->hideGoRight();
-			$p->onGoLeft = $glEh;
-			$p->onGoRight = $grEh;
+			$p->OnGoLeft = $glEh;
+			$p->OnGoRight = $grEh;
 		}
 	}
 
 	public function moveLeft(Component $sender, $args)
 	{
-		echo 'move left';
+		FB::info('Moving left');
 		$this->players->addChild($sender);
+		$sender->hideGoLeft();
+		$sender->showGoRight();
 	}
 
 	public function moveRight(Component $sender, $args)
 	{
-		echo 'move right';
+		FB::info('Moving right');
 		$this->team->addChild($sender);
+		$sender->hideGoRight();
+		$sender->showGoLeft();
 	}
 }

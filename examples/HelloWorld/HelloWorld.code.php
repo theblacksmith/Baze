@@ -38,11 +38,14 @@ class HelloWorld extends Page {
 
 		// adicionando um evento de PostBack ao botão btnBotao
 		$this->btnTransfer->OnClick = array($this, 'write');
+		
 	}
 
 	public function write(Component $sender, $args)
 	{
 		//atualiza o valor do componente txtSaída com o valor do componente txtEntrada
+		FB::info($this->txtEntrada->Value);
 		$this->txtSaida->Value = $this->txtEntrada->Value;
+		$this->txtSaida->type = 'button';
 	}
 }

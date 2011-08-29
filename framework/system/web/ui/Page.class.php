@@ -102,37 +102,12 @@ class Page extends Component implements IRenderable, IContainer
 
 	/**
 	 * Adds a component to the page
-	 *
+	 * @deprecated Use Page::registerComponent()
 	 * @param Component $c
 	 */
 	public function addComponent(Component $c, $replace = false)
 	{
-		$pos = array_search($c->getId(), $this->_c['id']);
-		
-		if(!$replace && $pos !== false)
-		{
-			if($this->_c['o'][$pos] === $c) // if the component is already on the page, just return
-				return;
-
-			throw new BazeRuntimeException(Msg::DuplicatedComponentId, array(get_class($this), $c->getId()));
-		}
-
-		if($pos !== false)
-		{
-			$this->_c['id'][$pos] = &$c->_getId();
-			$this->_c['o'][$pos] = $c;
-		}
-		else
-		{
-			$this->_c['id'][] = &$c->_getId();
-			$this->_c['o'][] = $c;
-		}
-		
-		$id = $c->getId();
-		$this->$id = $c;
-		
-		if($c->getPage() !== $this)
-			$c->setPage($this);
+		$this->registerComponent($c, $replace = false);
 	}
 	
 	public function getComponent($id)
@@ -266,5 +241,52 @@ class Page extends Component implements IRenderable, IContainer
 	public function getParsesOwnChildren()
 	{
 		return false;
+	}
+	
+	/**
+	 * Adds a direct reference from the page to the passed component
+	 * @param Component $component
+	 */
+	public function registerComponent(Component $c, $replace = false)
+	{
+		$pos = array_search($c->getId(), $this->_c['id']);
+		
+		if(!$replace && $pos !== false)
+		{
+			if($this->_c['o'][$pos] === $c) // if the component is already on the page, just return
+				return false;
+
+			throw new BazeRuntimeException(Msg::DuplicatedComponentId, array(get_class($this), $c->getId()));
+		}
+
+		if($pos !== false)
+		{
+			$this->_c['id'][$pos] = &$c->_getId();
+			$this->_c['o'][$pos] = $c;
+		}
+		else
+		{
+			$this->_c['id'][] = &$c->_getId();
+			$this->_c['o'][] = $c;
+		}
+		
+		$id = $c->getId();
+		$this->$id = $c;
+		
+		if($c->getPage() !== $this)
+			$c->setPage($this);
+			
+		
+		return true;
+	}
+	
+	/**
+	 * Removes the direct reference from the page to the passed component
+	 * @param Component $component
+	 */
+	public function unregisterComponent(Component $c)
+	{
+		$id = $c->getId();
+		unset($this->$id);
 	}
 }

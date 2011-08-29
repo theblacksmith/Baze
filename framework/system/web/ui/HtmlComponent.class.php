@@ -68,6 +68,7 @@ class HtmlComponent extends PageComponent {
 	 */
 	public function addCssClass($className) {
 		$this->cssClass->add($className);
+		$this->setInViewState('class', join(' ',$this->cssClass->toArray()));
 	}
 
 	/**
@@ -77,6 +78,7 @@ class HtmlComponent extends PageComponent {
  	 * @param $className Nome da classe a ser removida
 	 */
 	public function removeCssClass($className) {
-		$this->cssClass->add($className);
+		$this->cssClass->remove($className);
+		$this->setInViewState('class', join(' ',$this->cssClass->toArray()));
 	}
 }

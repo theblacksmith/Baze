@@ -73,6 +73,8 @@ class HyperLink extends HtmlComponent
 	//protected $onkeydown;
 	//protected $onkeyup;
 
+	public $tagName = 'a';
+	
 	/**
 	 * @desc Constructor Method
 	 *
@@ -80,41 +82,7 @@ class HyperLink extends HtmlComponent
 	 */
 	function __construct($href = "")
 	{
-		$this->set("href", $href);
+		$this->Href = $href;
 		parent::__construct();
-		$this->noPrintArr[] = 'textValue';
-	}
-	
-	/**
-	 * @param DOMElement $elem
-	 */
-	public function initialize(DOMElement $elem)
-	{
-		parent::initialize($elem);
-	}
-
-	/**
-	 * Function setValue()<br>
-	 *
-	 * @author Luciano (28/06/06)
-	 * @param string $value
-	 */
-	public function setValue($value)
-	{
-		$value = trim($value);
-		if (! empty($value) && $this->textValue !== $value)
-		{
-			$this->textValue = $value;
-			return true;
-		}
-		return false;
-	}
-
-	public function onFocus($args) {
-		$this->raiseEvent(FOCUS,$args);
-	}
-
-	public function onBlur($args) {
-		$this->raiseEvent(BLUR,$args);
 	}
 }

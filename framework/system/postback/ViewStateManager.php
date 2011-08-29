@@ -102,55 +102,69 @@ class ViewStateManager
 
 	protected function updateObjects($objects = array())
 	{
-		global $sysLogger;
+		FB::group("Updating objects");
 
 		foreach($objects as $obj)
 		{
 			$objId = $obj['id'];
-			$props = $obj['properties'];
+			$props = $obj['p'];
+			$newChildren = $obj['nc'];
 
 			//pegando o objeto
 			$auxiliarObj = $this->page->$objId;
 
 			if(!$auxiliarObj)
-			{
-				trigger_error("Erro atualizando componentes. Não foi possível encontrar o objeto " . $objId . " na página", E_USER_ERROR);
-				exit;
-			}
+				throw new BazeRuntimeException("Error updating components. Couldn't find the component with " . $objId . " on the page");
 
+			FB::group($objId);
 			//aplicando as modificações
 			foreach($props as $n => $v)
 			{
-					$auxiliarObj->setAttribute($n, $v);
+				FB::log($v, "Setting $n to");
+				$auxiliarObj->setAttribute($n, $v);
 			}
+			
+			foreach ($newChildren as $cId) {
+				FB::log("Adding $cId as child");
+				$auxiliarObj->addChild($this->page->$cId);
+			}
+			FB::warn("Current children count: ".count($auxiliarObj->getChildNodes()));
+			FB::groupEnd();
+			
+			$auxiliarObj->_setSynchronized();
 		}
+		FB::groupEnd();
 	}
 
 	protected function createObjects($objects = array())
 	{
+		FB::group("Creating ".count($objects)." new objects");
 		foreach($objects as $obj)
 		{
 			$id = $obj['id'];
-			$klass = $obj['class'];
+			$klass = $obj['c'];
 
 			try {
 				//instanciando o objeto
 				$auxiliarObj = new $klass();
-				$auxiliarObj->set("id", $id);
+				$auxiliarObj->setId($id);
 			}
 			catch (Exception $e) {
 				throw $e;
 			}
 
 			//atribuindo as propriedades
-			foreach($obj['properties'] as $n => $v)
+			foreach($obj['p'] as $n => $v)
 			{
-				$auxiliarObj->set($n, $v);
+				$auxiliarObj->__set($n, $v);
 			}
 
 			//inserindo objeto na página
 			$this->page->$id = $auxiliarObj;
+			
+			FB::log("Created $klass with id $id");
 		}
+		FB::groupEnd();
 	}
 
 	public function setSynchronized()

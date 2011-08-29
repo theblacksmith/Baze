@@ -40,6 +40,18 @@ class ComponentState extends BazeObject
 		$this->manager = $vsm;
 		$this->component = $comp;
 		$this->changesCount = 0;
+		$this->properties = array();
+	}
+	
+	public function setSynchronized()
+	{
+		$this->properties = array();
+		
+		if($this->newChildren instanceof Set)
+			$this->newChildren->removeAll();
+			
+		if($this->removedChildren instanceof Set)
+			$this->removedChildren->removeAll();
 	}
 	
 	public function hasProperty($name)
@@ -64,6 +76,12 @@ class ComponentState extends BazeObject
 		}
 	}
 	
+	public function removeProperty($name)
+	{
+			unset($this->properties[$name]);
+			$this->updateCount(-1);
+	}
+	
 	public function addNewChild($component)
 	{
 		if(!($this->removedChildren instanceof Set))
@@ -82,6 +100,14 @@ class ComponentState extends BazeObject
 		}
 	}
 	
+	public function getNewChildren()
+	{
+		if(!$this->newChildren)
+			return array();
+			
+		return $this->newChildren->toArray();
+	}
+	
 	public function addRemovedChild($component)
 	{
 		if(!($this->removedChildren instanceof Set))
@@ -98,6 +124,14 @@ class ComponentState extends BazeObject
 			$this->removedChildren->add($component);
 			$this->updateCount(+1);
 		}
+	}
+	
+	public function getRemovedChildren()
+	{
+		if(!$this->removedChildren)
+			return array();
+			
+		return $this->removedChildren->toArray();
 	}
 	
 	/**

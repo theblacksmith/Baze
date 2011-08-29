@@ -52,22 +52,7 @@ Object.extend(Container.prototype,
 	 * @param {Object} noRaise
 	 */
 	addChild : function Container_addChild(obj, noRaise)
-	{
-		/* Ainda n�o t� implementado
-		if(obj instanceof HTMLElement)
-		{
-			if(document != document.body.ownerDocument)
-				document.importNode(obj, true);
-			
-			if(obj.hasAttribute("phpClass")) {
-				var comp = Component.factory(obj.getAttribute("phpClass"), obj); }
-			else
-			{
-				var phpClass = Component.guessType(obj);					
-			}
-		}
-		*/
-		
+	{	
 		if(Baze.isComponent(obj))
 		{
 			var childNode = obj.realElement;
@@ -92,6 +77,8 @@ Object.extend(Container.prototype,
 				{
 					this.realElement.appendChild(childNode);
 				}
+				
+				obj.container = this;
 			}
 			catch(e) {
 				Baze.raise("N�o foi poss�vel adicionar o componente " + obj.getId() + " ao container " + this.id + " ", e);
@@ -114,11 +101,15 @@ Object.extend(Container.prototype,
 			//Adicionando Elemento HTML
 			this.realElement.appendChild(lit.realElement);
 			
+			lit.container = this;
+			
 			if (noRaise != true)
 			{
 				this.onChildAdd.raise(this,{ changeType : ChangeType.CHILD_ADDED, child: lit });
 			}
 		}
+		
+		
 	},
 			
 	/**

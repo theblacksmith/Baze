@@ -81,52 +81,40 @@ Object.extend(Style.prototype, {
 		return this._owner;
 	}
 });
-if(typeof Baze != "undefined") {	
-	Baze.provide("web.Component");
-	
-	Baze.require("system.Event");
-	Baze.require("system.util");
-	Baze.require("web.Style");
-	// Assumir que j� est� inclu�do
-	// Baze.require("system.jext");
-}
+//= require <system/Event.js>
+//= require <system/util.js>
+//= require "Style.js"
+//= require <system/Event.js>
 
 /**
  * @class Component
  * @alias Component
- * @namespace Baze
+ * @namespace baze.web
  * @author Saulo Vallory
  * 
- * @requires system.jext
  * @requires system.Event
  * @requires system.util
  * @requires web.Style
  * 
  * @constructor
  */
-Component = function Component()
-{
-	this.isComponent = true;
+baze.web.Component = Class.Create({
 	
-	this.onPropertyChange = new Baze.Event();
-	
-	this.id = uid("cmp_");
-};
-
-Object.extend(Component.prototype,  {
-
-	id : "",
-	
-	onPropertyChange : null,
-	
-	style : null,
-	
-	realElement : null,
+	initialize: function(elem){
 		
-	phpClass : "",
+		this.isComponent = true;
+		
+		this.phpClass = "";
+		
+		if(Object.isUndefined(elem))
+			this.id = uid("cmp_");
+		else {
+			this.id = elem.id;
+			this.realElement = null;
+		}
 
-	initialize : function Component_initialize(elem) {
-		this.id = elem.id;
+		this.onPropertyChange = new Baze.Event();
+		
 		this.style = new Style(elem.style);
 	},
 	
@@ -172,9 +160,9 @@ Object.extend(Component.prototype,  {
 		var node = this.realElement;
 		
 		obj = {
-			klass: this.phpClass,
+			c: this.phpClass,
 			id: this.id,
-			properties: [] 
+			p: {}
 		};
 		
 		if(node != null && node.attributes)
@@ -185,10 +173,15 @@ Object.extend(Component.prototype,  {
 				
 				if(att.nodeValue)
 				{
-					obj.properties.push({n: att.nodeName, v: att.nodeValue});
+					obj.p[att.nodeName] = att.nodeValue;
 				}
 			}
 		}
+		
+		if(!Object.isUndefined(this.getAttributesToRender))
+			this.getAttributesToRender().each(function(pair){
+				obj.p[pair.key] = pair.value;
+			});
 		
 		return obj;
 	},
@@ -199,7 +192,7 @@ Object.extend(Component.prototype,  {
 
 	set : function Component_set(name, value) {
 	
-		// s� � necess�rio fazer o tracking para elementos na p�gina
+		// only track page components
 		if(this["realElement"] == null || typeof this["realElement"] == "undefined") {
 			this[name] = value;
 			return;
@@ -261,6 +254,7 @@ Object.extend(Component.prototype,  {
 });
 
 /**
+ * Creates a component based on the phpClass 
  * 
  * @param {String} phpClass
  * @param {HTMLElement} node
@@ -401,22 +395,7 @@ Object.extend(Container.prototype,
 	 * @param {Object} noRaise
 	 */
 	addChild : function Container_addChild(obj, noRaise)
-	{
-		/* Ainda n�o t� implementado
-		if(obj instanceof HTMLElement)
-		{
-			if(document != document.body.ownerDocument)
-				document.importNode(obj, true);
-			
-			if(obj.hasAttribute("phpClass")) {
-				var comp = Component.factory(obj.getAttribute("phpClass"), obj); }
-			else
-			{
-				var phpClass = Component.guessType(obj);					
-			}
-		}
-		*/
-		
+	{	
 		if(Baze.isComponent(obj))
 		{
 			var childNode = obj.realElement;
@@ -441,6 +420,8 @@ Object.extend(Container.prototype,
 				{
 					this.realElement.appendChild(childNode);
 				}
+				
+				obj.container = this;
 			}
 			catch(e) {
 				Baze.raise("N�o foi poss�vel adicionar o componente " + obj.getId() + " ao container " + this.id + " ", e);
@@ -463,11 +444,15 @@ Object.extend(Container.prototype,
 			//Adicionando Elemento HTML
 			this.realElement.appendChild(lit.realElement);
 			
+			lit.container = this;
+			
 			if (noRaise != true)
 			{
 				this.onChildAdd.raise(this,{ changeType : ChangeType.CHILD_ADDED, child: lit });
 			}
 		}
+		
+		
 	},
 			
 	/**
@@ -1002,45 +987,7 @@ Literal = function Literal(elem)
 {
 	(Component.bind(this))();
 	
-	if (typeof elem == "undefined") {
-		var txtN;
-		
-		try {
-			this.realElement = document.createDocumentFragment("");
-		}
-		catch(e) {
-			Baze.raise("Text node could not be created.", e);
-		}
-	}
-	else if(typeof elem.nodeType != "undefined") {
-		switch(elem.nodeType)
-		{
-			case DOCUMENT_FRAGMENT_NODE :
-				this.realElement = elem;
-				
-				for(var i=0; i < elem.childNodes.length; i++) {
-					this.childNodes[i] = elem.childNodes[i];
-				}
-				
-			break;
-		
-			case TEXT_NODE :
-				this.realElement = this.parseHtml(elem.text || elem.textContent);
-				
-				for(var i=0; i < this.realElement.childNodes.length; i++) {
-					this.childNodes[i] = this.realElement.childNodes[i];
-				}
-			break;
-		}	
-	}
-	else if(typeof elem == "string" || typeof elem == "number")
-	{
-		this.realElement = this.parseHtml(elem);
-		
-		for(var i=0; i < this.realElement.childNodes.length; i++) {
-			this.childNodes[i] = this.realElement.childNodes[i];
-		}
-	}
+	this.setValue(elem);
 };
 	
 Object.extend(Literal.prototype, Component.prototype);
@@ -1112,12 +1059,49 @@ Object.extend(Literal.prototype, {
 	setId : function Literal_setId(id) { this.id = id; },
 	
 	setValue : function Literal_setValue(val) {
-		this.realElement = this.parseHtml(val);
 		
-		this.childNodes = [];
-		
-		for(var i=0; i < this.realElement.childNodes.length; i++) {
-			this.childNodes[i] = this.realElement.childNodes[i];
+		if (typeof val == "undefined") {
+			this.value = "";
+			try {
+				this.realElement = document.createTextNode("");
+			}
+			catch(e) {
+				Baze.raise("Text node could not be created.", e);
+			}
+		}
+		else if(typeof val.nodeType != "undefined") {
+			switch(val.nodeType)
+			{
+				case DOCUMENT_FRAGMENT_NODE :
+					this.value = val.text || val.textContent;
+					this.realElement = val;
+					
+					for(var i=0; i < val.childNodes.length; i++) {
+						this.childNodes[i] = val.childNodes[i];
+					}
+					
+				break;
+			
+				case TEXT_NODE :
+					this.value = val.text || val.textContent;
+					this.realElement = val;
+					
+					for(var i=0; i < this.realElement.childNodes.length; i++) {
+						this.childNodes[i] = this.realElement.childNodes[i];
+					}
+				break;
+			}	
+		}
+		else if(typeof val == "string" || typeof val == "number")
+		{
+			this.value = val;
+			this.realElement = this.parseHtml(val);
+			
+			this.childNodes = [];
+			
+			for(var i=0; i < this.realElement.childNodes.length; i++) {
+				this.childNodes[i] = this.realElement.childNodes[i];
+			}
 		}
 	},
 	
@@ -1128,6 +1112,7 @@ Object.extend(Literal.prototype, {
 	 */
 	parseHtml : function Literal_parseHtml(html)
 	{	
+		return document.createTextNode(html);
 		var tempEl = document.createElement("div");
 		tempEl.innerHTML = html;
 		
@@ -1140,6 +1125,10 @@ Object.extend(Literal.prototype, {
 		}
 		
 		return doc;
+	},
+	
+	getAttributesToRender: function() {
+		return $H({value: this.value});
 	}
 });
 if(typeof Baze != "undefined") 

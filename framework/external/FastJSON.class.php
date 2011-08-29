@@ -176,7 +176,7 @@ class FastJSON {
 	 *
 	 * @note	please read Special FastJSON::convert method Informations
 	 */
-	function convert($params, $result = null){
+	public static function convert($params, $result = null){
 		switch(gettype($params)){
 			case	'array':
 					$tmp = array();
@@ -242,7 +242,7 @@ class FastJSON {
 	 *		FastJSON::decode('{"param":"value"}', true); // stdClass
 	 *		FastJSON::decode('["one",two,true,false,null,{},[1,2]]'); // array
 	 */
-	function decode($encode, $stdClass = false){
+	public static function decode($encode, $stdClass = false){
 		$pos = 0;
 		$slen = is_string($encode) ? strlen($encode) : null;
 		if($slen !== null) {
@@ -274,7 +274,7 @@ class FastJSON {
 	 *		obj->param2 = "value2";
 	 *		FastJSON::encode(obj); // '{"param":"value","param2":"value2"}'
 	 */
-	function encode($decode){
+	public static function encode($decode){
 		$result = '';
 		switch(gettype($decode)){
 			case	'array':
@@ -302,7 +302,7 @@ class FastJSON {
 	}
 
 	// private methods, uncommented, sorry
-	function __getStaticReplacement(){
+	private static function __getStaticReplacement(){
 		static $replacement = array('find'=>array(), 'replace'=>array());
 		if($replacement['find'] == array()) {
 			foreach(array_merge(range(0, 7), array(11), range(14, 31)) as $v) {
@@ -314,7 +314,8 @@ class FastJSON {
 		}	
 		return $replacement;
 	}
-	static function __decode(&$encode, &$pos, &$slen, &$stdClass){
+	
+	private static function __decode(&$encode, &$pos, &$slen, &$stdClass){
 		switch($encode{$pos}) {
 			case 't':
 				$result = true;
@@ -377,14 +378,16 @@ class FastJSON {
 		}
 		return $result;
 	}
-	function __decodeString(&$encode, &$pos) {
+	
+	private static function __decodeString(&$encode, &$pos) {
 		$replacement = FastJSON::__getStaticReplacement();
 		$endString = FastJSON::__endString($encode, $pos, $pos);
 		$result = str_replace($replacement['replace'], $replacement['find'], substr($encode, $pos, $endString));
 		$pos += $endString;
 		return $result;
 	}
-	function __endString(&$encode, $position, &$pos) {
+	
+	private static function __endString(&$encode, $position, &$pos) {
 		do {
 			$position = strpos($encode, '"', $position + 1);
 		}while($position !== false && FastJSON::__slashedChar($encode, $position - 1));
@@ -392,10 +395,12 @@ class FastJSON {
 			trigger_error('', E_USER_WARNING);
 		return $position - $pos;
 	}
-	function __exit($str, $a, $b) {
+	
+	private static function __exit($str, $a, $b) {
 		exit($a.'FATAL: FastJSON decode method failure [malicious or incorrect JSON string]');
 	}
-	function __slashedChar(&$encode, $position) {
+	
+	private static function __slashedChar(&$encode, $position) {
 		$pos = 0;
 		while($encode{$position--} === '\\')
 			$pos++;

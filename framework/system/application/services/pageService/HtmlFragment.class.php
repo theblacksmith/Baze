@@ -6,11 +6,7 @@ require_once 'system/rendering/IRenderer.class.php';
 
 class HtmlFragment extends PageComponent implements IRenderable, IRenderer
 {
-	/**
-	 * @var string
-	 * @desc The source of this fragment
-	 */
-	public $source;
+	private $source;
 	
 	/**
 	 * This component doesn't need to have it's changes tracked
@@ -18,8 +14,11 @@ class HtmlFragment extends PageComponent implements IRenderable, IRenderer
 	 */
 	public $trackViewState = false;
 
-	public function __construct($source)
+	public function __construct($source = "")
 	{
+		$this->attributes = array(
+			"php:class" => 'Literal'
+		);
 		parent::__construct();
 		$this->source = $source;
 	}
@@ -39,6 +38,9 @@ class HtmlFragment extends PageComponent implements IRenderable, IRenderer
 	 * @return array
 	 */
 	public function getAttributesToRender() {
+		if(_IS_POSTBACK)
+			return array('value'=>$this->source);
+			
 		return array();
 	}
 
@@ -47,7 +49,7 @@ class HtmlFragment extends PageComponent implements IRenderable, IRenderer
 	 * @return string
 	 */
 	public function getObjectName() {
-		return 'php:HtmlFragment';
+		return 'php:Literal';
 	}
 
 	/**

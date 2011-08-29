@@ -1,5 +1,5 @@
-/*INCLUDE>system/Prototype1.5.js</INCLUDE*/
-/*INCLUDE>collections/Collection.js</INCLUDE*/
+//= require <external/prototype-1-7.js>
+//= require "collections/Collection.js"
 
 var ErrorCodes = {
 	SERVER_ERROR: 1
@@ -88,6 +88,11 @@ var ErrorCodes = {
 		
 		errorLog : [],
 		
+		/**
+		 * Wheter the page is being synchronized with the server or not
+		 * @type {Boolean}
+		 */
+		synchronizing: false,
 
 		//////////////////////////////////////////////////////////////////////////////////
 		//          Private methods                                                      //
@@ -139,7 +144,7 @@ var ErrorCodes = {
 		
 		_findServerObjects: function Baze_findServerObjects()
 		{
-			Sizzle('[php\\:runat="server"]').each(function(el, index) {
+			$$('[php\\:runat="server"]').each(function(el, index) {
 				var phpClass = el.getAttribute("php:class");
 				
 				var obj = Component.factory(phpClass, el);
@@ -317,7 +322,7 @@ var ErrorCodes = {
 				comp.onChildRemove.addListener(ClientViewState.objectChanged.bind(ClientViewState));
 			}
 			
-			if(!Baze.initializing)
+			if(!Baze.initializing && !Baze.synchronizing)
 				ClientViewState.addNewObject(comp);
 			
 			return Baze._serverObjs.add(comp.getId(), comp);
@@ -391,11 +396,13 @@ var ErrorCodes = {
 	
 			var pb = new Postback(POSTBACK_URL);
 			window.lastPostBack = pb;
-	
-			var clientMessage =  Baze.stringify({
-				EvtMsg: ClientViewState.getEventMessage(e),
-				SyncMsg: ClientViewState.getSyncMessage()
-			});
+			
+			window.lastClientMessage = {
+					EvtMsg: ClientViewState.getEventMessage(e),
+					SyncMsg: ClientViewState.getSyncMessage()
+			};
+
+			var clientMessage =  Baze.stringify(window.lastClientMessage);
 	
 			pb.onReceiveMessage.addListener(Baze.Loading.hide());
 	

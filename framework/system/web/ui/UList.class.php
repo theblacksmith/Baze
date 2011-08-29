@@ -11,7 +11,6 @@
  */
 
 import( 'system.web.ui.ListItem' );
-import( 'system.web.ui.BaseList' );
 
 
 /**
@@ -25,52 +24,31 @@ import( 'system.web.ui.BaseList' );
  * @since 0.9
  * @package Baze.classes.web
  */
-class UList extends BaseList
+class UList extends HtmlComponent
 {
+	protected $tagName = 'ul';
+	
 	/**
 	 * @desc Construct Function
 	 */
 	function __construct()
 	{
-		parent::__construct();
+		$this->attributes = array(
+			'php:class' => 'UList'
+		);
 		
-		$this->setListType(BaseList::UNORDERED_LIST);
+		parent::__construct();
 	}
-
+	
 	/**
-	 * @param DOMElement $elem
-	 */
-	public function initialize(DOMElement $elem)
-	{
-		$this->disabled = false;
-				
-		parent::initialize($elem);	
-	}
-
-	/**
-	 * @author Luciano
-	 * @since 2007-04-10 (Y-mm-dd)
-	 * 
+	 * @param ListItem $component
 	 * @return boolean
 	 */
-	protected function acceptsChild(/*ListItem*/ $object)
+	public function addChild(Component $component, $toFirst = false, $replace = false)
 	{
-		if ($object instanceof ListItem && $object->getType() == 'li')
-		{
-			return true;
-		} 
-		
-		return false;
-	}
-
-	
-	public function addChildAsFirst($object)
-	{
-		parent::addChild($object, true);
-	}
-	
-	public function addChildAsLast($object)
-	{
-		parent::addChild($object, false); 
+		if(!($component instanceof ListItem) && !($component instanceof HtmlFragment))
+			throw new BazeException("Invalid child ".get_class($component)." ULists only accept ListItems");
+			
+		parent::addChild($component, $toFirst, $replace);
 	}
 }

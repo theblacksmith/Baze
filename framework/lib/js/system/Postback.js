@@ -92,7 +92,6 @@ Object.extend(Postback.prototype,
 		{
 			if(Baze.DEBUG) {
 				console.group(__("Response"));
-					console.log(resp);
 					Baze.raise(__("The message returned by the server is invalid."), ex, {error : ErrorCodes.SERVER_ERROR, message : resp});
 				console.groupEnd();
 			}
@@ -103,13 +102,9 @@ Object.extend(Postback.prototype,
 			
 			return false;
 		}
-	
-		// logging
-		console.group("Response");
-			console.log(xhr.responseText);
-		console.groupEnd();
-		console.groupEnd();
 			
+		Baze.synchronizing = true;
+		
 		// Disparando o evento onBeforeProcessMessage
 		this.onBeforeProcessMessage.raise();
 	
@@ -130,6 +125,8 @@ Object.extend(Postback.prototype,
 		this.commands.BeforeDeleteObjects = [];
 		this.commands.OnMessageEnd = [];
 
+		Baze.synchronizing = false;
+		
 		return true;
 	},
 
@@ -194,8 +191,8 @@ Object.extend(Postback.prototype,
 		 * Remove objects
 		 */
 	
-		if(msg.removedObjects.length > 0) {
-			ClientViewState.removeComponents(msg.removedObjects);
+		if(msg.r.length > 0) {
+			ClientViewState.removeComponents(msg.r);
 		}
 	
 		// Run commands
@@ -205,8 +202,8 @@ Object.extend(Postback.prototype,
 		/*
 		 * Get new objects nodeList
 		 */	
-		if(msg.newObjects.length > 0) {
-			ClientViewState.createComponents(msg.newObjects);
+		if(msg.n.length > 0) {
+			ClientViewState.createComponents(msg.n);
 		}
 
 		// Run commands
@@ -216,8 +213,8 @@ Object.extend(Postback.prototype,
 		/*
 		 * Get modified objects nodeList
 		 */
-		if(msg.modifiedObjects.length > 0) {
-			ClientViewState.updateComponents(msg.modifiedObjects);
+		if(msg.m.length > 0) {
+			ClientViewState.updateComponents(msg.m);
 		}
 
 		// Run commands
@@ -233,6 +230,9 @@ Object.extend(Postback.prototype,
 	 */
 	send : function send(message)
 	{
+		console.group('Sync Message');
+		console.log(Baze.evaluate(message));
+		console.groupEnd();
 		this.myAjax = new Ajax.Request(this.url,
 		{
 			//method: this.method,
@@ -241,12 +241,6 @@ Object.extend(Postback.prototype,
 			onException : function (xhr, ex) { Baze.raise("Postback exception", ex, {xhr:xhr}); },
 			onComplete: this.receiveServerMessage.bind(this)
 		});
-		
-		console.group("NeoBaze postback");
-			console.group("Post");
-				console.log(message);
-			console.groupEnd();
-		
 	
 		this.onSendMessage.raise();
 	}

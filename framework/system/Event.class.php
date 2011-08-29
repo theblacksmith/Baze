@@ -107,8 +107,6 @@ class Event
 
 	public function raise($sender, $args = array())
 	{
-		global $sysLogger;
-
 		if(!$args) {
 			$args = $this->args;
 		}
@@ -119,9 +117,7 @@ class Event
 		{
 			if ($f instanceof EventHandler)
 			{
-				if($sysLogger)
-					$sysLogger->debug("               Calling " . $f->getSignature() .
-									NL . "sender: ".$sender->get("id"));
+				FB::log("Calling " . $f->getSignature() . NL . "sender: ".$sender->getId());
 									//NL . "with args " . var_export($args,true),__FILE__,__LINE__); gera erro de nesting level to deep
 				$f->call(array($sender, $args));
 			}
@@ -133,11 +129,9 @@ class Event
 		$this->preventDefault = $bool;
 	}
 
-	// TODO: rever essa estrutura de renderiza�ao quando forem implementados os Writers
-	public function getXHTML($part = XML_PART_ENTIRE_ELEMENT)
+	public function __toString()
 	{
 		$funcs = '';
-		$doingPostback = false;
 		$args = "";
 
 		// defining javascript arguments
@@ -149,26 +143,31 @@ class Event
 		if($this->preventDefault)
 			$args = ',{' . ($args != '' ? $args.',' : '' ) . ' preventDefault: true}';
 		else
-			$args = ',{' . ($args != '' ? $args.',' : '' ) . ' preventDefault: true}';
+			$args = ',{' . ($args != '' ? $args.',' : '' ) . ' preventDefault: false}';
 
+		$addedPostBackCall = false;
+		$fCount = 0;
 		foreach ($this->enlistedFunctions as $f)
 		{
-			if ($f instanceof EventHandler && !$doingPostback)
+			if (!$addedPostBackCall && $f instanceof EventHandler)
 			{
-				$doingPostback = true;
-
+				$fCount++;
+				$addedPostBackCall = true;
 				if(strpos(strtolower($_SERVER['HTTP_USER_AGENT']),"msie") > -1)
 					$funcs .= "Baze.doPostBack(window.event" . $args . ");";
 				else
 					$funcs .= "Baze.doPostBack(event" . $args . ");";
 			}
-			else if (is_string($f))
-				$funcs .= trim(str_replace('"', "'", $f), ';').';';
+			else if (is_string($f)) {
+				$fCount++;
+				$funcs .= trim($f, ';').';';
+			}
 		}
 
-		if($part == XML_PART_ENTIRE_ELEMENT)
-			return ' '.strtolower($this->eventName)."=\"$funcs\"";
-		else
-			return $funcs;
+		$funcs = str_replace('"', "'", $funcs);
+		if($fCount > 1)
+			return 'function(){' . $funcs . '}';
+			
+		return trim($funcs, ';');
 	}
 }

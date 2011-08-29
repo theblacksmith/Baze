@@ -39,7 +39,8 @@ class Panel extends HtmlComponent
 		$this->caption = $caption;
 		
 		$this->attributes = array_merge($this->attributes, array(
-			'php:class' => 'Panel'
+			'php:class' => 'Panel',
+			'php:runat' => 'server'
 		));
 	}
 }

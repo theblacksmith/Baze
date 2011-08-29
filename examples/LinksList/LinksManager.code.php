@@ -69,7 +69,7 @@ class LinksManager extends Page {
 		//ao chamar a função o NeoBase já terá atualizado o estado da interface
 		//precisamos somente contar a nova quantidade de elementos da lista de links
 		//para saber quantos links foram adicionados
-		$currQuantity = count($this->linksList->getChildren());
+		$currQuantity = count($this->linksList->ChildNodes);
 		
 		//calculo a diferença entre a quantidade de links na última atualização com a nova quantidade
 		$alterQuantity = $currQuantity - $this->lastQuantity;
@@ -83,6 +83,6 @@ class LinksManager extends Page {
 		
 		//insere nova mensagem no painel de mensagens 
 		//com a quantidade de links adicionados desde a última sincronização
-		$this->statusMsg->addChild('Alterações salvas: <strong>'.$alterQuantity.'</strong> Links Adicionados.');
+		$this->statusMsg->addChild(new HtmlFragment('Alterações salvas: <strong>'.$alterQuantity.'</strong> Links Adicionados.'));
 	}
 }

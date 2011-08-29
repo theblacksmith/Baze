@@ -301,6 +301,13 @@ class Collection extends Component implements Countable, ArrayAccess, Iterator {
 			throw new InvalidArgumentValueException(Collection_InvalidIndex, get_class($this), $offset);
 		}
 		else if($offset < $this->count) {
+			if(!isset($this->items[$offset]))
+			{
+				echo "count: {$this->count}\n";
+				echo "offset: $offset\n";
+				print_r(array_keys($this->items));
+				exit;
+			}
 			return $this->items[$offset];
 		}
 		else {
@@ -321,10 +328,12 @@ class Collection extends Component implements Countable, ArrayAccess, Iterator {
 		{
 			$index = $this->indexOf($item);
 
-			if(!$index)
+			if($index === false)
 				return false;
 
 			array_splice($this->items, $index, 1);
+			$this->count--;
+			return true;
 		}
 		else
 			throw new InvalidOperationException(Msg::Collection_ModifingReadOnly, get_class($this));
@@ -335,7 +344,6 @@ class Collection extends Component implements Countable, ArrayAccess, Iterator {
 	 *
  	 * @access public
 	 * @param ArrayAccess $coll
-	 * @return boolean
 	 */
 	public function removeThese($coll)
 	{

@@ -77,56 +77,22 @@ if(typeof Baze != "undefined")
 					continue;
 				}
 				
-				for(var p=null, j=0; j < object.properties.length; j++)
+				if(!Object.isUndefined(object.p))
 				{
-					p = object.properties[j];
-					if(p.eval)
-						comp.set(p.name, Baze.evaluate(p.value));
-					else
-						comp.set(p.name, p.value);
-						
+					$H(object.p).entries().each(function(pair) {
+						comp.set(pair.key, pair.value);
+					});
 				}
-				// applying the changes
-				/*
-				for(var j=0; j < objectChanges.length; j++)
+				
+				if(!Object.isUndefined(object.nc))
 				{
-					change = objectChanges[j];
-					cType = change.type;
-	
-					switch(Number(cType))
-					{
-						case ChangeType.PROPERTY_CHANGED :
-							var propertyName = change.getAttribute('propertyName');
-							var newValue = change.textContent || change.text;
-	
-							if(newValue)
-								comp.set(propertyName, newValue);
-							else
-								comp.set(propertyName, "");
-								
-							break;
-	
-						case ChangeType.CHILD_ADDED :
-							
-							var childObj = Baze.getComponentById(change.getAttribute('childId'));
-							
-							if(!childObj) {
-								Baze.raise("", new Error("Child addition error. Object with id (" + change.getAttribute('childId') + ") not found"));
-								return;
-							}
-	
-							comp.addChild(childObj);
-							break;
-	
-						case ChangeType.CHILD_REMOVED :
-							comp.removeChild(change.getAttribute('childId'));
-							break;
-					}
+					object.nc.each(function(id){
+						comp.addChild(Baze.getComponentById(id));
+					});
 				}
-				*/
+
 				if(_cache.modified.get(object.id))
 					_cache.modified.get(object.id).changes.removeAll()
-	
 			}
 		},
 	
@@ -139,25 +105,19 @@ if(typeof Baze != "undefined")
 			for(var i=0; i < objects.length; i++)
 			{
 				var object = objects[i];
-				var props = object.properties;
 	
-				var comp = Component.factory(object.klass);
+				var comp = Component.factory(object.c);
 				
 				if(!comp) {
-					Baze.raise("", new Error(object.klass + " component could not be instantiated"));
+					Baze.raise("", new Error(object.c + " component could not be instantiated"));
 					return;
 				}
 
 				comp.set("id", object.id);
 	
-				for(var j=0; j < props.length; j++)
-				{
-					if(props[j].eval) {
-						comp.set(props[j].name, Baze.evaluate(props[j].value));
-					}
-					else
-						comp.set(props[j].name, props[j].value);
-				}
+				$H(object.p).each(function(pair){
+					comp.set(pair.key, pair.value);
+				});
 					
 				// inserting the object on the page
 				Baze.addComponent(comp);
@@ -170,9 +130,7 @@ if(typeof Baze != "undefined")
 		 */
 		removeComponents: function removeComponents(objects)
 		{
-			for(var i=0; i < objects.length; i++) {
-				Baze.removeComponent(objects[i]);
-			}
+			objects.each(Baze.removeComponent);
 		},
 	
 	
@@ -261,13 +219,20 @@ if(typeof Baze != "undefined")
 					{
 						obj = {
 							id: modArr[i].realObject.getId(),
-							properties: {}
+							p: {},
+							nc: []
 						};
 						
 						var changes = modArr[i].changes.values;
 						for(var j=0; j < changes.length; j++) if(ChangeType.PROPERTY_CHANGED == changes[j].type ) {
-							obj.properties[changes[j].propertyName] = changes[j].newValue;
+							obj.p[changes[j].propertyName] = changes[j].newValue;
 						}
+						
+						neoArr.each(function(o){
+							if(!Object.isUndefined(o.container))
+								if(o.container === modArr[i].realObject)
+									obj.nc.push(o.getId());
+						});
 						
 						msg.m.push(obj);
 					}

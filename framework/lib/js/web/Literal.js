@@ -17,45 +17,7 @@ Literal = function Literal(elem)
 {
 	(Component.bind(this))();
 	
-	if (typeof elem == "undefined") {
-		var txtN;
-		
-		try {
-			this.realElement = document.createDocumentFragment("");
-		}
-		catch(e) {
-			Baze.raise("Text node could not be created.", e);
-		}
-	}
-	else if(typeof elem.nodeType != "undefined") {
-		switch(elem.nodeType)
-		{
-			case DOCUMENT_FRAGMENT_NODE :
-				this.realElement = elem;
-				
-				for(var i=0; i < elem.childNodes.length; i++) {
-					this.childNodes[i] = elem.childNodes[i];
-				}
-				
-			break;
-		
-			case TEXT_NODE :
-				this.realElement = this.parseHtml(elem.text || elem.textContent);
-				
-				for(var i=0; i < this.realElement.childNodes.length; i++) {
-					this.childNodes[i] = this.realElement.childNodes[i];
-				}
-			break;
-		}	
-	}
-	else if(typeof elem == "string" || typeof elem == "number")
-	{
-		this.realElement = this.parseHtml(elem);
-		
-		for(var i=0; i < this.realElement.childNodes.length; i++) {
-			this.childNodes[i] = this.realElement.childNodes[i];
-		}
-	}
+	this.setValue(elem);
 };
 	
 Object.extend(Literal.prototype, Component.prototype);
@@ -127,12 +89,49 @@ Object.extend(Literal.prototype, {
 	setId : function Literal_setId(id) { this.id = id; },
 	
 	setValue : function Literal_setValue(val) {
-		this.realElement = this.parseHtml(val);
 		
-		this.childNodes = [];
-		
-		for(var i=0; i < this.realElement.childNodes.length; i++) {
-			this.childNodes[i] = this.realElement.childNodes[i];
+		if (typeof val == "undefined") {
+			this.value = "";
+			try {
+				this.realElement = document.createTextNode("");
+			}
+			catch(e) {
+				Baze.raise("Text node could not be created.", e);
+			}
+		}
+		else if(typeof val.nodeType != "undefined") {
+			switch(val.nodeType)
+			{
+				case DOCUMENT_FRAGMENT_NODE :
+					this.value = val.text || val.textContent;
+					this.realElement = val;
+					
+					for(var i=0; i < val.childNodes.length; i++) {
+						this.childNodes[i] = val.childNodes[i];
+					}
+					
+				break;
+			
+				case TEXT_NODE :
+					this.value = val.text || val.textContent;
+					this.realElement = val;
+					
+					for(var i=0; i < this.realElement.childNodes.length; i++) {
+						this.childNodes[i] = this.realElement.childNodes[i];
+					}
+				break;
+			}	
+		}
+		else if(typeof val == "string" || typeof val == "number")
+		{
+			this.value = val;
+			this.realElement = this.parseHtml(val);
+			
+			this.childNodes = [];
+			
+			for(var i=0; i < this.realElement.childNodes.length; i++) {
+				this.childNodes[i] = this.realElement.childNodes[i];
+			}
 		}
 	},
 	
@@ -143,6 +142,7 @@ Object.extend(Literal.prototype, {
 	 */
 	parseHtml : function Literal_parseHtml(html)
 	{	
+		return document.createTextNode(html);
 		var tempEl = document.createElement("div");
 		tempEl.innerHTML = html;
 		
@@ -155,5 +155,9 @@ Object.extend(Literal.prototype, {
 		}
 		
 		return doc;
+	},
+	
+	getAttributesToRender: function() {
+		return $H({value: this.value});
 	}
 });

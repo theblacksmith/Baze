@@ -99,7 +99,7 @@ class PageComponent extends Component implements IRenderable, IContainer
 	protected $customAttributes = array();
 
 	/**
-	 * @var array Lista de atributos definidos desse componente que precisam ser sincronizados com a interface
+	 * @var ComponentState
 	 * @access protected
 	 */
 	protected $viewState;
@@ -143,6 +143,7 @@ class PageComponent extends Component implements IRenderable, IContainer
 			
 		$this->attributes = array_merge($this->attributes, array('id' => &$this->id));
 	}
+	
 	/**
 	 * Sets the component id
 	 *
@@ -164,13 +165,13 @@ class PageComponent extends Component implements IRenderable, IContainer
 	{
 		PhpType::ensureArgumentType('name', $name, PhpType::String);
 
-		$getter = 'get'.$name;
+		$getter = 'get'.ucfirst($name);
 
 		// search for a getter
 		if(method_exists($this, $getter)) {
 			return $this->$getter();
 		} // try to get from VS
-		if(_IS_POSTBACK && $this->viewState->hasProperty($name)) {
+		if($this->useState() && $this->getState()->hasProperty($name)) {
 			return $this->viewState->getProperty($name);
 		} // check if it exists and return it
 		else if(isset($this->attributes[$name]))
@@ -191,7 +192,7 @@ class PageComponent extends Component implements IRenderable, IContainer
 	{
 		PhpType::ensureArgumentType('name', $name, PhpType::Scalar);
 
-		$setter = 'set'.$name;
+		$setter = 'set'.ucfirst($name);
 
 		// check for a setter method
 		if(method_exists($this, $setter)) {
@@ -215,8 +216,8 @@ class PageComponent extends Component implements IRenderable, IContainer
 		if(isset($this->customAttributes[$name]))
 		{
 			// try to get it from VS
-			if(isset($this->viewState[$name]))
-				return $this->viewState[$name];
+			if($this->useState() && $this->getState()->hasProperty($name))
+				return $this->viewState->getProperty($name);
 
 			// not in VS, return what we have...
 			return $this->customAttributes[$name];
@@ -268,6 +269,31 @@ class PageComponent extends Component implements IRenderable, IContainer
 
 		return null;
 	}
+	
+	/**
+	 * Wheter the state should be used or not at the moment this method is called
+	 */
+	protected function useState()
+	{
+		return $this->trackViewState && _IS_POSTBACK && $this->page;
+	}
+	
+	/**
+	 * @return ComponentState
+	 */
+	public function getState()
+	{
+		if(!_IS_POSTBACK)
+				throw new BazeRuntimeException("Components only need to track state during a Postback. You can check for it using _IS_POSTBACK constant.");
+		
+		if(!$this->page)
+			throw new BazeRuntimeException("Components which aren't in a page doesn't need to track state");
+			
+		if(!$this->viewState)
+			$this->viewState = new ComponentState($this->page->getServerViewState(), $this);
+		
+		return $this->viewState; 
+	}
 
 	/**
 	 * Gets an attribute or a custom attribute from this component.
@@ -281,7 +307,7 @@ class PageComponent extends Component implements IRenderable, IContainer
 	 */
 	protected function getFromViewState($name, $defaultValue = null)
 	{
-		if($this->viewState && $this->viewState->hasProperty($name)) {
+		if($this->useState() && $this->getState()->hasProperty($name)) {
 			return $this->viewState->getProperty($name);
 		}
 		else if(isset($this->attributes[$name])) {
@@ -302,12 +328,12 @@ class PageComponent extends Component implements IRenderable, IContainer
 	 */
 	protected function setInViewState($name, $value, $defaultValue = null)
 	{
-		if(_IS_POSTBACK)
-		{
+		if($this->useState())
+		{	
 			if(isset($this->attributes[$name]))
 				$defaultValue = $this->attributes[$name];
 				
-			$this->viewState->addProperty($name, $value, $defaultValue);
+			$this->getState()->addProperty($name, $value, $defaultValue);
 		}
 		else
 		{
@@ -328,10 +354,17 @@ class PageComponent extends Component implements IRenderable, IContainer
 	 */
 	public function _setSynchronized()
 	{
-		foreach ($this->viewState as $prop => $val) {
+		
+		if(!$this->useState())
+			return;
+			
+		$props = $this->getState()->getProperties();
+		
+		foreach ($props as $prop => $val) {
 			$this->attributes[$prop] = $val;
-			unset($this->viewState[$prop]);
 		}
+		
+		$this->getState()->setSynchronized();
 	}
 	
 	/**
@@ -393,19 +426,14 @@ class PageComponent extends Component implements IRenderable, IContainer
 	 * @return boolean
 	 */
 	public function setPage(Page $p = null, $replace = false) {
-
 		if($this->page === $p || $p === null)
 			return;
 
 		$this->page = $p;
-		if($this->page->addComponent($this, $replace))
-		{		
-			if ($this->children) foreach ($this->children as $c)
-				$c->setPage($this->page);
-			
-			if($this->trackViewState)
-				$this->viewState = new ComponentState($this->page->getServerViewState(), $this);
-		}
+		$this->page->registerComponent($this, $replace);
+		
+		if ($this->children) foreach ($this->children->toArray() as $c)
+			$c->setPage($this->page, $replace);
 	}
 
 	/**
@@ -423,8 +451,8 @@ class PageComponent extends Component implements IRenderable, IContainer
 	 * @return array
 	 */
 	public function getAttributesToRender() {
-		if(_IS_POSTBACK)
-			return $this->viewState->Properties;
+		if($this->useState())
+			return $this->getState()->getProperties();
 		else
 			return $this->attributes;
 	}
@@ -536,6 +564,9 @@ class PageComponent extends Component implements IRenderable, IContainer
 	 */
 	public function getChildNodes()
 	{
+		if(!$this->children)
+			return array();
+			
 		return $this->children->toArray();
 	}
 
@@ -546,13 +577,13 @@ class PageComponent extends Component implements IRenderable, IContainer
 	 */
 	public function getAttributes()
 	{
-		if(!_IS_POSTBACK)
+		if(!$this->useState())
 			return $this->attributes;
 		else
 		{
 			$atts = $this->attributes;
-
-			foreach($this->viewState as $n => $v)
+			$props = $this->getState()->getProperties();
+			foreach($props as $n => $v)
 				$atts[$n] = $v;
 
 			return $atts;
@@ -599,8 +630,9 @@ class PageComponent extends Component implements IRenderable, IContainer
 				
 			$component->setContainer($this);
 			
-			if($this->trackViewState && _IS_POSTBACK)
-				$this->viewState->addNewChild($component);
+			if($this->useState()) {
+				$this->getState()->addNewChild($component);
+			}
 			
 			return true;
 		}
@@ -620,23 +652,33 @@ class PageComponent extends Component implements IRenderable, IContainer
 		if(!($this->children instanceof Collection))
 			return null;
 
-		$c = $this->children->remove($component);
-		$c->setContainer(null);
+		$found = $this->children->remove($component);
 		
-		if($c) {
+		if($found) {
+			$component->setContainer(null);
+			
 			if(isset($this->page)) {
-				$id = $c->getId();
-				unset($this->page->$id);
+				$this->page->unregisterComponent($component);
 			}
 			
-			if(($pos = array_search($c->getId(), $this->newChildren)) !== false)
-				unset($this->newChildren[$pos]);
-			else {
-				$this->delChildren[] = &$c->_getId();
+			if($this->useState())
+				$this->getState()->addRemovedChild($component);
+			else
+			FB::error("Not using State");
+				
+		}
+		else {
+			FB::error($component->getId(), "Component is not a child");
+			$ids = array();
+			
+			foreach ($component->getChildNodes() as $c) {
+				$ids[] = $c->getId();
+				
 			}
+			FB::info($ids, "Available children");
 		}
 		
-		return $c; 
+		return $component; 
 	}
 
 	/**
@@ -652,9 +694,10 @@ class PageComponent extends Component implements IRenderable, IContainer
 			return;
 
 		$childColl = new Collection();
-
-		foreach ($this->children as $c)
-			$childColl->add($c->remove($c));
+		
+		foreach ($this->children as $c) {
+			$childColl->add($this->removeChild($c));
+		}
 			
 		$this->children = new Collection();
 
@@ -674,7 +717,7 @@ class PageComponent extends Component implements IRenderable, IContainer
 	{
 		$ret = parent::addEventListener($event, $callback, $runatServer, $args, $preventDefault);
 		
-		$this->setAttribute($event, array($this->$event, 'getXHTML'));
+		$this->setAttribute($event, $this->$event);
 		
 		return $ret;
 	}

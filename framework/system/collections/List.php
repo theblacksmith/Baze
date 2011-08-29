@@ -22,7 +22,7 @@ class List_ extends Collection {
 	 * @ParamType list NeoBaze.collections.List
 	 * Adiciona todos os elementos na lista especificada no final desta lista na ordem em que s�o retornados pelo iterador da lista especificada (opera��o opcional).
 	 */
-	public function addAll(List $list) {
+	public function addAll(List_ $list) {
 		// Not yet implemented
 	}
 
@@ -47,7 +47,7 @@ class List_ extends Collection {
 	 * @ParamType list NeoBaze.collections.List
 	 * Retorna "true" caso esta lista possua todos os elementos da lista especificada.
 	 */
-	public function containsAll(List $list) {
+	public function containsAll(List_ $list) {
 		// Not yet implemented
 	}
 

@@ -21,7 +21,7 @@ require_once 'system/Component.class.php';
  * @since 0.9
  * @package Baze.classes.web
  */
-class Literal extends Component
+class Literal extends PageComponent
 {
 	/**
 	 * @var mixed

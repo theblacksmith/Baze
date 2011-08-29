@@ -173,6 +173,11 @@ class System
 	 */
 	public function init ($configFile = null)
 	{
+		//require_once NB_ROOT . '/external/firelogger.php';
+		require_once NB_ROOT . '/external/FirePHPCore/fb.php';
+		
+		FB::log('System::init');
+		
 		$this->wakeUp();
 
 		if (isset($this->_onWakeUp))

@@ -190,7 +190,7 @@ class Component extends BazeObject {
  	 * @access public
 	 * @param IContainer $comp
 	 */
-	public function setContainer(IContainer $comp) {
+	public function setContainer(IContainer $comp = null) {
 		$this->container = $comp;
 	}
 
